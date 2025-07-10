@@ -7,13 +7,13 @@ An antenna is an electrical component that acts as a transducer between a guided
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
-        \includegraphics[width=\linewidth]{content/4_images/ant_recep.png}
+        \includegraphics[width=\linewidth]{content/4-images/ant-recep.png}
         \caption{Transmit antenna equivalent circuit, showing the source voltage $V_S$, source impedance $Z_S$, transmit voltage $V_{TX}$, and antenna current $I_a$.}
         \label{fig:tx_circuit}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.42\textwidth}
-        \includegraphics[width=\linewidth]{content/4_images/ant_trans.png}
+        \includegraphics[width=\linewidth]{content/4-images/ant-trans.png}
         \caption{Receive antenna equivalent circuit, showing the induced open-circuit voltage $V_{oc}$, the load impedance $Z_L$, and the received voltage $V_{RX}$.}
         \label{fig:rx_circuit}
     \end{subfigure}
@@ -23,7 +23,7 @@ An antenna is an electrical component that acts as a transducer between a guided
 
 The equivalent circuits for the transmitter and receiver are drawn in Figure \ref{fig:equivalent_circuits}. In Figure \ref{fig:tx_circuit}, can be seen the equivalent circuit of the transmitter. The voltage source $V_S$ with its internal impedance $Z_S$ drives the antenna, resulting in a current $I_a$ and a voltage $V_{TX}$ at the antenna's input terminals. At the receiver (Figure \ref{fig:rx_circuit}), the incoming wave induces an open-circuit voltage $V_{oc}$, which in turn produces the received voltage $V_{RX}$ across the load impedance $Z_L$.
 
-For this project, we consider the electronics to be perfectly matched to the antennas. This implies that for the transmitter, the source impedance is the complex conjugate of the antenna impedance:
+For this project, it was considered that the electronics to be perfectly matched to the antennas. This implies that for the transmitter, the source impedance is the complex conjugate of the antenna impedance:
 \begin{equation}
     Z_S = Z_a^*
 \end{equation}
@@ -38,7 +38,7 @@ This consideration ensures maximum power transfer.
 \subsection{Antenna Effective Height}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{content/4_images/axes.png}
+    \includegraphics[width=0.5\linewidth]{content/4-images/axes.png}
     \caption{Illustration of the vertical dipole antenna and coordinate axes.}
     \label{fig:axes}
 \end{figure}
@@ -138,7 +138,7 @@ The electric field radiated by an antenna is given by:
     \underline{\vec{E}}(\vec{r}) = -j\omega \underline{I}_a \frac{\mu_0}{4\pi} \frac{e^{-j\beta r}}{r} \vec{h}_{e\perp}(\theta, \phi)
 \end{equation}
 \vspace{0.5em}
-Substituting the transverse effective height for the horizontal plane (Eq. \ref{eq:he_perp_horizontal}) into the general expression gives:
+Substituting the transverse effective height for the horizontal plane (Equation \ref{eq:he_perp_horizontal}) into the general expression gives:
 \begin{equation}
     \underline{\vec{E}}(r, \pi/2, \phi) = -j\omega \underline{I}_a \frac{\mu_0}{4\pi} \frac{e^{-j\beta r}}{r} \left(-\frac{\lambda}{\pi} \vec{1}_\theta\right) = j \underline{I}_a \frac{\omega \mu_0 \lambda}{4\pi^2} \frac{e^{-j\beta r}}{r} \vec{1}_\theta
 \end{equation}
@@ -158,7 +158,7 @@ A half-wave dipole at its resonant frequency has an almost purely real impedance
     \underline{I}_a = \frac{\underline{V}_{TX}}{2R_a}
 \end{equation}
 \vspace{0.5em}
-Substituting this for $\underline{I}_a$ yields:
+Substituting this for $\underline{I}_a$:
 \begin{equation}
     \underline{\vec{E}} = j \left(\frac{\underline{V}_{TX}}{2R_a}\right) \frac{Z_0}{2\pi c\tau} e^{-j2\pi f_c \tau} \vec{1}_\theta = j \frac{Z_0}{4\pi R_a c\tau} \underline{V}_{TX} e^{-j2\pi f_c \tau} \vec{1}_\theta
     \label{eq:E_field_final}

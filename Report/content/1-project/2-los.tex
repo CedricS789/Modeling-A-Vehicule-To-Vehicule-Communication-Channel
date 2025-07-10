@@ -1,0 +1,153 @@
+\setcounter{secnumdepth}{3}
+\chapter{Narrowband Analysis - LOS Channel}
+\label{chap:los}
+
+The analysis begins with the simplest communication scenario: a direct Line-of-Sight (LOS) path between the transmitter TX and the receiver RX. A narrowband analysis is conducted, which assumes that the signal's bandwidth is much smaller than the channel's coherence bandwidth. This simplification allows the channel to be characterized by one complex coefficient.
+
+\section{Theoretical Background}
+The physical channel can be described by its time-variant impulse response, which for a set of $N$ multipath components is:
+\begin{equation}
+	h(\tau,t) = \sum_{n=1}^{N} \alpha_n(t) \delta(\tau - \tau_n)
+\end{equation}
+where $\alpha_n(t)$ and $\tau_n$ are the complex amplitude and propagation delay of the $n$-th path, respectively.
+
+A practical communication system has a finite bandwidth $B$, which limits its ability to resolve paths arriving at different times. The system's time resolution is $\Delta\tau = 1/B$. This physical limitation leads to the Tapped Delay Line (TDL) model. The impulse response of the TDL model is a discrete-time representation of the physical channel:
+\begin{equation}
+	h_{TDL}(\tau, t) = \sum_{l=0}^{L} h_l(t) \delta(\tau - l\Delta\tau)
+	\label{eq:tdl_model}
+\end{equation}
+where $h_l(t)$ is the complex gain of the $l$-th tap.
+
+The condition for a narrowband channel is that the signal bandwidth $B$ is much smaller than the channel's coherence bandwidth $\Delta f_c$. The coherence bandwidth is inversely proportional to the channel's delay spread, $\sigma_\tau$, which is the maximum time difference between arriving paths. The narrowband condition is thus expressed as:
+\begin{equation}
+	B \ll \Delta f_c \approx \frac{1}{\sigma_\tau} \implies \Delta\tau \gg \sigma_\tau
+\end{equation}
+This inequality means that the system's time resolution is much larger than the delay spread. From the receiver's perspective, all MPCs arrive at effectively the same time, as their delay differences are too small to be resolved. Consequently, all MPCs fall into the first tap (with index $l=0$) of the TDL model. The summation in Equation \ref{eq:tdl_model} therefore reduces to one term for $l=0$:
+\begin{equation}
+	h_{TDL}(\tau, t) = h_0(t) \delta(\tau - 0 \cdot \Delta\tau) = h_0(t) \delta(\tau)
+\end{equation}
+where the tap gain $h_0(t)$ is the sum of all individual path gains:
+\begin{equation}
+	h_0(t) = \sum_{n=1}^{N} \alpha_n(t)
+\end{equation}
+The channel's transfer function, $H(f,t)$, is the Fourier transform of this simplified TDL impulse response. The derivation proceeds as follows:
+\begin{equation}
+	H(f,t) = \mathcal{F}\{h_{TDL}(\tau, t)\} = \int_{-\infty}^{\infty} h_{TDL}(\tau, t) e^{-j2\pi f \tau} d\tau
+\end{equation}
+Substituting the expression for the narrowband TDL impulse response:
+\begin{equation}
+	H(f,t) = \int_{-\infty}^{\infty} h_0(t)\delta(\tau) e^{-j2\pi f \tau} d\tau
+\end{equation}
+To solve this integral, the sifting property of the Dirac delta function is used, which states that $\int g(\tau)\delta(\tau)d\tau = g(0)$. In this case, the function $g(\tau)$ is $h_0(t)e^{-j2\pi f \tau}$. Evaluating this function at $\tau=0$ gives:
+\begin{equation}
+	g(0) = h_0(t)e^{-j2\pi f (0)} = h_0(t)
+\end{equation}
+Therefore, the transfer function simplifies to:
+\begin{equation}
+	H(f,t) = h_0(t)
+\end{equation}
+Since $H(f,t)$ does not depend on the baseband frequency $f$, the channel is described as frequency-flat. The narrowband transfer function, $h_{NB}$, is this constant complex gain. For a time-invariant channel, this becomes:
+\begin{equation}
+	h_{NB} = \sum_{n=1}^{N} \alpha_n
+\end{equation}
+In the case of a unique LOS path, this sum reduces to a single term, $h_{NB} = \alpha_1$. 
+The benchmark for received power in this scenario is the Friis formula:
+\begin{equation}
+	P_{RX} = P_{TX} G_{TX} G_{RX} \left(\frac{\lambda}{4\pi d_1}\right)^2
+	\label{eq:friis_formula_bg}
+\end{equation}
+where $d_1$ is the distance between the antennas.
+
+\section{Analysis and Mathematical Derivations}
+
+\subsection{Impulse Response $h(\tau)$}
+The expression for $\alpha_1$ for the LOS path is found by relating the system-level Friis formula to the complex amplitude. The received power is proportional to the squared magnitude of this coefficient:
+\begin{equation}
+	P_{RX} = |\alpha_1|^2 P_{TX}
+\end{equation}
+By comparing this with the Friis formula (Equation \ref{eq:friis_formula_bg}), the magnitude of $\alpha_1$, denoted as $|a_1|$, is:
+\begin{equation}
+	|\alpha_1|^2 = G_{TX} G_{RX} \left(\frac{\lambda}{4\pi d_1}\right)^2 \implies |a_1| = \sqrt{G_{TX}G_{RX}} \frac{\lambda}{4\pi d_1}
+\end{equation}
+For this project, both antennas are identical vertical $\lambda/2$ dipoles. The gain of a lossless half-wave dipole is maximal in the horizontal plane ($\theta = \pi/2$) and is given by 
+\begin{equation}
+	G_{TX} = G_{RX} = G\left(\theta=\frac{\pi}{2}\right) = \frac{16}{3\pi} \approx 1.6976
+\end{equation}
+Assuming the additional phase shift $\phi_1$ is zero for the direct LOS path, the complex amplitude is $\alpha_1 = |a_1|e^{-j2\pi f_c \tau_1}$. The full impulse response for the LOS path is then:
+\begin{equation}
+	h(\tau) = \left( \sqrt{G_{TX}G_{RX}} \frac{\lambda}{4\pi d_1} e^{-j2\pi f_c \tau_1} \right) \delta(\tau - \tau_1)
+	\label{eq:los_impulse_response_derived}
+\end{equation}
+where $\tau_1 = d_1/c$ is the propagation delay.
+
+\subsection{Transfer Function $H(f)$}
+The transfer function $H(f)$ is obtained by taking the Fourier transform of the impulse response in Equation \ref{eq:los_impulse_response_derived}. The explicit integral is:
+\begin{equation}
+	H(f) = \int_{-\infty}^{\infty} \left( \sqrt{G_{TX}G_{RX}} \frac{\lambda}{4\pi d_1} e^{-j2\pi f_c \tau_1} \delta(\tau - \tau_1) \right) e^{-j2\pi f \tau} d\tau
+\end{equation}
+Using the sifting property of the Dirac delta function, which states that $\int g(\tau)\delta(\tau - \tau_1)d\tau = g(\tau_1)$, the integral simplifies to:
+\begin{align}
+	H(f) &= \sqrt{G_{TX}G_{RX}} \frac{\lambda}{4\pi d_1} e^{-j2\pi f_c \tau_1} e^{-j2\pi f \tau_1} \\
+	&= \sqrt{G_{TX}G_{RX}} \frac{\lambda}{4\pi d_1} e^{-j2\pi (f+f_c) \tau_1}
+	\label{eq:los_transfer_function}
+\end{align}
+This function shows that the channel introduces a phase shift that is linear with the baseband frequency $f$, which corresponds to the time delay $\tau_1$. The magnitude $|H(f)|$ is constant across all frequencies.
+
+\subsection{Narrowband Transfer Function $h_{NB}$}
+As established in the theoretical background, the narrowband assumption holds perfectly for one LOS path because the delay spread $\sigma_\tau$ is zero. The narrowband transfer function $h_{NB}$ is therefore the frequency-independent complex gain obtained by evaluating the full transfer function (Equation \ref{eq:los_transfer_function}) at the baseband center, $f=0$:
+\begin{equation}
+	h_{NB} = H(f=0) = \sqrt{G_{TX}G_{RX}} \frac{\lambda}{4\pi d_1} e^{-j2\pi f_c \tau_1} = \alpha_1
+	\label{eq:los_narrowband_tf}
+\end{equation}
+The channel is thus represented by one complex number, which scales and rotates the transmitted signal.
+
+\subsection{Received Power $P_{RX}$}
+The received power is derived from the circuit-level relationships established in the preliminaries, demonstrating its equivalence to the Friis formula.
+The received power $P_{RX}$ and transmitted power $P_{TX}$ are given by:
+\begin{align}
+	P_{RX} &= \frac{1}{8R_a}|\underline{V}_{oc}|^2 \label{eq:prx_voc} \\
+	P_{TX} &= \frac{1}{2}R_a|\underline{I}_{a}|^2 \implies |\underline{I}_{a}|^2 = \frac{2P_{TX}}{R_a} \label{eq:ptx_ia}
+\end{align}
+The open-circuit voltage $\underline{V}_{oc}$ is induced by the incident electric field $\underline{\vec{E}}$: $\underline{V}_{oc} = -\vec{h}_{e\perp}^{RX} \cdot \underline{\vec{E}}$. For the LOS path in the horizontal plane, this becomes:
+\begin{equation}
+	\underline{V}_{oc} = -\left(-\frac{\lambda}{\pi}\vec{1}_\theta\right) \cdot \left(j \frac{Z_0 |\underline{I}_a|}{2\pi d_1} e^{-j\beta d_1} \vec{1}_\theta\right) = j \frac{\lambda Z_0 |\underline{I}_a|}{2\pi^2 d_1} e^{-j\beta d_1}
+\end{equation}
+Taking the magnitude squared:
+\begin{equation}
+	|\underline{V}_{oc}|^2 = \left(\frac{\lambda Z_0}{2\pi^2 d_1}\right)^2 |\underline{I}_a|^2
+\end{equation}
+Substitute this and Equation \ref{eq:ptx_ia} into Equation \ref{eq:prx_voc}:
+\begin{align}
+	P_{RX} &= \frac{1}{8R_a} \left(\frac{\lambda Z_0}{2\pi^2 d_1}\right)^2 \left(\frac{2P_{TX}}{R_a}\right) \\
+	&= \frac{\lambda^2 Z_0^2}{16\pi^4 R_a^2 d_1^2} P_{TX}
+\end{align}
+Rearranging the terms reveals the antenna gains. The gain of a $\lambda/2$ dipole in the horizontal plane is $G = Z_0/(\pi R_a)$.
+\begin{align}
+	P_{RX} &= \left( \frac{Z_0}{\pi R_a} \right) \left( \frac{Z_0}{\pi R_a} \right) \left( \frac{\lambda^2}{16\pi^2 d_1^2} \right) P_{TX} \\
+	&= G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d_1} \right)^2 P_{TX} \label{eq:los_power_final}
+\end{align}
+This result is identical to the Friis formula.
+
+\begin{table}[H]
+	\centering
+	\caption{Comparison of Derived Power Equation with Friis' Formula}
+	\label{tab:friis_comparison}
+	\begin{tabular}{|l|c|c|}
+		\hline
+		\textbf{Component} & \textbf{Derived Result} & \textbf{Friis' Formula} \\ \hline
+		Transmit Power & $P_{TX}$ & $P_{TX}$ \\ \hline
+		Transmit Gain & $G_{TX} = \frac{Z_0}{\pi R_a}$ & $G_{TX}$ \\ \hline
+		Receive Gain & $G_{RX} = \frac{Z_0}{\pi R_a}$ & $G_{RX}$ \\ \hline
+		Path Loss Factor & $\left(\frac{\lambda}{4\pi d_1}\right)^2$ & $\left(\frac{\lambda}{4\pi d_1}\right)^2$ \\ \hline
+	\end{tabular}
+\end{table}
+
+\section{Code Implementation and Methodology}
+\textit{(Placeholder) In the accompanying script, the derived equation for $P_{RX}$ (Equation \ref{eq:los_power_final}) is implemented to calculate the received power at various distances $d_1$. The script defines variables for the transmitted power ($P_{TX}$), antenna gains ($G_{TX}, G_{RX}$), wavelength ($\lambda$), and the distance vector ($d_1$). The final result is plotted as received power in dBm versus distance.}
+
+\section{Interpretation of Results}
+The derivations confirm the fundamental principles of a simple LOS communication link.
+\begin{itemize}
+	\item \textbf{Frequency-Flat Channel:} The single propagation path results in a transfer function $|H(f)|$ that is constant with frequency. This means the channel does not distort the signal's spectrum, a condition known as flat fading. This is a direct consequence of having no time dispersion (zero delay spread).
+	\item \textbf{Validation of Friis' Formula:} The derivation of received power starting from the electromagnetic and circuit principles yields a result identical to the well-known Friis' formula. This demonstrates a powerful consistency between the low-level physical model (fields and circuits) and the high-level system model (power and gains). It validates the assumptions made, such as perfect matching and the use of lossless $\lambda/2$ dipole antennas, as the basis for the Friis link budget in this ideal scenario. The comparison highlights that the antenna gains and free-space path loss are not just abstract parameters but are directly rooted in the physical properties of the antennas and wave propagation.
+\end{itemize}

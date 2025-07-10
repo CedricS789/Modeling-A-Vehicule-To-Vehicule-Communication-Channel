@@ -162,7 +162,7 @@
   attach boxed title to top center={yshift=-2mm},
   sharp corners,
   boxrule=1pt,
-  #1
+  {#1}
 }
 
 % ==========================================================
@@ -174,7 +174,7 @@
 \newcommand{\sceau}[1]{\backgroundsetup{
 scale=1,
 color=black,
-opacity=0.05,
+opacity=0.03,
 angle=10,
 position={12cm,-22cm},
 contents={%
@@ -211,14 +211,18 @@ contents={%
     % Replace logo with nothing if not specified
     \ifthenelse{\equal{\cmdPRE@fam@logo}{7}}{}{\includegraphics[width=0.87\linewidth,keepaspectratio]{\cmdPRE@fam@logo}\\}
         {\selectfont \cmdPRE@fam@studies}
+        
     \begin{center}
+    \vspace{1cm}
     \vspace*{\baselineskip}
-    {\selectfont\cmdPRE@fam@course}\\[0\baselineskip]
+    {\selectfont\bfseries\cmdPRE@fam@course}\\[0\baselineskip]
+    \vspace{2cm}
     \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
     \rule{\textwidth}{0.4pt}\\[\baselineskip]
     \parbox{\textwidth}{\centering\bfseries\selectfont\fontsize{20pt}{24pt}\selectfont \cmdPRE@fam@title}\\[\baselineskip]
     \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
     \rule{\textwidth}{1.6pt}\\[\baselineskip]
+    \vspace{5cm}
     \ifthenelse{\equal{\cmdPRE@fam@manyAuthor}{8}}{
     {\Large\selectfont \cmdPRE@fam@author}\\[\baselineskip]
     {\bfseries\selectfont \cmdPRE@fam@teacher}}{
