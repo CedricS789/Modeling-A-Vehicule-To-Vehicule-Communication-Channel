@@ -1,25 +1,34 @@
-\documentclass{ULBreport}
-\usepackage{graphicx}
-
+\documentclass{ULBreportEnhanced}
+\usepackage{esvect}
 \sceau{Pictures/sceauULB.jpg} %To change depending if ULB(sceauULB.jpg) or VUB course (zegelVUB.jpg)
 
 \addbibresource{biblio.bib}
 
 \begin{document}
 
+
 \titleULB{
 	title={Modeling A Vehicle-to-Vehicle Communication Channel in an Urban Environment},
 	course={ELEC-H415},
-	author={\textit{Author(s) :} \\ Cédric Sipakam},
+	author={\textit{Author :} \\ Cédric Sipakam},
 	date={2025},
-	teacher={\textit{Teacher(s) :} \\ Philippe de Doncker},
+	teacher={\textit{Teacher :} \\ Philippe de Doncker},
 	logo={Pictures/logos.jpg},
         manyAuthor
 }
+
+
+
 \listoffigures
 \listoftables
-\input{content/abstract.tex}
-\input{content/chapters.tex}
+\input{content/1_project/0_intro}
+\input{content/1_project/1_prelim}
+\input{content/1_project/2_los}
+\input{content/1_project/3_full}
+\input{content/1_project/4_wide}
+\input{content/1_project/5_further}
+\input{content/1_project/6_conclu}
+
 
 %Bibliography
 \nocite{*}
