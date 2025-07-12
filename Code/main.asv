@@ -1,38 +1,83 @@
-%% Step 1 - Theoretical preliminaries
+%% MAIN SIMULATION SCRIPT - V2V STREET CANYON (Simplified)
+% =========================================================================
+% This script sets up and runs the ray-tracing simulation for a simplified
+% urban street canyon scenario, represented by two long, continuous walls.
+%
+% 1. It defines the physical parameters for V2V communication.
+% 2. It generates a simple environment with two parallel walls.
+% 3. It places the TX and RX vehicles in the middle of the street.
+% 4. It calls the ray-tracing engine to compute the paths.
+% 5. It calls the plotting function to visualize the results.
+% 6. It displays a summary of the key physical parameters for each found ray.
+% =========================================================================
 clear; clc; close all;
-fc = 5.9e9;         % Carrier frequency in Hz
-c = 3e8;            % Speed of light in m/s
-B_RF = 100e6;       % RF bandwidth in Hz
-P_TX = 0.1;         % Transmit power in Watts
-G_TX = 1.7;         % Transmit antenna gain
-G_RX = 1.7;         % Receive antenna gain
-eps_r = 1;          % Relative permittivity of the  buildgins
-l_area = 5;         % length of the local areas in meters
-lamda = c/fc;       % Wavelength in meters
-Z_0 = 377;          % Impedance of free space in Ohms
-he = lamda/pi;      % Transversal effective height in the horizontal plane (tetha=pi/2) in meters
-beta = 2*pi*fc/c;   % Wave number in rad/m
+addpath('Functions')
 
-%% Step 2 - LOS channel
-d1 = 1:1:1000;      % Distance vector LOS channel
-P_RX = P_TX * G_TX * G_RX .* (lamda ./ (4 * pi .* d1)).^2; % Friis' formula
-P_RX_dBm = 10 * log10(P_RX / 1e-3);
+% =================================================================
+% 1: DEFINE SIMULATION PARAMETERS
+% =================================================================
 
-% Plot the received power in dBm versus distance
-figure;
-plot(d1, P_RX, 'b-', 'LineWidth', 1.5);
-grid on;
-title('Received Power vs. Distance for Line-of-Sight (LOS) Channel');
-xlabel('Distance (m)');
-ylabel('Received Power (dBm)');
-legend('LOS Path');
-axis tight;
+% --- Physical Channel Parameters ---
+sim.fc = 5.9e9;      % Carrier frequency in Hz (5.9 GHz)
+sim.c = 3e8;         % Speed of light in m/s
+sim.Z_0 = 377;       % Impedance of free space in Ohms
+sim.R_a = 73.1;      % Assumed radiation resistance for a half-wave dipole
+sim.P_TX = 0.1;      % Transmit power in Watts
 
-%% Ray tracing
-w = 20;         % Half-width of the street (m)
-d = 100;        % Distance between TX and RX (m)
-k = 3;          % Maximum number of reflections to trace
-% Define coordinates
-tx_pos = [0, 0];
-rx_pos = [d, 0];
-ray_tracing(w, 1, [0, 0], [0, 0])
+% --- Ray Tracing Configuration ---
+k_max = 3; % The maximum order of reflections to compute.
+
+% =================================================================
+% 2: GENERATE THE ENVIRONMENT LAYOUT
+% =================================================================
+
+% --- Street and Building Geometry ---
+w = 20;     % Total width of the street (2w = 20m)
+L = 500;  % Total length of the simulated street area
+eps_r = 4;      % Relative permittivity of the buildings
+
+% --- Vehicle Positions ---
+dist = 150; % Separation distance 'd' between TX and RX in meters
+tx_pos = [-dist/2, 0]; % TX is at -d/2, in the middle of the lane
+rx_pos = [dist/2, 0];   % RX is at +d/2, in the middle of the lane
+
+% --- Create two simple walls for the street canyon ---
+walls = [];
+% Top wall
+walls(1).coords = [-L, w/2; L, w/2];
+walls(1).eps_r = eps_r;
+% Bottom wall
+walls(2).coords = [-L, -w/2; L, -w/2];
+walls(2).eps_r = eps_r;
+
+
+% =================================================================
+% 3: EXECUTE THE RAY-TRACING CALCULATION
+% =================================================================
+fprintf('Starting ray-tracing calculation for up to %d reflections...\n', k_max);
+[alphas, rays] = runRayTracing(walls, k_max, tx_pos, rx_pos, sim);
+fprintf('Calculation complete. Found %d valid propagation rays.\n', length(alphas));
+
+% =================================================================
+% 4: VISUALIZE THE RESULTS
+% =================================================================
+fprintf('Generating plot of the environment and found rays...\n');
+plotRays(walls, tx_pos, rx_pos, rays, k_max);
+% Adjust plot limits to focus on the area around the vehicles
+xlim([tx_pos(1)-50, rx_pos(1)+50]);
+ylim([-w, w]);
+fprintf('Simulation finished.\n');
+
+% =================================================================
+% 5: DISPLAY RAY DATA SUMMARY
+% =================================================================
+fprintf('\n--- Ray Data Summary ---\n');
+for i = 1:length(rays)
+    r = rays{i};
+    g_mag = abs(r.gain);
+    g_phase = rad2deg(angle(r.gain));
+    
+    fprintf('Ray %2d: Type = %-7s | Distance = %7.2f m | Gain Mag = %.4e | Gain Phase = %7.2f deg\n', ...
+            i, r.type, r.dist, g_mag, g_phase);
+end
+fprintf('------------------------\n');

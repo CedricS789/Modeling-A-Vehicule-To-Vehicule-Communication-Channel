@@ -1,0 +1,69 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{Example}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=1dee44453e0c006e3942013d5031faf5}{%
+           family={author},
+           familyi={a\bibinitperiod},
+           given={Eventual},
+           giveni={E\bibinitperiod}}}%
+        {{hash=29ee67be18c2b9fdaa477b604ba0bb7a}{%
+           family={OTHER},
+           familyi={O\bibinitperiod},
+           prefix={author},
+           prefixi={a\bibinitperiod}}}%
+        {{hash=94a2ce1a4cae67c14525fad2689305c7}{%
+           family={LAST},
+           familyi={L\bibinitperiod},
+           given={Author},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{6dfca4d37327a90828c9809158506c7f}
+      \strng{fullhash}{6dfca4d37327a90828c9809158506c7f}
+      \strng{fullhashraw}{6dfca4d37327a90828c9809158506c7f}
+      \strng{bibnamehash}{6dfca4d37327a90828c9809158506c7f}
+      \strng{authorbibnamehash}{6dfca4d37327a90828c9809158506c7f}
+      \strng{authornamehash}{6dfca4d37327a90828c9809158506c7f}
+      \strng{authorfullhash}{6dfca4d37327a90828c9809158506c7f}
+      \strng{authorfullhashraw}{6dfca4d37327a90828c9809158506c7f}
+      \field{labelalpha}{aOL23}
+      \field{sortinit}{a}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Whatever journal}
+      \field{title}{Example of title}
+      \field{year}{2023}
+      \true{nocite}
+      \verb{urlraw}
+      \verb http://www.randomSite.com
+      \endverb
+      \verb{url}
+      \verb http://www.randomSite.com
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

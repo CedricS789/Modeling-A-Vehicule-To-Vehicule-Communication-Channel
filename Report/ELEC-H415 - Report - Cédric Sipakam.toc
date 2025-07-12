@@ -12,15 +12,15 @@
 \contentsline {section}{\numberline {2.5}Received Power $P_{RX}$}{14}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Interpretation of Results}{14}{section.2.6}%
 \contentsline {chapter}{\numberline {3}Full Channel, Narrowband Analysis}{16}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Multipath Component Geometry}{17}{section.3.1}%
-\contentsline {subsubsection}{Line-of-Sight (LOS) Path}{17}{subsubsection*.9}%
-\contentsline {subsubsection}{Single Reflection Paths}{17}{subsubsection*.10}%
-\contentsline {subsubsection}{Double Reflection Paths}{17}{subsubsection*.11}%
-\contentsline {subsubsection}{Triple Reflection Paths}{17}{subsubsection*.12}%
+\contentsline {section}{\numberline {3.1}Multiray Component Geometry}{17}{section.3.1}%
+\contentsline {subsubsection}{Line-of-Sight (LOS) ray}{17}{subsubsection*.9}%
+\contentsline {subsubsection}{Single Reflection rays}{17}{subsubsection*.10}%
+\contentsline {subsubsection}{Double Reflection rays}{17}{subsubsection*.11}%
+\contentsline {subsubsection}{Triple Reflection rays}{17}{subsubsection*.12}%
 \contentsline {section}{\numberline {3.2}Total Received Voltage}{18}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Received Power and Comparison with Friis Formula}{19}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Rician K-factor}{20}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Path Loss Model}{21}{section.3.5}%
+\contentsline {section}{\numberline {3.5}ray Loss Model}{21}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{22}{section.3.6}%
 \contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{22}{section.3.7}%
 \contentsline {section}{\numberline {3.8}Interpretation of Results}{22}{section.3.8}%
