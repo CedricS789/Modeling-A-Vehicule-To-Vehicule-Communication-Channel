@@ -39,7 +39,7 @@ function [alphas, all_rays_data] = runRayTracing(walls, max_reflection_order, tr
 
     % --- 2. REFLECTED rayS CALCULATION ---
     for order = 1:max_reflection_order
-        reflected_rays = findReflectedraysRecursive(transmitter_position, receiver_position, walls, order, [], {transmitter_position}, simulation_parameters);
+        reflected_rays = findReflectedRaysRecursive(transmitter_position, receiver_position, walls, order, [], {transmitter_position}, simulation_parameters);
         all_rays_data = [all_rays_data, reflected_rays];
     end
 

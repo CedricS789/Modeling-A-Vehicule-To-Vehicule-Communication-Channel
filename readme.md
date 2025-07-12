@@ -86,7 +86,7 @@ The code is broken down into several specialized functions. Here is a detailed l
 * **Purpose**: To calculate the final complex channel gain `alpha_n` for a single path.
 * **Logic**: This function implements the channel gain formula, derived from the Friis transmission equation and wave propagation principles.
     $$ \alpha_n = j \frac{\lambda Z_0}{4\pi^2 R_a d_n} \left( \prod_{i=1}^{N} \Gamma_i \right) e^{-j 2\pi f_c \tau_n} $$
-    * **Amplitude Term**: $ \frac{\lambda Z_0}{4\pi^2 R_a d_n} $ accounts for free-space path loss (power spreading over distance $d_n$) and antenna/impedance properties.
+    * **Amplitude Term**: $\frac{\lambda Z_0}{4\pi^2 R_a d_n}$ accounts for free-space path loss (power spreading over distance $d_n$) and antenna/impedance properties.
     * **Reflection Term**: $ \prod_{i=1}^{N} \Gamma_i $ is the `cumulative_gamma` calculated previously, representing the total loss from all reflections.
     * **Phase Term**: $ e^{-j 2\pi f_c \tau_n} $ represents the phase shift of the signal due to the travel time (delay $ \tau_n = d_n / c $) along the path.
 

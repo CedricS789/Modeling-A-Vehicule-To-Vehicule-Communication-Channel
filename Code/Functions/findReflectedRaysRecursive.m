@@ -21,7 +21,7 @@ function valid_rays_from_recursion = findReflectedRaysRecursive(current_source_p
 
     % --- BASE CASE ---
     if reflections_remaining == 0
-        ray_coordinates = validaterayGeometry(receiver_position, walls, wall_indices_sequence, image_source_sequence);
+        ray_coordinates = validateRayGeometry(receiver_position, walls, wall_indices_sequence, image_source_sequence);
         if ~isempty(ray_coordinates)
             ray_data_struct = calculatePhysicalProperties(ray_coordinates, wall_indices_sequence, walls, simulation_parameters);
             valid_rays_from_recursion = {ray_data_struct};

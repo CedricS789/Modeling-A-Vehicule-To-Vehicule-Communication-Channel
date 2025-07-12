@@ -28,7 +28,6 @@ sim_params.G_TX = 1.7;          % Transmit antenna gain
 sim_params.G_RX = 1.7;          % Receive antenna gain
 sim_params.l_area = 5;          % length of the local areas in meters
 sim_params.lamda = sim_params.c/sim_params.fc;              % Wavelength in meters
-sim_params.Z_0 = 377;                                       % Impedance of free space in Ohms
 sim_params.he = sim_params.lamda/pi;                        % Transversal effective height in the horizontal plane (tetha=pi/2) in meters
 sim_params.beta = 2*pi*sim_params.fc/sim_params.c;          % Wave number in rad/m
 
@@ -63,7 +62,8 @@ walls(2).eps_r = eps_r;
 % 3: EXECUTE THE RAY-TRACING CALCULATION
 % =================================================================
 fprintf('Starting ray-tracing calculation for up to %d reflections...\n', k_max);
-[alphas, rays] = runRayTracing(walls, k_max, tx_pos, rx_pos, sim);
+% FIXED: Changed the variable name from 'sim' to the correctly defined 'sim_params'
+[alphas, rays] = runRayTracing(walls, k_max, tx_pos, rx_pos, sim_params);
 fprintf('Calculation complete. Found %d valid propagation rays.\n', length(alphas));
 
 % =================================================================
