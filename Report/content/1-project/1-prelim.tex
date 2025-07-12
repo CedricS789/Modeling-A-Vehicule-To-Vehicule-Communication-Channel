@@ -1,6 +1,5 @@
 \setcounter{secnumdepth}{2}
 \chapter{Theoretical Preliminaries}
-\section{Theoretical Background}
 An antenna is an electrical component that acts as a transducer between a guided electrical signal and a propagating electromagnetic wave. To analyze its behavior within an electrical system, an equivalent circuit was drawn. In transmission mode, a signal source feeds the antenna, which has an impedance $Z_a$. This impedance consists of a radiation resistance $R_{ar}$, representing the power radiated into space, and a loss resistance $R_{al}$, representing ohmic losses. In reception mode, an incoming electromagnetic wave induces an open-circuit voltage $V_{oc}$ at the antenna's terminals, which then delivers a signal to the receiver's load impedance $Z_L$.
 
 
@@ -35,7 +34,7 @@ and for the receiver, the load impedance is the complex conjugate of the antenna
 \vspace{0.5em}
 This consideration ensures maximum power transfer.
 
-\subsection{Antenna Effective Height}
+\section{Antenna Effective Height}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\linewidth]{content/4-images/axes.png}
@@ -132,7 +131,7 @@ This is the general expression for the transverse effective height of a vertical
 \vspace{0.5em}
 This final expression indicates that in the horizontal plane, the antenna's effective height has a constant magnitude of $\frac{\lambda}{\pi}$, is constant for all $\phi$, and is oriented in the $\vec{1}_\theta$ direction.
 
-\subsection{Emitted Electric Field in Free-Space}
+\section{Emitted Electric Field in Free-Space}
 The electric field radiated by an antenna is given by:
 \begin{equation}
 	\underline{\vec{E}}(\vec{r}) = -j\omega \underline{I}_a \frac{\mu_0}{4\pi} \frac{e^{-j\beta r}}{r} \vec{h}_{e\perp}(\theta, \phi)
@@ -164,7 +163,7 @@ Substituting this for $\underline{I}_a$:
 	\label{eq:E_field_final}
 \end{equation}
 
-\subsection{Received Voltage in Free-Space}
+\section{Received Voltage in Free-Space}
 The open-circuit voltage $\underline{V}_{oc}$ induced at the terminals of a receiving antenna is given by the dot product of its effective height and the incident electric field:
 \begin{equation}
 	\underline{V}_{oc} = -\vec{h}_{e\perp}^{RX} \cdot \underline{\vec{E}}

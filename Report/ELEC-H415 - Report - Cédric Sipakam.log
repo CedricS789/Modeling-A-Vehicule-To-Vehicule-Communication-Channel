@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  12 JUL 2025 11:11
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  12 JUL 2025 14:17
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -1636,26 +1636,26 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 ("./ELEC-H415 - Report - Cédric Sipakam.aux")
 \openout1 = ELEC-H415 - Report - Cédric Sipakam.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1742,84 +1742,84 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file '"ELEC-H415 - Report - Cédric Sipakam".bbl' fo
 und.
  ("./ELEC-H415 - Report - Cédric Sipakam.bbl")
-Package biblatex Info: Reference section=0 on input line 5.
-Package biblatex Info: Reference segment=0 on input line 5.
+Package biblatex Info: Reference section=0 on input line 6.
+Package biblatex Info: Reference segment=0 on input line 6.
 \c@lstlisting=\count504
-Package hyperref Info: Link coloring ON on input line 5.
+Package hyperref Info: Link coloring ON on input line 6.
 
 ("./ELEC-H415 - Report - Cédric Sipakam.out")
 ("./ELEC-H415 - Report - Cédric Sipakam.out")
 \@outlinefile=\write5
 
 \openout5 = ELEC-H415 - Report - Cédric Sipakam.out
-<Pictures/logos.jpg, id=110, 816.04875pt x 118.19156pt>
+<Pictures/logos.jpg, id=126, 816.04875pt x 118.19156pt>
 File: Pictures/logos.jpg Graphic file (type jpg)
 <use Pictures/logos.jpg>
-Package luatex.def Info: Pictures/logos.jpg  used on input line 16.
+Package luatex.def Info: Pictures/logos.jpg  used on input line 17.
 (luatex.def)             Requested size: 396.06015pt x 57.3625pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--16
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-6.
+7.
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-6.
+7.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-16.
+17.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-16.
+17.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 16.
+(Font)              <10.95> on input line 17.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 16.
+(Font)              <8> on input line 17.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 16.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
+(Font)              <6> on input line 17.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 17.
 
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
 
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 16
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 17
 .
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/jknappen/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+esint on input line 1
-6.
+7.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/esint/uesint.fd
 File: uesint.fd 
 )
 
-<Pictures/sceauULB.jpg, id=111, 1250.6725pt x 1250.6725pt>
+<Pictures/sceauULB.jpg, id=127, 1250.6725pt x 1250.6725pt>
 File: Pictures/sceauULB.jpg Graphic file (type jpg)
 <use Pictures/sceauULB.jpg>
-Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 16.
+Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 17.
 (luatex.def)             Requested size: 569.05688pt x 569.05688pt.
 [1
 
@@ -1858,26 +1858,25 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 
 ]
 Chapter 1.
-<content/4-images/ant-recep.png, id=169, 1251.92719pt x 503.63156pt>
+<content/4-images/ant-recep.png, id=194, 1251.92719pt x 503.63156pt>
 File: content/4-images/ant-recep.png Graphic file (type png)
 <use content/4-images/ant-recep.png>
-Package luatex.def Info: content/4-images/ant-recep.png  used on input line 10.
-
+Package luatex.def Info: content/4-images/ant-recep.png  used on input line 9.
 (luatex.def)             Requested size: 218.51521pt x 87.8986pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 11.
+(Font)              <10> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 11.
+(Font)              <7> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 11.
-<content/4-images/ant-trans.png, id=170, 1050.92625pt x 493.0922pt>
+(Font)              <5> on input line 10.
+<content/4-images/ant-trans.png, id=195, 1050.92625pt x 493.0922pt>
 File: content/4-images/ant-trans.png Graphic file (type png)
 <use content/4-images/ant-trans.png>
-Package luatex.def Info: content/4-images/ant-trans.png  used on input line 16.
+Package luatex.def Info: content/4-images/ant-trans.png  used on input line 15.
 
 (luatex.def)             Requested size: 191.20169pt x 89.7083pt.
 
-Underfull \hbox (badness 3657) in paragraph at lines 17--17
+Underfull \hbox (badness 3657) in paragraph at lines 16--16
 []\T1/lmr/m/n/10 (b) |Re-ceive an-tenna equiv-a-lent cir-cuit,
  []
 
@@ -1886,10 +1885,10 @@ Underfull \hbox (badness 3657) in paragraph at lines 17--17
 [4
 
 <./content/4-images/ant-recep.png><./content/4-images/ant-trans.png>]
-<content/4-images/axes.png, id=184, 789.70032pt x 664.73344pt>
+<content/4-images/axes.png, id=210, 789.70032pt x 664.73344pt>
 File: content/4-images/axes.png Graphic file (type png)
 <use content/4-images/axes.png>
-Package luatex.def Info: content/4-images/axes.png  used on input line 41.
+Package luatex.def Info: content/4-images/axes.png  used on input line 40.
 (luatex.def)             Requested size: 227.62206pt x 191.60132pt.
 
 
@@ -1897,98 +1896,135 @@ Package luatex.def Info: content/4-images/axes.png  used on input line 41.
 
 [6]
 
-[7]
+[7]) (./content/1-project/2-los-narrow.tex
 
-[8]) (./content/1-project/2-los.tex
-
-[9]
+[8]
 Chapter 2.
-<content/4-images/taps.png, id=258, 947.79094pt x 417.05812pt>
+<content/4-images/taps.png, id=277, 947.79094pt x 417.05812pt>
 File: content/4-images/taps.png Graphic file (type png)
 <use content/4-images/taps.png>
-Package luatex.def Info: content/4-images/taps.png  used on input line 16.
+Package luatex.def Info: content/4-images/taps.png  used on input line 15.
 (luatex.def)             Requested size: 455.24411pt x 200.31926pt.
 
 
-[10
+[9
 
 <./content/4-images/taps.png>]
 
-[11]
+[10]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 94.
+(Font)              <14.4> on input line 92.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 94.
+(hyperref)                removing `math shift' on input line 92.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tau' on input line 94.
+(hyperref)                removing `\tau' on input line 92.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 94.
+(hyperref)                removing `math shift' on input line 92.
+
+
+
+[11]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 138.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 138.
 
 
 
 [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
+(hyperref)                removing `math shift' on input line 155.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 140.
-
-
-
-[13]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 157.
+(hyperref)                removing `subscript' on input line 155.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 157.
+(hyperref)                removing `math shift' on input line 155.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 157.
+(hyperref)                removing `math shift' on input line 175.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 177.
+(hyperref)                removing `subscript' on input line 175.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 177.
+(hyperref)                removing `math shift' on input line 175.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 177.
 
-
+[13]) (./content/1-project/3-full-narrow.tex
 
 [14]
+Chapter 3.
+<content/4-images/image-method.png, id=366, 1158.57843pt x 563.85657pt>
+File: content/4-images/image-method.png Graphic file (type png)
+<use content/4-images/image-method.png>
+Package luatex.def Info: content/4-images/image-method.png  used on input line 
+17.
+(luatex.def)             Requested size: 318.66948pt x 155.09114pt.
 
-[15]) (./content/1-project/3-full.tex
+
+[15
+
+<./content/4-images/image-method.png>]
 
 [16]
-Chapter 3.
-) (./content/1-project/4-wide.tex) (./content/1-project/5-further.tex)
-(./content/1-project/6-conclu.tex)
+<content/4-images/ray-tracing-3-reflect.png, id=388, 1499.6025pt x 995.21812pt>
 
-Package biblatex Warning: Type 'article' not found on input line 33.
-
-
-LaTeX Warning: Empty bibliography on input line 33.
-
+File: content/4-images/ray-tracing-3-reflect.png Graphic file (type png)
+<use content/4-images/ray-tracing-3-reflect.png>
+Package luatex.def Info: content/4-images/ray-tracing-3-reflect.png  used on in
+put line 82.
+(luatex.def)             Requested size: 455.24411pt x 302.12122pt.
 
 
-[17
+[17<./content/4-images/ray-tracing-3-reflect.png>]
 
-] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
+[18]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 143.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 143.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 143.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 143.
+
+
+
+[19]) (./content/1-project/4-los-wide.tex) (./content/1-project/5-full-wide.tex
+) (./content/1-project/6-further.tex) (./content/1-project/7-conclu.tex)
+
+Package biblatex Warning: Type 'article' not found on input line 35.
+
+
+LaTeX Warning: Empty bibliography on input line 35.
+
+
+
+[20] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
@@ -2012,16 +2048,16 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 53242 strings out of 475664
+ 53317 strings out of 475664
  125165,2373549 words of node,token memory allocated
- 2052 words of node memory still in use:
-   32 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 298 attribute, 72 glue_s
-pec, 187 attribute_list, 3 write, 24 pdf_literal, 1 pdf_action, 24 pdf_colorstac
+ 2316 words of node memory still in use:
+   32 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 384 attribute, 72 glue_s
+pec, 230 attribute_list, 3 write, 24 pdf_literal, 2 pdf_action, 24 pdf_colorstac
 k nodes
-   avail lists: 1:4,2:1011,3:213,4:136,5:689,6:64,7:5105,8:95,9:1622,10:10,11:36
-0
- 74600 multiletter control sequences out of 65536+600000
- 81 fonts using 5058319 bytes
+   avail lists: 1:5,2:838,3:252,4:168,5:705,6:75,7:4676,8:95,9:1592,10:11,11:332
+
+ 74629 multiletter control sequences out of 65536+600000
+ 80 fonts using 4975639 bytes
  99i,13n,108p,1230b,1878s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/
 Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users
@@ -2047,10 +2083,10 @@ grams/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/sipak/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (19 pages, 877388 byt
-es).
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (22 pages, 1031669 by
+tes).
 
-PDF statistics: 427 PDF objects out of 1000 (max. 8388607)
- 115 named destinations out of 1000 (max. 131072)
- 392 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 496 PDF objects out of 1000 (max. 8388607)
+ 149 named destinations out of 1000 (max. 131072)
+ 424 words of extra memory for PDF output out of 10000 (max. 100000000)
 

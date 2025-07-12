@@ -4,5 +4,7 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Equivalent circuits for the transmit and receive antennas}}{4}{figure.caption.5}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Illustration of the vertical dipole antenna and coordinate axes.}}{5}{figure.caption.6}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Physical impulse response and TDL model under the Uncorrelated Scattering assumption}}{10}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Physical impulse response and TDL model under the Uncorrelated Scattering assumption}}{9}{figure.caption.7}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The image method for a single reflection. The path of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter TX' to RX.}}{15}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Simulation of the Image method ray-tracing for 3 reflections}}{17}{figure.caption.13}%

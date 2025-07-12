@@ -1,9 +1,8 @@
-\chapter{Narrowband Analysis - Line-of-Sight Channel}
+\chapter{Line-of-Sight Channel - Narrowband Analysis}
 \label{chap:los}
 
 The analysis begins with the simplest communication scenario: a direct Line-of-Sight (LOS) path between the transmitter TX and the receiver RX. A narrowband analysis is conducted, which assumes that the signal's bandwidth is much smaller than the channel's coherence bandwidth. This simplification allows the channel to be characterized by one complex coefficient.
 
-\section{Theoretical Background}
 The physical channel can be described by its time-variant impulse response, which for a set of $N$ multipath components is:
 \begin{equation}
 	h(\tau,t) = \sum_{n=1}^{N} \alpha_n(t) \delta(\tau - \tau_n)
@@ -33,9 +32,10 @@ From there, can be defined the complex gain of the $l$-th tap:
 \end{align}
 
 \begin{equation}
+	\label{eq:h-l}
 	\implies \boxed{h_l(t) \approx \sum_{\tau_n \in \operatorname{tap} l} \alpha_n(t)} 
 \end{equation}
-Because, $\operatorname{sinc(.)}$ maximizes the amplitude of the components of the  l-th tap, and the components of other taps are drastically attenuated. The components of the l-th tap appear to not be delayed between each other.
+Equation \ref{eq:h-l} can be written because $\operatorname{sinc(.)}$ maximizes the amplitude of the components of the  $l$-th tap, and the components of other taps are drastically attenuated. The components of the $l$-th tap appear not to be delayed between one another.
 
 The physical limitation of the finite bandwidth of the system leads to the Tapped Delay Line model. The impulse response of the TDL model is a discrete-time representation of the physical channel as shown in Figure \ref{fig:taps}:
 \begin{equation}
@@ -61,9 +61,7 @@ where the tap gain $h_0(t)$ is the sum of all individual path gains:
 	\boxed{h_0(t) = \sum_{n=1}^{N} \alpha_n(t)} \quad N \text{ being the total number of MPCs}
 \end{equation}
 
-\section{Analysis and Mathematical Derivations}
-
-\subsection{Antenna Gain}
+\section{Antenna Gain}
 The gain of an antenna, $G(\theta, \phi)$, quantifies its ability to concentrate radiated power in a specific direction. It is defined by the general formula:
 \begin{equation}
 	G(\theta,\phi) = \frac{\pi Z_0}{R_a} \frac{|\vec{h}_{e\perp}(\theta,\phi)|^2}{\lambda^2}
@@ -91,7 +89,7 @@ Simplifying this expression yields the final result:
 	\label{eq:gain_derived}
 \end{equation}
 
-\subsection{Impulse Response $h(\tau)$}
+\section{Impulse Response $h(\tau)$}
 For a single, time-invariant Line-of-Sight path, the channel impulse response is characterized by a single complex amplitude, $\alpha_1$, and a propagation delay, $\tau_1$. The impulse response is thus expressed as:
 \begin{equation}
 	h(\tau) = \alpha_1 \delta(\tau - \tau_1)
@@ -137,8 +135,8 @@ The channel impulse response for the LOS path is therefore:
 \end{equation}
 where $\tau_1 = d_1/c$.
 
-\subsection{Transfer Function $H(f)$}
-The transfer function $H(f)$ is obtained by taking the Fourier transform of the impulse response $h(\tau)$. The defining integral is:
+\section{Transfer Function $H(f)$}
+The transfer function $H(f)$ is obtained by taking the Fourier transform of the impulse response $h(\tau)$:
 \begin{equation}
 	H(f) = \mathcal{FT}\{ h(\tau)\} =  \int_{-\infty}^{\infty} h(\tau) e^{-j2\pi f \tau} d\tau = \int_{-\infty}^{\infty} \left( \alpha_1 \delta(\tau - \tau_1) \right) e^{-j2\pi f \tau} d\tau
 \end{equation}
@@ -154,7 +152,7 @@ Substituting the derived expression for $\alpha_1$ from Equation \ref{eq:alpha1_
 \end{align}
 This function shows that the channel introduces a phase shift that is linear with the baseband frequency $f$, which corresponds to the time delay $\tau_1$. The magnitude $|H(f)|$ is constant across all frequencies.
 
-\subsection{Narrowband Transfer Function $h_{NB}$}
+\section{Narrowband Transfer Function $h_{NB}$}
 As said mentioned in Equation \ref{eq:tdl-narrow}, the narrowband is defined such that all MPCs fall into a single tap:
 \begin{align}
 	h_{NB} &= \mathcal{FT}\{ h_{TDL}(t, \tau)\} = \mathcal{FT}\{ h_{0}(t)\delta(\tau)\} \\
@@ -172,9 +170,9 @@ Using the result from Equation \ref{eq:alpha1_derived}, the narrowband transfer 
 	\boxed{h_{NB} = j \frac{\lambda Z_0}{4\pi^2 R_a d_1} e^{-j2\pi f_c \tau_1}}
 	\label{eq:los_narrowband_tf_detailed}
 \end{equation}
-The channel is thus represented by one complex number, which scales and rotates the transmitted signal.
+The LOS channel is thus represented by one complex number, which scales and rotates the transmitted signal.
 
-\subsection{Received Power $P_{RX}$}
+\section{Received Power $P_{RX}$}
 The received power can now be calculated using the derived complex amplitude $\alpha_1$ and its relationship to the power gain, $P_{RX} = |\alpha_1|^2 P_{TX}$. First, the magnitude squared of $\alpha_1$ is computed:
 \begin{equation}
 	|\alpha_1|^2 = \left| j \frac{\lambda Z_0}{4\pi^2 R_a d_1} e^{-j2\pi f_c \tau_1} \right|^2 = \left( \frac{\lambda Z_0}{4\pi^2 R_a d_1} \right)^2
@@ -194,9 +192,6 @@ Using the expression for the gain of a lossless half-wave dipole in the horizont
 	P_{RX} = G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d_1} \right)^2 P_{TX} \label{eq:los_power_final_detailed}
 \end{equation}
 This result is identical to the Friis transmission formula. This validates the entire derivation, confirming that the complex amplitude $\alpha_1$ derived from the voltage ratio correctly predicts the power relationship under free-space LOS conditions.
-
-\section{Code Implementation and Methodology}
-\textit{(Placeholder) In the accompanying script, the derived equation for $P_{RX}$ (Equation \ref{eq:los_power_final_detailed}) is implemented to calculate the received power at various distances $d_1$. The script defines variables for the transmitted power ($P_{TX}$), antenna gains ($G_{TX}, G_{RX}$), wavelength ($\lambda$), and the distance vector ($d_1$). The final result is plotted as received power in dBm versus distance.}
 
 \section{Interpretation of Results}
 The derivations confirm the principles of a simple LOS communication link.
