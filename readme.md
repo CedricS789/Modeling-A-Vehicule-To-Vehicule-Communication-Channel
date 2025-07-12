@@ -74,27 +74,25 @@ The code is broken down into several specialized functions. Here is a detailed l
 * **Logic**:
     1.  **Distance**: It calculates the total path length by summing the Euclidean distance of each segment.
     2.  **Reflection Loss**: It iterates through each reflection point. For each reflection, it calculates the **Fresnel Reflection Coefficient (Γ)**. This complex number represents the ratio of reflected to incident electric field amplitude. The formula used is for perpendicular polarization:
-        $$ 
-        \Gamma_{\perp} = \frac{\cos(\theta_i) - \sqrt{\varepsilon_r - \sin^2(\theta_i)}}{\cos(\theta_i) + \sqrt{\varepsilon_r - \sin^2(\theta_i)}} 
-        $$
-        where $ \theta_i $ is the angle of incidence and $ \varepsilon_r $ is the relative permittivity of the wall material.
-    3.  **Cumulative Product**: It multiplies all the individual reflection coefficients together to get `cumulative_gamma` ($ \prod \Gamma_i $).
+       $$\Gamma_{\perp} = \frac{\cos(\theta_i) - \sqrt{\varepsilon_r - \sin^2(\theta_i)}}{\cos(\theta_i) + \sqrt{\varepsilon_r - \sin^2(\theta_i)}}$$
+        where$\theta_i$is the angle of incidence and$\varepsilon_r$is the relative permittivity of the wall material.
+    3.  **Cumulative Product**: It multiplies all the individual reflection coefficients together to get `cumulative_gamma` ($\prod \Gamma_i$).
     4.  **Final Gain**: It calls `calculateAlpha_n` to compute the final complex gain using the total distance and cumulative reflection loss.
 
 ### `calculateAlpha_n.m`
 
 * **Purpose**: To calculate the final complex channel gain `alpha_n` for a single path.
 * **Logic**: This function implements the channel gain formula, derived from the Friis transmission equation and wave propagation principles.
-    $$ \alpha_n = j \frac{\lambda Z_0}{4\pi^2 R_a d_n} \left( \prod_{i=1}^{N} \Gamma_i \right) e^{-j 2\pi f_c \tau_n} $$
-    * **Amplitude Term**: $\frac{\lambda Z_0}{4\pi^2 R_a d_n}$ accounts for free-space path loss (power spreading over distance $d_n$) and antenna/impedance properties.
-    * **Reflection Term**: $ \prod_{i=1}^{N} \Gamma_i $ is the `cumulative_gamma` calculated previously, representing the total loss from all reflections.
-    * **Phase Term**: $ e^{-j 2\pi f_c \tau_n} $ represents the phase shift of the signal due to the travel time (delay $ \tau_n = d_n / c $) along the path.
+   $$\alpha_n = j \frac{\lambda Z_0}{4\pi^2 R_a d_n} \left( \prod_{i=1}^{N} \Gamma_i \right) e^{-j 2\pi f_c \tau_n}$$
+    * **Amplitude Term**: $\frac{\lambda Z_0}{4\pi^2 R_a d_n}$accounts for free-space path loss (power spreading over distance$d_n$) and antenna/impedance properties.
+    * **Reflection Term**: $\prod_{i=1}^{N} \Gamma_i$is the `cumulative_gamma` calculated previously, representing the total loss from all reflections.
+    * **Phase Term**:$e^{-j 2\pi f_c \tau_n}$represents the phase shift of the signal due to the travel time (delay$\tau_n = d_n / c$) along the path.
 
 ### `reflectPointAcrossWall.m`
 
 * **Purpose**: A geometric utility to reflect a point across a line.
 * **Logic**: It uses the standard vector formula for reflection. For a point `P` to be reflected across a line that passes through point `L` and has a normal vector `n`, the reflected point `P'` is:
-    $$ P' = P - 2 \cdot \frac{(P - L) \cdot \mathbf{n}}{||\mathbf{n}||^2} \cdot \mathbf{n} $$
+   $$P' = P - 2 \cdot \frac{(P - L) \cdot \mathbf{n}}{||\mathbf{n}||^2} \cdot \mathbf{n}$$
 
 ### `findSegmentIntersection.m`
 
