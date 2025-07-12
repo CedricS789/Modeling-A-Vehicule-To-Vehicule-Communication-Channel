@@ -1,15 +1,10 @@
-% MATLAB Script for Image Method Visualization using a recursive approach.
-%% ---- Setup and Parameters ----
-clear; clc; close all;
-
-% Define communication scenario parameters
-w = 20;         % Half-width of the street (m)
-d = 100;        % Distance between TX and RX (m)
-k = 3;          % Maximum number of reflections to trace
-
-% Define coordinates
-tx_pos = [0, 0];
-rx_pos = [d, 0];
+function ray_tracing(w, d, k, tx_pos, rx_pos)
+% Inputs:
+%    w      - Half-width of the street (m)
+%    d      - Distance between TX and RX (m)
+%    tx_pos - Coordinates of the Transmitter as [x, y]
+%    rx_pos - Coordinates of the Receiver as [x, y]
+%    k      - Maximum number of reflections to trace
 
 
 %% ---- Create the Plot ----
@@ -25,10 +20,8 @@ plot(ax, tx_pos(1), tx_pos(2), 'o', 'MarkerSize', 8, 'MarkerFaceColor', '#0077BE
 plot(ax, rx_pos(1), rx_pos(2), 'o', 'MarkerSize', 8, 'MarkerFaceColor', '#D95319', 'MarkerEdgeColor', '#D95319', 'DisplayName', 'Receiver (RX)');
 plot(ax, [tx_pos(1), rx_pos(1)], [tx_pos(2), rx_pos(2)], 'g-', 'LineWidth', 1, 'DisplayName', 'LOS Path');
 
-
 %% ---- Start Recursive Ray Tracing ----
 trace_recursive(ax, tx_pos, rx_pos, w, 1, k);
-
 
 %% ---- Final Plot Formatting ----
 hold off;
@@ -40,7 +33,7 @@ ylabel(ax, 'Distance Across Street (m)');
 title(ax, sprintf('V2V Ray Tracing (d=%.0fm, k=%d reflections)', d, k));
 legend(ax, 'show', 'Location', 'best');
 set(ax, 'Color', [0.98 0.98 0.98]);
-
+end
 
 %% ---- Functions ----
 function trace_recursive(ax, tx_pos, rx_pos, w, n, k)

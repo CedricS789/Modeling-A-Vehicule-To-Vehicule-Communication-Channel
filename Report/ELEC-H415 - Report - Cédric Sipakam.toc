@@ -7,20 +7,20 @@
 \contentsline {chapter}{\numberline {2}Line-of-Sight Channel - Narrowband Analysis}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Antenna Gain}{11}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Impulse Response $h(\tau )$}{11}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Transfer Function $H(f)$}{12}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Transfer Function $H(f)$}{13}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Narrowband Transfer Function $h_{NB}$}{13}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Received Power $P_{RX}$}{13}{section.2.5}%
+\contentsline {section}{\numberline {2.5}Received Power $P_{RX}$}{14}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Interpretation of Results}{14}{section.2.6}%
-\contentsline {chapter}{\numberline {3}Full Channel, Narrowband Analysis}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Multipath Component Geometry}{16}{section.3.1}%
-\contentsline {subsubsection}{Line-of-Sight (LOS) Path}{16}{subsubsection*.9}%
-\contentsline {subsubsection}{Single Reflection Paths}{16}{subsubsection*.10}%
-\contentsline {subsubsection}{Double Reflection Paths}{16}{subsubsection*.11}%
-\contentsline {subsubsection}{Triple Reflection Paths}{16}{subsubsection*.12}%
-\contentsline {section}{\numberline {3.2}Total Received Voltage}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Received Power}{18}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Rician K-factor}{18}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Path Loss Model}{19}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{19}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{19}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Interpretation of Results}{20}{section.3.8}%
+\contentsline {chapter}{\numberline {3}Full Channel, Narrowband Analysis}{16}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Multipath Component Geometry}{17}{section.3.1}%
+\contentsline {subsubsection}{Line-of-Sight (LOS) Path}{17}{subsubsection*.9}%
+\contentsline {subsubsection}{Single Reflection Paths}{17}{subsubsection*.10}%
+\contentsline {subsubsection}{Double Reflection Paths}{17}{subsubsection*.11}%
+\contentsline {subsubsection}{Triple Reflection Paths}{17}{subsubsection*.12}%
+\contentsline {section}{\numberline {3.2}Total Received Voltage}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Received Power and Comparison with Friis Formula}{19}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Rician K-factor}{20}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Path Loss Model}{21}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{22}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{22}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Interpretation of Results}{22}{section.3.8}%

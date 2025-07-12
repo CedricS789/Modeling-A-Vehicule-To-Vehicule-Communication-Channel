@@ -6,5 +6,6 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Physical impulse response and TDL model under the Uncorrelated Scattering assumption}}{9}{figure.caption.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces The image method for a single reflection. The path of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter TX' to RX.}}{15}{figure.caption.8}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Simulation of the Image method ray-tracing for 3 reflections}}{17}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The image method for a single reflection. The path of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter I to RX.}}{16}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Simulation of the Image method ray-tracing for 3 reflections}}{18}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison of the total received power in the full multipath channel versus the power predicted by the Friis formula. The Friis formula (dashed line) represents the LOS power, while the actual power (solid line) shows significant fading due to multipath interference.}}{20}{figure.caption.14}%

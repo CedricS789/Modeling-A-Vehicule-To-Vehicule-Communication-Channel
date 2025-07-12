@@ -1,0 +1,38 @@
+%% Step 1 - Theoretical preliminaries
+clear; clc; close all;
+fc = 5.9e9;         % Carrier frequency in Hz
+c = 3e8;            % Speed of light in m/s
+B_RF = 100e6;       % RF bandwidth in Hz
+P_TX = 0.1;         % Transmit power in Watts
+G_TX = 1.7;         % Transmit antenna gain
+G_RX = 1.7;         % Receive antenna gain
+eps_r = 1;          % Relative permittivity of the  buildgins
+l_area = 5;         % length of the local areas in meters
+lamda = c/fc;       % Wavelength in meters
+Z_0 = 377;          % Impedance of free space in Ohms
+he = lamda/pi;      % Transversal effective height in the horizontal plane (tetha=pi/2) in meters
+beta = 2*pi*fc/c;   % Wave number in rad/m
+
+%% Step 2 - LOS channel
+d1 = 1:1:1000;      % Distance vector LOS channel
+P_RX = P_TX * G_TX * G_RX .* (lamda ./ (4 * pi .* d1)).^2; % Friis' formula
+P_RX_dBm = 10 * log10(P_RX / 1e-3);
+
+% Plot the received power in dBm versus distance
+figure;
+plot(d1, P_RX, 'b-', 'LineWidth', 1.5);
+grid on;
+title('Received Power vs. Distance for Line-of-Sight (LOS) Channel');
+xlabel('Distance (m)');
+ylabel('Received Power (dBm)');
+legend('LOS Path');
+axis tight;
+
+%% Ray tracing
+w = 20;         % Half-width of the street (m)
+d = 100;        % Distance between TX and RX (m)
+k = 3;          % Maximum number of reflections to trace
+% Define coordinates
+tx_pos = [0, 0];
+rx_pos = [d, 0];
+ray_tracing(w, 1, [0, 0], [0, 0])

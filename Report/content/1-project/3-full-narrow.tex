@@ -15,13 +15,13 @@ The primary tool for identifying these paths and calculating their geometry is t
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{content/4-images/image-method.png}
-	\caption{The image method for a single reflection. The path of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter TX' to RX.}
+	\caption{The image method for a single reflection. The path of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter I to RX.}
 	\label{fig:image_method_single}
 \end{figure}
 
 
 \section{Multipath Component Geometry}
-The scenario is an urban canyon of width $2w = 20$ m. The TX and RX are in the center of the street, separated by a distance $d$. The walls of the canyon are at $y = w$ and $y = -w$. We consider up to triple reflections.
+The scenario is an urban canyon of width $2w = 20$ m. The TX and RX are in the center of the street, separated by a distance $d_1$. The walls of the canyon are at $y = w$ and $y = -w$. We consider up to triple reflections.
 
 \subsubsection{Line-of-Sight (LOS) Path}
 This is the direct path between TX and RX, denoted as path $n=1$.
@@ -44,14 +44,14 @@ There are two paths involving a single reflection, one off each building wall.
 	\begin{equation}
 		\tau_{2} = \frac{\sqrt{d_1^2 + (2w)^2}}{c}
 	\end{equation}
-	\item \textbf{Angle of Incidence ($\theta_{i}$):} The angle of incidence and reflection is:
+	\item \textbf{Angle of Incidence ($\theta_{i,2}$):} The angle of incidence and reflection is:
 	\begin{equation}
-		\cos(\theta_{i}) = \frac{d_1}{d_2} = \frac{d_1}{\sqrt{d_1^2 + (2w)^2}}
+		\cos(\theta_{i,2}) = \frac{d_1}{d_2} = \frac{d_1}{\sqrt{d_1^2 + (2w)^2}}
 	\end{equation}
 \end{itemize}
 
 \subsubsection{Double Reflection Paths}
-There are two paths involving two reflections (Wall 1 $\rightarrow$ Wall 2 $\rightarrow$ RX).
+There are two paths involving two reflections (e.g., Wall 1 $\rightarrow$ Wall 2 $\rightarrow$ RX).
 \begin{itemize}
 	\item \textbf{Path Length ($d_3$):}
 	\begin{equation}
@@ -75,7 +75,7 @@ There are two paths involving three reflections.
 		\tau_{4} = \frac{\sqrt{d_1^2 + (6w)^2}}{c}
 	\end{equation}
 \end{itemize}
-The total number of MPCs for 3 reflections is $N=1+2+2+2=7$ paths.
+The total number of MPCs for up to 3 reflections is $N=1+2+2+2=7$ paths.
 
 \begin{figure}[H]
 	\centering
@@ -96,7 +96,7 @@ where $\Gamma_{\perp}$ is the reflection coefficient for perpendicular polarizat
 \end{equation}
 with $\epsilon_r = 4$ for the buildings. The angle of incidence $\theta_i$ is specific to each reflection order.
 
-The total narrowband channel gain is the sum of the complex amplitudes of all 7 MPC:
+The total narrowband channel gain is the sum of the complex amplitudes of all 7 MPCs:
 \begin{equation}
 	h_{NB} = \alpha_{LOS} + \sum_{n \in SR} \alpha_n + \sum_{n \in DR} \alpha_n + \sum_{n \in TR} \alpha_n
 \end{equation}
@@ -105,29 +105,67 @@ where SR, DR, and TR denote the sets of single, double, and triple reflection pa
 	\underline{V}_{RX} = \frac{h_{NB}}{2} \underline{V}_{TX}
 \end{equation}
 
-\section{Received Power}
-The received power $P_{RX}$ is proportional to the squared magnitude of the total narrowband gain:
+\section{Received Power and Comparison with Friis Formula}
+The narrowband transfer function found in in Equation \eqref{eq:narrow} is given by :
 \begin{equation}
-	P_{RX} = \frac{|\underline{V}_{RX}|^2}{2R_a} = \frac{|h_{NB}|^2 |\underline{V}_{TX}|^2}{8R_a} = |h_{NB}|^2 P_{TX} = \left| \sum_{n=1}^{N=7} \alpha_n \right|^2 P_{TX}
+	h_{NB} = \sum_{n=1}^{N=7} \alpha_n
 \end{equation}
-This received power will exhibit significant fluctuations as a function of the distance $d$, a phenomenon known as multipath fading. Unlike the monotonic decrease of the Friis formula, the power will have deep nulls where MPCs interfere destructively and peaks where they interfere constructively.
+The received power is therefore:
+\begin{equation}
+	P_{RX} = |h_{NB}|^2 P_{TX} = \left| \sum_{n=1}^{N=7} \alpha_n \right|^2 P_{TX}
+\end{equation}
+This expression highlights the difference from the LOS-only case. The Friis formula, derived in Chapter \ref{chap:los}, predicts the received power based on a single, unobstructed path:
+\begin{equation}
+	P_{RX, \text{Friis}} = P_{TX} G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d} \right)^2 = |\alpha_{LOS}|^2 P_{TX}
+\end{equation}
+The Friis formula represents the power of only the first term ($n=1$) in the sum. In the full channel model, the total power depends on the vector sum of all 7 MPCs. Because the paths have different lengths $d_n$ and undergo different phase shifts ($e^{-j2\pi f_c \tau_n}$ and from reflections), the complex amplitudes $\alpha_n$ add up coherently.
+
+This coherent summation results in multipath fading. Unlike the monotonic decrease of power with distance predicted by the Friis formula, the full-channel received power will exhibit significant fluctuations as the distance $d$ changes.
+\begin{itemize}
+	\item \textbf{Constructive Interference:} At locations where the MPCs arrive largely in-phase, their amplitudes add up, resulting in a received power that can be significantly higher than the Friis prediction.
+	\item \textbf{Destructive Interference:} At locations where some MPCs arrive out-of-phase, their amplitudes cancel each other out, leading to deep nulls or "fades" in the received power, where it can drop far below the Friis prediction.
+\end{itemize}
+Figure \ref{fig:prx_vs_friis} illustrates this comparison. The plot shows the calculated instantaneous received power $P_{RX}$ as a function of distance, overlaid with the smooth decay curve of the Friis formula. The rapid oscillations of the actual power around the Friis curve are the hallmark of a multipath environment.
+
+\begin{figure}[h!]
+	\centering
+	% You should generate this plot using simulation tools (e.g., MATLAB, Python)
+	% based on the derived equations for the 7 MPCs.
+	\includegraphics[width=0.9\linewidth]{content/4-images/prx_vs_friis_placeholder.png} % Placeholder path
+	\caption{Comparison of the total received power in the full multipath channel versus the power predicted by the Friis formula. The Friis formula (dashed line) represents the LOS power, while the actual power (solid line) shows significant fading due to multipath interference.}
+	\label{fig:prx_vs_friis}
+\end{figure}
 
 \section{Rician K-factor}
-The Rician K-factor is the ratio of the power in the dominant component (the LOS path) to the power in the scattered component (NLOS).
+The Rician K-factor is a key parameter that quantifies the severity of fading in a channel. It is defined as the ratio of the power in the dominant, specular component (in this case, the LOS path) to the total power in the scattered, non-line-of-sight (NLOS) components.
+\begin{equation}
+	K = \frac{\text{Power in LOS component}}{\text{Power in NLOS components}} = \frac{P_{LOS}}{P_{NLOS}}
+\end{equation}
+The power of an individual path $n$ is given by $P_n = |\alpha_n|^2 P_{TX}$. Therefore, the K-factor can be expressed in terms of the complex amplitudes $\alpha_n$:
 \begin{equation}
 	K = \frac{|\alpha_{LOS}|^2}{\sum_{n=2}^{7} |\alpha_n|^2}
 \end{equation}
-The power of an individual path $n$ is $|\alpha_n|^2 P_{TX}$. From the LOS analysis, we know that the power gain $|\alpha_n|^2$ can be expressed as:
+To evaluate this, we need to express $|\alpha_n|^2$ in terms of physical parameters. From the LOS analysis in Chapter \ref{chap:los}, we found that the received power for the direct path is identical to the Friis formula:
 \begin{equation}
-	|\alpha_n|^2 = G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d_n} \right)^2 \times |\Gamma_n|^2
+	P_{LOS} = |\alpha_{LOS}|^2 P_{TX} = G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d} \right)^2 P_{TX}
 \end{equation}
-where $\Gamma_n$ is the product of reflection coefficients for path $n$. For the LOS path ($n=1$), $d_1=d$ and $|\Gamma_1|^2=1$. The power is:
-
-Substituting these into the K-factor equation and canceling common terms gives:
+This gives us the power gain for the LOS component ($d_1=d$, $|\Gamma_1|^2=1$):
 \begin{equation}
-	K = \frac{\left( \frac{1}{d} \right)^2}{\sum_{n=2}^{7} \left( \frac{1}{d_n} \right)^2 |\Gamma_n|^2}
+	|\alpha_{LOS}|^2 = G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d} \right)^2
 \end{equation}
-A high K-factor indicates that the channel is dominated by the LOS path, and fading will be less severe. A low K-factor indicates that the scattered paths are strong relative to the LOS path, leading to deep fades characteristic of Rayleigh-like fading.
+For any other multipath component $n$, which experiences reflections, the power is reduced by the cumulative reflection coefficient $\Gamma_n$. The power gain for a reflected path of length $d_n$ is therefore:
+\begin{equation}
+	|\alpha_n|^2 = G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d_n} \right)^2 |\Gamma_n|^2
+\end{equation}
+where $\Gamma_n$ is the product of the reflection coefficients for path $n$. Substituting these expressions for power gain into the K-factor equation:
+\begin{equation}
+	K = \frac{G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d} \right)^2}{\sum_{n=2}^{7} G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d_n} \right)^2 |\Gamma_n|^2}
+\end{equation}
+The common terms, including antenna gains and wavelength, cancel out, leaving a purely geometric relationship:
+\begin{equation}
+	K = \frac{\frac{1}{d^2}}{\sum_{n=2}^{7} \frac{|\Gamma_n|^2}{d_n^2}} = \frac{1}{d^2 \sum_{n=2}^{7} \frac{|\Gamma_n|^2}{d_n^2}}
+\end{equation}
+A high K-factor indicates that the channel is dominated by the LOS path, and fading will be less severe (Rician fading). A low K-factor indicates that the scattered paths are strong relative to the LOS path, leading to deep fades characteristic of Rayleigh-like fading.
 
 \section{Path Loss Model}
 To analyze the large-scale path loss, we must average out the small-scale fading caused by the rapid phase changes of the MPCs. This is done by computing the average received power, $\langle P_{RX} \rangle$, over local areas, defined as 5m segments. This averaging smooths out the fast fluctuations, revealing the slower trend of power decay with distance.
