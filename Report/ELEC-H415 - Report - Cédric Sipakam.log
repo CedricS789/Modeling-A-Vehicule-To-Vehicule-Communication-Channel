@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  10 JUL 2025 23:42
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  11 JUL 2025 22:17
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -1752,7 +1752,7 @@ Package hyperref Info: Link coloring ON on input line 6.
 \@outlinefile=\write5
 
 \openout5 = ELEC-H415 - Report - Cédric Sipakam.out
-<Pictures/logos.jpg, id=106, 816.04875pt x 118.19156pt>
+<Pictures/logos.jpg, id=110, 816.04875pt x 118.19156pt>
 File: Pictures/logos.jpg Graphic file (type jpg)
 <use Pictures/logos.jpg>
 Package luatex.def Info: Pictures/logos.jpg  used on input line 17.
@@ -1816,7 +1816,7 @@ LaTeX Font Info:    Trying to load font information for U+esint on input line 1
 File: uesint.fd 
 )
 
-<Pictures/sceauULB.jpg, id=107, 1250.6725pt x 1250.6725pt>
+<Pictures/sceauULB.jpg, id=111, 1250.6725pt x 1250.6725pt>
 File: Pictures/sceauULB.jpg Graphic file (type jpg)
 <use Pictures/sceauULB.jpg>
 Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 17.
@@ -1858,7 +1858,7 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 
 ]
 Chapter 1.
-<content/4-images/ant-recep.png, id=164, 1251.92719pt x 503.63156pt>
+<content/4-images/ant-recep.png, id=166, 1251.92719pt x 503.63156pt>
 File: content/4-images/ant-recep.png Graphic file (type png)
 <use content/4-images/ant-recep.png>
 Package luatex.def Info: content/4-images/ant-recep.png  used on input line 10.
@@ -1870,7 +1870,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 11.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 11.
-<content/4-images/ant-trans.png, id=165, 1050.92625pt x 493.0922pt>
+<content/4-images/ant-trans.png, id=167, 1050.92625pt x 493.0922pt>
 File: content/4-images/ant-trans.png Graphic file (type png)
 <use content/4-images/ant-trans.png>
 Package luatex.def Info: content/4-images/ant-trans.png  used on input line 16.
@@ -1886,7 +1886,7 @@ Underfull \hbox (badness 3657) in paragraph at lines 17--17
 [4
 
 <./content/4-images/ant-recep.png><./content/4-images/ant-trans.png>]
-<content/4-images/axes.png, id=179, 789.70032pt x 664.73344pt>
+<content/4-images/axes.png, id=181, 789.70032pt x 664.73344pt>
 File: content/4-images/axes.png Graphic file (type png)
 <use content/4-images/axes.png>
 Package luatex.def Info: content/4-images/axes.png  used on input line 41.
@@ -1908,70 +1908,66 @@ Chapter 2.
 [10
 
 ]
-Overfull \hbox (0.68712pt too wide) in paragraph at lines 48--50
-\T1/lmr/m/n/10.95 Since $\OML/lmm/m/it/10.95 H\OT1/lmr/m/n/10.95 (\OML/lmm/m/it
-/10.95 f; t\OT1/lmr/m/n/10.95 )$ \T1/lmr/m/n/10.95 does not de-pend on the base-
-band fre-quency $\OML/lmm/m/it/10.95 f$\T1/lmr/m/n/10.95 , the chan-nel is de-sc
-ribed as frequency-
- []
-
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 63.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 63.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tau' on input line 63.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 63.
-
-
 
 [11]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 83.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 83.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 75.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 96.
+(hyperref)                removing `math shift' on input line 75.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 96.
+(hyperref)                removing `\tau' on input line 75.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 96.
+(hyperref)                removing `math shift' on input line 75.
 
 
 
 [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 104.
+(hyperref)                removing `math shift' on input line 121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 104.
+(hyperref)                removing `math shift' on input line 121.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 104.
+(hyperref)                removing `math shift' on input line 138.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 138.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 138.
 
 
 
-[13]) (./content/1-project/3-full.tex
+[13]
 
-[14]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 150.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 150.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 150.
+
+
+
+[14]) (./content/1-project/3-full.tex
+
+[15]
 Chapter 3.
 ) (./content/1-project/4-wide.tex) (./content/1-project/5-further.tex)
 (./content/1-project/6-conclu.tex)
@@ -1983,7 +1979,7 @@ LaTeX Warning: Empty bibliography on input line 34.
 
 
 
-[15
+[16
 
 ] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
  ***********
@@ -2009,14 +2005,14 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 53214 strings out of 475664
+ 53216 strings out of 475664
  125165,2373549 words of node,token memory allocated
- 1920 words of node memory still in use:
-   32 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 256 attribute, 72 glue_s
-pec, 166 attribute_list, 3 write, 24 pdf_literal, 24 pdf_colorstack nodes
-   avail lists: 1:4,2:1071,3:202,4:128,5:689,6:62,7:4977,8:95,9:1622,10:13,11:34
-8
- 74592 multiletter control sequences out of 65536+600000
+ 2028 words of node memory still in use:
+   32 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 292 attribute, 72 glue_s
+pec, 184 attribute_list, 3 write, 24 pdf_literal, 24 pdf_colorstack nodes
+   avail lists: 1:4,2:1017,3:213,4:136,5:689,6:65,7:4840,8:95,9:1622,10:10,11:33
+5
+ 74587 multiletter control sequences out of 65536+600000
  81 fonts using 5058319 bytes
  99i,13n,108p,1230b,1878s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/
@@ -2043,10 +2039,10 @@ grams/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/sipak/AppData/Local/Prog
 rams/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Program
 s/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (17 pages, 797481 byt
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (18 pages, 801166 byt
 es).
 
-PDF statistics: 392 PDF objects out of 1000 (max. 8388607)
- 98 named destinations out of 1000 (max. 131072)
- 384 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 408 PDF objects out of 1000 (max. 8388607)
+ 105 named destinations out of 1000 (max. 131072)
+ 392 words of extra memory for PDF output out of 10000 (max. 100000000)
 
