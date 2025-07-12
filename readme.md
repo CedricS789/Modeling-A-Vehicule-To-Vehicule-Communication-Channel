@@ -74,7 +74,7 @@ The code is broken down into several specialized functions. Here is a detailed l
 * **Logic**:
     1.  **Distance**: It calculates the total path length by summing the Euclidean distance of each segment.
     2.  **Reflection Loss**: It iterates through each reflection point. For each reflection, it calculates the **Fresnel Reflection Coefficient (Γ)**. This complex number represents the ratio of reflected to incident electric field amplitude. The formula used is for perpendicular polarization:
-        $$ \Gamma_{\perp} = \frac{\cos(\theta_i) - \sqrt{\varepsilon_r - \sin^2(\theta_i)}}{\cos(\theta_i) + \sqrt{\varepsilon_r - \sin^2(\theta_i)}} $$
+        $$\Gamma_{\perp} = \frac{\cos(\theta_i) - \sqrt{\varepsilon_r - \sin^2(\theta_i)}}{\cos(\theta_i) + \sqrt{\varepsilon_r - \sin^2(\theta_i)}}$$
         where $ \theta_i $ is the angle of incidence and $ \varepsilon_r $ is the relative permittivity of the wall material.
     3.  **Cumulative Product**: It multiplies all the individual reflection coefficients together to get `cumulative_gamma` ($ \prod \Gamma_i $).
     4.  **Final Gain**: It calls `calculateAlpha_n` to compute the final complex gain using the total distance and cumulative reflection loss.
