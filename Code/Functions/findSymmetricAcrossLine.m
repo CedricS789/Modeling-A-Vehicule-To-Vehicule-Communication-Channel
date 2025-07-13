@@ -1,4 +1,4 @@
-function symmetric_point = findSymmetricAcrossLine(point, line_coords)
+function symmetric_point = findSymmetricAcrossLine(point, line_coordinates)
 % findSymmetricAcrossLine - Reflects a 2D point across a line segment.
 %
 % This function calculates the image of a point when symmetric across the
@@ -11,14 +11,14 @@ function symmetric_point = findSymmetricAcrossLine(point, line_coords)
 %
 % INPUTS:
 %   point       - 1x2 vector [x, y] of the point to reflect.
-%   line_coords - 2x2 matrix [x1 y1; x2 y2] defining the line of reflection.
+%   line_coordinates - 2x2 matrix [x1 y1; x2 y2] defining the line of reflection.
 %
 % OUTPUTS:
 %   symmetric_point - 1x2 vector [x, y] of the resulting image point.
 
-    line_point_1 = line_coords(1,:);                                              % Select one point on the line to act as a reference origin.
+    line_point_1 = line_coordinates(1,:);                                              % Select one point on the line to act as a reference origin.
     
-    line_direction_vector = line_coords(2,:) - line_point_1;                      % Calculate the vector that defines the direction of the line.
+    line_direction_vector = line_coordinates(2,:) - line_point_1;                      % Calculate the vector that defines the direction of the line.
     
     % To reflect a point, we need to move it along a line perpendicular
     % to the line of reflection. For a 2D vector [dx, dy], its normal is [dy, -dx].

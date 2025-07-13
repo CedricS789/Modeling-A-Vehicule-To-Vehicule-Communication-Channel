@@ -46,9 +46,9 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, para
     
     % If the ray is not blocked, calculate its properties.
     if is_ray_clear
-        los_ray.path = [tx_pos; rx_pos]; % Geometric ray points
+        los_ray.coordinates = [tx_pos; rx_pos]; % Geometric ray points
         los_ray.type = 'LOS';
-        los_ray.dist = norm(rx_pos - tx_pos); % ray length
+        los_ray.total_distance = norm(rx_pos - tx_pos); % ray length
         los_ray.gamma_prod = 1; % Product of reflection coefficients is 1 (no reflections)
         
         % Calculate the complex gain 'alpha_n' for this ray.
@@ -158,10 +158,10 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
     % TRACE BACKWARDS: From RX to TX, find each reflection point.
     for i = K:-1:1
         image_for_current_segment = image_source_sequence{i+1};
-        reflecting_wall_coords = walls(wall_index_sequence(i)).coordinates;
+        reflecting_wall_coordinates = walls(wall_index_sequence(i)).coordinates;
 
         % The reflection point is the intersection of that line and wall 'i'.
-        reflection_point = findSegmentIntersection(image_for_current_segment, current_target, reflecting_wall_coords(1,:), reflecting_wall_coords(2,:));
+        reflection_point = findSegmentIntersection(image_for_current_segment, current_target, reflecting_wall_coordinates(1,:), reflecting_wall_coordinates(2,:));
         
         % VALIDATION 1: The intersection must be on the physical wall segment.
         if isempty(reflection_point)
@@ -227,9 +227,9 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
             end
         end
         
-        ray_data.path = ray_points;
+        ray_data.coordinates = ray_points;
         ray_data.type = sprintf('%d-Refl', K);
-        ray_data.dist = total_dist;
+        ray_data.total_distance = total_dist;
         ray_data.gamma_prod = cumulative_gamma;
         ray_data.alpha_n = calculate_alpha(ray_data, params);
     end
@@ -238,7 +238,7 @@ end
 %% --- Complex Gain (Alpha) Calculation ---
 function alpha_n = calculate_alpha(ray_data, params)
     % Implements the formula for the complex gain from the project report.
-    d_n = ray_data.dist;
+    d_n = ray_data.total_distance;
     gamma_prod = ray_data.gamma_prod;
     fc = params.fc;
     c = params.c;
@@ -254,9 +254,9 @@ function alpha_n = calculate_alpha(ray_data, params)
 end
 
 %% --- Geometric Helper: Point Reflection ---
-function reflected_point = reflectPointAcrossWall(point, wall_coords)
-    wall_p1 = wall_coords(1,:);
-    wall_vector = wall_coords(2,:) - wall_p1;
+function reflected_point = reflectPointAcrossWall(point, wall_coordinates)
+    wall_p1 = wall_coordinates(1,:);
+    wall_vector = wall_coordinates(2,:) - wall_p1;
     normal_vector = [wall_vector(2), -wall_vector(1)];
     reflected_point = point - 2 * dot(point - wall_p1, normal_vector) / dot(normal_vector, normal_vector) * normal_vector;
 end
@@ -295,10 +295,10 @@ function plot_environment(walls, tx_pos, rx_pos, rays_data, k_max)
     for i = 1:length(rays_data)
         ray = rays_data{i};
         if strcmp(ray.type, 'LOS')
-            plot(ax, ray.path(:,1), ray.path(:,2), 'g-', 'LineWidth', 1.5, 'DisplayName', 'LOS');
+            plot(ax, ray.coordinates(:,1), ray.coordinates(:,2), 'g-', 'LineWidth', 1.5, 'DisplayName', 'LOS');
         else
             num_refl = sscanf(ray.type, '%d-Refl');
-            plot(ax, ray.path(:,1), ray.path(:,2), '-', 'Color', colors(num_refl,:), 'LineWidth', 1, 'DisplayName', ray.type);
+            plot(ax, ray.coordinates(:,1), ray.coordinates(:,2), '-', 'Color', colors(num_refl,:), 'LineWidth', 1, 'DisplayName', ray.type);
         end
     end
     

@@ -31,9 +31,9 @@ function [all_alphas, all_rays_data] = runRayTracing(walls, K, tx_pos, rx_pos, p
 
     % If not obstructed, calculate the properties of the LOS ray.
     if ~is_los_obstructed
-        los_ray.path = [tx_pos; rx_pos];
+        los_ray.coordinates = [tx_pos; rx_pos];
         los_ray.type = 'LOS';
-        los_ray.dist = norm(rx_pos - tx_pos);
+        los_ray.total_distance = norm(rx_pos - tx_pos);
         los_ray.gamma_prod = 1; % Reflection coefficient product is 1 for LOS.
         los_ray.alpha_n = calculateAlpha_n(los_ray, params);
         all_rays_data{end+1} = los_ray;

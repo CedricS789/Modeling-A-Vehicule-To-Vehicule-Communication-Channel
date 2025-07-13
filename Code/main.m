@@ -8,7 +8,7 @@
 clear; close all; clc;
 
 addpath('Functions');
-addpath('Functions/Plotting');
+addpath('Functions/Plotting Functions');
 
 %% STEP 1: SIMULATION CONFIGURATION
 % =================================================================
@@ -57,7 +57,7 @@ RX_pos = [d1/2, 0];
 
 if ~isempty(LOS_rays_data)
     LOS_ray = LOS_rays_data{1};
-    LOS_delay = LOS_ray.dist / params.c;
+    LOS_delay = LOS_ray.total_distance / params.c;
     h_nb_LOS = LOS_ray.alpha_n;
     
     % Calculate received power using the channel transfer function
@@ -94,7 +94,7 @@ ylim([-w, w]);
 % Display properties of each found ray
 for i = 1:length(all_rays)
     ray = all_rays{i};
-    fprintf('Ray %2d: Type = %-7s          d_%d = %7.2f m          |alpha_%d| = %.4e         arg(alpha_%2d) = %7.2f° \n', i, ray.type, i, ray.dist, i, abs(ray.alpha_n), i, rad2deg(angle(ray.alpha_n)));
+    fprintf('Ray %2d: Type = %-7s          d_%d = %7.2f m          |alpha_%d| = %.4e         arg(alpha_%2d) = %7.2f° \n', i, ray.type, i, ray.total_distance, i, abs(ray.alpha_n), i, rad2deg(angle(ray.alpha_n)));
 end
 
 % --- 3.2: Calculate total received power from all paths ---
@@ -107,7 +107,7 @@ fprintf('   - Total Received Power P_RX at %.1f m: %.2f dBm\n\n', d1, P_RX_total
 
 % --- 3.3: Simulate over a range of distances for plotting ---
 fprintf('   - Simulating over distances ...\n');
-distances = logspace(0, 6, 1000); % 2000 points from 1m to 10^...
+distances = logspace(0, 6, 1000); % N points from 1m to 10^...
 num_distances = length(distances);
 P_RX_LOS_dBm_vs_dist = zeros(1, num_distances);
 P_RX_total_dBm_vs_dist = zeros(1, num_distances);
@@ -163,11 +163,11 @@ fprintf('   ...Data computation complete.\n\n');
 fprintf('   - Plotting results...\n');
 plotReceivedPower(distances, P_RX_total_dBm_vs_dist, P_RX_LOS_dBm_vs_dist);
 % plotKFactor(distances, k_factor_dB_vs_dist);
-[n_pl, sigma_L, PL_d0] = plotPathLoss(distances, P_RX_total_dBm_vs_dist, params);
-fprintf('     - Calculated Path Loss Exponent n = %.2f\n', n_pl);
-fprintf('     - Shadowing Standard Deviation sigma_L = %.2f dB\n', sigma_L);
+% [n_pl, sigma_L, PL_d0] = plotPathLoss(distances, P_RX_total_dBm_vs_dist, params);
+% fprintf('     - Calculated Path Loss Exponent n = %.2f\n', n_pl);
+% fprintf('     - Shadowing Standard Deviation sigma_L = %.2f dB\n', sigma_L);
 % plotCellRangeAnalysis(distances, n_pl, PL_d0, sigma_L, params);
-fprintf('   ...Step 3 analysis complete.\n\n');
+% fprintf('   ...Step 3 analysis complete.\n\n');
 
 
 
@@ -194,22 +194,22 @@ fprintf('   - Generating %.1fm x %.1fm grid with %.1fm resolution...\n', ...
 num_x_points = round((x_end - x_start) / resolution) + 1;
 num_y_points = round((y_end - y_start) / resolution) + 1;
 
-rx_x_coords = linspace(x_start, x_end, num_x_points);
-rx_y_coords = linspace(y_start, y_end, num_y_points);
+rx_x_coordinates = linspace(x_start, x_end, num_x_points);
+rx_y_coordinates = linspace(y_start, y_end, num_y_points);
 
 % --- Run Simulation for each point on the grid ---
-P_RX_inst_dBm = zeros(length(rx_y_coords), length(rx_x_coords));
-P_RX_local_dBm = zeros(length(rx_y_coords), length(rx_x_coords));
-% P_RX_global_dBm = zeros(length(rx_y_coords), length(rx_x_coords));
+P_RX_inst_dBm = zeros(length(rx_y_coordinates), length(rx_x_coordinates));
+P_RX_local_dBm = zeros(length(rx_y_coordinates), length(rx_x_coordinates));
+% P_RX_global_dBm = zeros(length(rx_y_coordinates), length(rx_x_coordinates));
 
 heatmap_waitbar = waitbar(0, 'Generating Heatmap Data...');
 total_points = numel(P_RX_inst_dBm);
 point_count = 0;
 % d0 = 1; % Reference distance for path loss model is 1m
 
-for i = 1:length(rx_x_coords)
-    for j = 1:length(rx_y_coords)
-        rx_pos = [rx_x_coords(i), rx_y_coords(j)];
+for i = 1:length(rx_x_coordinates)
+    for j = 1:length(rx_y_coordinates)
+        rx_pos = [rx_x_coordinates(i), rx_y_coordinates(j)];
         dist_from_tx = norm(rx_pos - tx_pos);
         
         % Avoid calculating at the transmitter's exact location
@@ -252,17 +252,17 @@ figure('Name', 'Power Heatmap Comparison', 'NumberTitle', 'off', 'Position', [50
 
 % Plot 1: Instantaneous Power
 ax1 = subplot(2, 1, 1);
-plotCoverageHeatmap(ax1, rx_x_coords, rx_y_coords, P_RX_inst_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+plotCoverageHeatmap(ax1, rx_x_coordinates, rx_y_coordinates, P_RX_inst_dBm, tx_pos, walls, params.P_RX_sens_dBm);
 title('Instantaneous Power (P_{RX})');
 
 % Plot 2: Local Average Power
 ax2 = subplot(2, 1, 2);
-plotCoverageHeatmap(ax2, rx_x_coords, rx_y_coords, P_RX_local_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+plotCoverageHeatmap(ax2, rx_x_coordinates, rx_y_coordinates, P_RX_local_dBm, tx_pos, walls, params.P_RX_sens_dBm);
 title('Local Average Power (<P_{RX}>)');
 
 % Plot 3: Global Average Power
 % ax3 = subplot(3, 1, 3);
-% plotCoverageHeatmap(ax3, rx_x_coords, rx_y_coords, P_RX_global_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+% plotCoverageHeatmap(ax3, rx_x_coordinates, rx_y_coordinates, P_RX_global_dBm, tx_pos, walls, params.P_RX_sens_dBm);
 % title('Global Average Power (<<P_{RX}>>)');
 
 

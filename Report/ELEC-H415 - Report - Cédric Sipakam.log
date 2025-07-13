@@ -779,13 +779,13 @@ decorations.code.tex
 \tikz@lib@dec@box=\box66
 )
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/tik
-z/libraries/tikzlibrarydecorations.pathmorphing.code.tex
+z/libraries/tikzlibrarydecorations.coordinatesmorphing.code.tex
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/libraries/decorat
-ions/pgflibrarydecorations.pathmorphing.code.tex))
+ions/pgflibrarydecorations.coordinatesmorphing.code.tex))
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/tik
-z/libraries/tikzlibrarydecorations.pathreplacing.code.tex
+z/libraries/tikzlibrarydecorations.coordinatesreplacing.code.tex
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/libraries/decorat
-ions/pgflibrarydecorations.pathreplacing.code.tex))
+ions/pgflibrarydecorations.coordinatesreplacing.code.tex))
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgfplots/libs/tikzlib
 rarypgfplots.contourlua.code.tex)
 \pgfplots@numplots=\count311

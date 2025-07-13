@@ -22,13 +22,13 @@ function final_ray_coordinates = validateRayPath(rx_pos, walls, processed_wall_i
 %                           Returns an empty array [] if the ray path is invalid
 %                           (e.g., no intersection or obstruction).
     final_ray_coordinates = [];                                                           % Default to an invalid path; will be populated only if all checks pass.
-    K = length(all_tx_images_pos) - 1;                                      % The number of reflections is one less than the total number of sources (original + images).
+    K = length(all_tx_images_pos) - 1;                                                    % The number of reflections is one less than the total number of sources (original + images).
     % LOS ray (K < 1) is not handled by this function.
-    if K < 1                                                                % This function only handles reflected paths.
+    if K < 1                                                                              % This function only handles reflected paths.
         return;                                                                           % Exit if no reflections are specified.
     end
     % Pre-allocate matrix for all ray vertices: TX, N reflection points, RX.
-    potential_ray_coordinates = zeros(K + 2, 2);                            % Allocate memory for the path vertices: TX, N reflection points, and RX.
+    potential_ray_coordinates = zeros(K + 2, 2);                                          % Allocate memory for the path vertices: TX, N reflection points, and RX.
     original_tx_pos = all_tx_images_pos{1};                                               % The true transmitter.
     potential_ray_coordinates(1,:) = original_tx_pos;                                     % The path must start at the true transmitter (TX).
     potential_ray_coordinates(end,:) = rx_pos;                                            % The path must terminate at the receiver (RX).
@@ -36,7 +36,7 @@ function final_ray_coordinates = validateRayPath(rx_pos, walls, processed_wall_i
     current_target_point = rx_pos;                                                        % Begin the backward trace from the receiver's location.
 
     % --- Trace backwards from RX to TX and check for obstructions ---
-    for i = K:-1:1                                                          % Trace path segments backwards, from the final reflection toward the first.
+    for i = K:-1:1                                                                        % Trace path segments backwards, from the final reflection toward the first.
         image_source_for_segment = all_tx_images_pos{i+1};                                % The ray segment appears to originate from the corresponding image source.
         reflecting_wall_index = processed_wall_indices(i);                                % Identify the wall associated with this step of the reflection sequence.
         reflecting_wall_coordinates = walls(reflecting_wall_index).coordinates;           % Get the start and end coordinates of this reflecting wall.
@@ -47,18 +47,18 @@ function final_ray_coordinates = validateRayPath(rx_pos, walls, processed_wall_i
         reflection_point = findSegmentIntersection(...                                     % Calculate the exact point of reflection on the wall.
             image_source_for_segment, current_target_point, ...                            % A line is cast from the image source to the target of the previous segment.
             reflecting_wall_coordinates(1,:), reflecting_wall_coordinates(2,:));           % The intersection with the finite wall segment is the reflection point.
-        if isempty(reflection_point)                                                      % If the line of sight to the image misses the physical wall segment.
-            is_path_valid = false;                                                        % the geometric path is impossible.
-            break;                                                                        % Stop processing, as the entire ray path is invalid.
+        if isempty(reflection_point)                                                       % If the line of sight to the image misses the physical wall segment.
+            is_path_valid = false;                                                         % the geometric path is impossible.
+            break;                                                                         % Stop processing, as the entire ray path is invalid.
         end
-        potential_ray_coordinates(i+1,:) = reflection_point;                              % Store this valid reflection point as a vertex in the ray path.
+        potential_ray_coordinates(i+1,:) = reflection_point;                               % Store this valid reflection point as a vertex in the ray path.
 
         % Check for obstructions on the current ray segment (reflection_point to current_target_point).
-        for j = 1:length(walls)                                                           % Iterate through all walls in the environment to check for blockages.
+        for j = 1:length(walls)                                                            % Iterate through all walls in the environment to check for blockages.
             % Skip checking the current reflecting wall and the next reflecting wall
             % (if applicable) as they are part of the intended path.
             is_this_segments_wall = (j == reflecting_wall_index);                         % The ray is allowed to hit the wall it's reflecting from.
-            is_next_segments_wall = (i < K && j == processed_wall_indices(i+1)); % And the wall of the next reflection (the previous in this backward trace).
+            is_next_segments_wall = (i < K && j == processed_wall_indices(i+1));          % And the wall of the next reflection (the previous in this backward trace).
             if ~is_this_segments_wall && ~is_next_segments_wall                           % For all other walls...
                 % If an intersection with any other wall is found, the segment is obstructed.
                 if ~isempty(findSegmentIntersection(reflection_point, current_target_point, ...

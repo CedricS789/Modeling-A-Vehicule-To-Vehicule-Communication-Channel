@@ -12,17 +12,13 @@ function alpha_n = calculateAlpha_n(ray_data, params)
 %   alpha_n    - The complex channel gain coefficient for the ray.
 
     % Unpack necessary parameters
-    d_n = ray_data.dist;
-    reflection_product = ray_data.gamma_prod;
+    d_n = ray_data.total_distance;
+    gamma_prod = ray_data.gamma_prod;
     fc = params.fc;
     c = params.c;
     Z_0 = params.Z_0;
     R_a = params.R_a;
-    
-    % --- Calculation Steps ---
-    
-    % lambda of the carrier signal.
-    lambda = c / fc;
+    lambda = params.lambda;
     
     % Time delay (phase shift) due to path length.
     tau_n = d_n / c;
@@ -33,5 +29,5 @@ function alpha_n = calculateAlpha_n(ray_data, params)
     amplitude = (lambda * Z_0) / (4 * pi^2 * R_a * d_n);
     
     % Combine all effects: amplitude, phase, and reflections.
-    alpha_n = 1j * amplitude * phase_shift * reflection_product;
+    alpha_n = 1j * amplitude * phase_shift * gamma_prod;
 end
