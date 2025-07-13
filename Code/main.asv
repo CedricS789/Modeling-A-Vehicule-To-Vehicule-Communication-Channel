@@ -5,10 +5,10 @@
 % calculates the multipath components (MPCs), received power, path LOSs,
 % and generates a 2D coverage map.
 % =========================================================================
-clear; clc; close all;
-% Add function directories to the MATLAB path
+clear; close all; clc;
+
 addpath('Functions');
-addpath('Functions/Plotting'); % Assuming you have a folder for plotting functions
+addpath('Functions/Plotting');
 
 %% STEP 1: SIMULATION CONFIGURATION
 % =================================================================
@@ -18,30 +18,27 @@ addpath('Functions/Plotting'); % Assuming you have a folder for plotting functio
 fprintf('STEP 1: Defining simulation parameters...\n');
 
 % --- Physical & Channel Parameters ---
-params.fc = 5.9e9;      % Carrier frequency in Hz (5.9 GHz for V2V)
-params.c = 3e8;          % Speed of light in m/s
-params.Z_0 = 377;   % Impedance of free space in Ohms
-params.R_a = 73.1;    % Radiation resistance for a half-wave dipole
-params.P_TX = 0.1;        % Transmit power in Watts (20 dBm)
-params.P_RX_sens_dBm = -70;    % Receiver sensitivity in dBm
+params.fc = 5.9e9;              % Carrier frequency in Hz (5.9 GHz for V2V)
+params.c = 3e8;                 % Speed of light in m/s
+params.Z_0 = 377;               % Impedance of free space in Ohms
+params.R_a = 73.1;              % Radiation resistance for a half-wave dipole
+params.P_TX = 0.1;              % Transmit power in Watts (20 dBm)
+params.P_RX_sens_dBm = -70;     % Receiver sensitivity in dBm
 
 % Derived parameters
 params.P_TX_dBm = 10 * log10(params.P_TX * 1000);
 params.lambda = params.c / params.fc;
 
 % --- Ray-Tracing Configuration ---
-K = 1; % Maximum number of reflections to consider
+K = 1;                          % Maximum number of reflections to consider
 
 % --- Environment Geometry (Street Canyon) ---
 w = 20;
-L = 200; % Ensure walls are long enough to not affect results
-eps_r = 4; % Relative permittivity (epsilon_r) of building walls
+L = 200;                    % Length of wall
+eps_r = 4;                  % Relative permittivity (epsilon_r) of building walls
 
-walls(1).coords = [-L, w/2; L, w/2];
-walls(1).eps_r = eps_r;
-walls(2).coords = [-L, -w/2; L, -w/2];
-walls(2).eps_r = eps_r;
-
+walls(1).coordinates = [[-L, w/2]; [L, w/2]];    walls(1).eps_r = eps_r;
+walls(2).coordinates = [[-L, -w/2]; [L, -w/2]];  walls(2).eps_r = eps_r;
 fprintf('   ...Configuration complete.\n\n');
 
 
@@ -56,12 +53,12 @@ tx_pos = [-d1/2, 0];
 RX_pos = [d1/2, 0];
 
 % Run ray tracing for LOS path only (K = 0)
-[~, LOS_rays] = runRayTracing(walls, 0, tx_pos, RX_pos, params);
+[~, LOS_rays_data] = runRayTracing(walls, 0, tx_pos, RX_pos, params);
 
-if ~isempty(LOS_rays)
-    LOS_ray_data = LOS_rays{1};
-    LOS_delay = LOS_ray_data.dist / params.c;
-    h_nb_LOS = LOS_ray_data.alpha_n;
+if ~isempty(LOS_rays_data)
+    LOS_ray = LOS_rays_data{1};
+    LOS_delay = LOS_ray.dist / params.c;
+    h_nb_LOS = LOS_ray.alpha_n;
     
     % Calculate received power using the channel transfer function
     P_RX_LOS = params.P_TX * abs(h_nb_LOS)^2;
@@ -104,13 +101,13 @@ end
 h_nb_total = sum(all_alphas);
 P_RX_total = params.P_TX * abs(h_nb_total)^2;
 P_RX_total_dBm = 10 * log10(P_RX_total * 1000);
-fprintf('   - Total Narrowband Gain h_NB at %.1f m: %.3e\n', d1, h_nb_total);
+fprintf('\n   - Total Narrowband Gain h_NB at %.1f m: %.3e\n', d1, h_nb_total);
 fprintf('   - Total Received Power P_RX at %.1f m: %.2f dBm\n\n', d1, P_RX_total_dBm);
 
 
 % --- 3.3: Simulate over a range of distances for plotting ---
-fprintf('   - Simulating over distances from 1m to 1km...\n');
-distances = logspace(0, 4, 4000); % 2000 points from 1m to 1km
+fprintf('    ...Simulating over distances ...\n');
+distances = logspace(0, 6, 50000); % 2000 points from 1m to 10^...
 num_distances = length(distances);
 P_RX_LOS_dBm_vs_dist = zeros(1, num_distances);
 P_RX_total_dBm_vs_dist = zeros(1, num_distances);
@@ -140,7 +137,7 @@ for i = 1:num_distances
     alpha_LOS = 0;
     P_scatter = 0;
     for j = 1:length(rays)
-        if strcmp(rays{j}.type, 'LOS')
+        if strcmp(rays{j}.type, 'LOS') % If type is LOS
             alpha_LOS = rays{j}.alpha_n;
         else
             P_scatter = P_scatter + params.P_TX * abs(rays{j}.alpha_n)^2;
@@ -165,21 +162,23 @@ fprintf('   ...Data computation complete.\n');
 % --- 3.4 & 3.5: Plotting Results ---
 fprintf('   - Plotting results...\n');
 plotReceivedPower(distances, P_RX_total_dBm_vs_dist, P_RX_LOS_dBm_vs_dist);
-% plotKFactor(distances, k_factor_dB_vs_dist); % Assuming you have this function
+% plotKFactor(distances, k_factor_dB_vs_dist);
 [n_pl, sigma_L, PL_d0] = plotPathLoss(distances, P_RX_total_dBm_vs_dist, params);
 fprintf('     - Calculated Path Loss Exponent n = %.2f\n', n_pl);
 fprintf('     - Shadowing Standard Deviation sigma_L = %.2f dB\n', sigma_L);
-% plotCellRangeAnalysis(distances, n_pl, PL_d0, sigma_L, params); % Assuming you have this function
+% plotCellRangeAnalysis(distances, n_pl, PL_d0, sigma_L, params);
 fprintf('   ...Step 3 analysis complete.\n\n');
 
 
 
-%% STEP 4: 2D COVERAGE HEATMAP ANALYSIS
+%% STEP 6: 2D COVERAGE HEATMAP ANALYSIS
 % =================================================================
 % Generate a 2D heatmap of received power to visualize coverage
 % around the transmitter.
 % =================================================================
+
 fprintf('STEP 4: Generating 2D coverage heatmap...\n');
+
 % --- Heatmap Control Parameters ---
 tx_pos     = [-L+10, 0];   % Transmitter position [x, y] in meters
 x_start    = -L-200;        % Starting x-coordinate of the heatmap (meters)
@@ -187,6 +186,7 @@ x_end      = -L+200;       % Ending x-coordinate of the heatmap (meters)
 y_start    = -w/2-10;      % Starting y-coordinate (Default: bottom wall)
 y_end      = w/2+10;       % Ending y-coordinate (Default: top wall)
 resolution = 0.5;       % Meters per pixel.
+
 % --- Calculate simulation grid from control parameters ---
 fprintf('   - Generating %.1fm x %.1fm grid with %.1fm resolution...\n', ...
         (x_end - x_start), (y_end - y_start), resolution);
@@ -202,7 +202,7 @@ P_RX_inst_dBm = zeros(length(rx_y_coords), length(rx_x_coords));
 P_RX_local_dBm = zeros(length(rx_y_coords), length(rx_x_coords));
 % P_RX_global_dBm = zeros(length(rx_y_coords), length(rx_x_coords));
 
-waitbar = waitbar(0, 'Generating Heatmap Data...');
+heatmap_waitbar = waitbar(0, 'Generating Heatmap Data...');
 total_points = numel(P_RX_inst_dBm);
 point_count = 0;
 % d0 = 1; % Reference distance for path loss model is 1m
@@ -225,6 +225,7 @@ for i = 1:length(rx_x_coords)
             % --- Ray Tracing for Instantaneous and Local Average Power ---
             [alphas, ~] = runRayTracing(walls, K, tx_pos, rx_pos, params);
             if ~isempty(alphas)
+
                 % --- Instantaneous Power P_RX ---
                 h_nb = sum(alphas);
                 P_RX_insts = params.P_TX * abs(h_nb)^2;
@@ -240,29 +241,29 @@ for i = 1:length(rx_x_coords)
             end
         end
         point_count = point_count + 1;
-        waitbar(point_count/total_points, waitbar);
+        waitbar(point_count/total_points, heatmap_waitbar);
     end
 end
-close(waitbar);
+close(heatmap_waitbar);
 
 % --- Plotting Results ---
 fprintf('   - Plotting heatmaps...\n');
 figure('Name', 'Power Heatmap Comparison', 'NumberTitle', 'off', 'Position', [50, 200, 1800, 400]);
 
 % Plot 1: Instantaneous Power
-ax1 = subplot(3, 1, 1);
+ax1 = subplot(2, 1, 1);
 plotCoverageHeatmap(ax1, rx_x_coords, rx_y_coords, P_RX_inst_dBm, tx_pos, walls, params.P_RX_sens_dBm);
 title('Instantaneous Power (P_{RX})');
 
 % Plot 2: Local Average Power
-ax2 = subplot(3, 1, 2);
+ax2 = subplot(2, 1, 2);
 plotCoverageHeatmap(ax2, rx_x_coords, rx_y_coords, P_RX_local_dBm, tx_pos, walls, params.P_RX_sens_dBm);
 title('Local Average Power (<P_{RX}>)');
 
 % Plot 3: Global Average Power
-ax3 = subplot(3, 1, 3);
-plotCoverageHeatmap(ax3, rx_x_coords, rx_y_coords, P_RX_global_dBm, tx_pos, walls, params.P_RX_sens_dBm);
-title('Global Average Power (<<P_{RX}>>)');
+% ax3 = subplot(3, 1, 3);
+% plotCoverageHeatmap(ax3, rx_x_coords, rx_y_coords, P_RX_global_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+% title('Global Average Power (<<P_{RX}>>)');
 
 
 fprintf('   ...Step 4 analysis complete.\n\n');

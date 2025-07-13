@@ -12,7 +12,7 @@ function alpha_n = calculateAlpha_n(ray_data, params)
 %   alpha_n    - The complex channel gain coefficient for the ray.
 
     % Unpack necessary parameters
-    path_distance = ray_data.dist;
+    d_n = ray_data.dist;
     reflection_product = ray_data.gamma_prod;
     fc = params.fc;
     c = params.c;
@@ -21,18 +21,17 @@ function alpha_n = calculateAlpha_n(ray_data, params)
     
     % --- Calculation Steps ---
     
-    % 1. Wavelength of the carrier signal.
-    wavelength = c / fc;
+    % lambda of the carrier signal.
+    lambda = c / fc;
     
-    % 2. Time delay (phase shift) due to path length.
-    time_delay = path_distance / c;
-    phase_shift_term = exp(-1j * 2 * pi * fc * time_delay);
+    % Time delay (phase shift) due to path length.
+    tau_n = d_n / c;
+    phase_shift = exp(-1j * 2 * pi * fc * tau_n);
     
-    % 3. Amplitude reduction based on a form of the Friis formula.
+    % Amplitude reduction based on a form of the Friis formula.
     % This term accounts for free-space path loss and antenna characteristics.
-    amplitude_term = (wavelength * Z_0) / (4 * pi^2 * R_a * path_distance);
+    amplitude = (lambda * Z_0) / (4 * pi^2 * R_a * d_n);
     
-    % 4. Combine all effects: amplitude, phase, and reflections.
-    % The leading '1j' term is related to the radiation characteristics of a dipole.
-    alpha_n = 1j * amplitude_term * phase_shift_term * reflection_product;
+    % Combine all effects: amplitude, phase, and reflections.
+    alpha_n = 1j * amplitude * phase_shift * reflection_product;
 end

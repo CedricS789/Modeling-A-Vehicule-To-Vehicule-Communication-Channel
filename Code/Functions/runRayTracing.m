@@ -18,11 +18,11 @@ function [all_alphas, all_rays_data] = runRayTracing(walls, K, tx_pos, rx_pos, p
 
     all_rays_data = {};
 
-    % --- 1. LINE-OF-SIGHT (LOS) PATH CALCULATION ---
+    % --- LINE-OF-SIGHT (LOS) PATH CALCULATION ---
     % Check if the direct path between TX and RX is obstructed by any wall.
     is_los_obstructed = false;
     for i = 1:length(walls)
-        intersection_point = findSegmentIntersection(tx_pos, rx_pos, walls(i).coords(1,:), walls(i).coords(2,:));
+        intersection_point = findSegmentIntersection(tx_pos, rx_pos, walls(i).coordinates(1,:), walls(i).coordinates(2,:));
         if ~isempty(intersection_point)
             is_los_obstructed = true;
             break; % If one wall obstructs, no need to check others.
@@ -39,7 +39,7 @@ function [all_alphas, all_rays_data] = runRayTracing(walls, K, tx_pos, rx_pos, p
         all_rays_data{end+1} = los_ray;
     end
 
-    % --- 2. REFLECTED PATHS CALCULATION (via recursion) ---
+    % --- REFLECTED PATHS CALCULATION (via recursion) ---
     % Recursively find all valid reflected paths for each reflection order.
     for order = 1:K
         % Start the recursion from the original transmitter position.
@@ -53,7 +53,7 @@ function [all_alphas, all_rays_data] = runRayTracing(walls, K, tx_pos, rx_pos, p
         all_rays_data = [all_rays_data, reflected_rays];
     end
 
-    % --- 3. FINAL OUTPUT PREPARATION ---
+    % --- FINAL OUTPUT PREPARATION ---
     % Extract the complex gains (alphas) from the ray data structs.
     if ~isempty(all_rays_data)
         all_alphas = cellfun(@(ray) ray.alpha_n, all_rays_data);

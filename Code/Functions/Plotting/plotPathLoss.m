@@ -15,11 +15,11 @@ function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distance
 %   shadowing_std_dev  - The shadowing standard deviation, sigma_L (in dB).
 %   pl_ref             - The path loss at the reference distance, d0=1m.
 
-    % --- 1. Calculate Path Loss ---
+    % --- Calculate Path Loss ---
     % Path Loss (dB) = Transmit Power (dBm) - Received Power (dBm)
     path_loss_instantaneous_dB = params.P_TX - total_rx_power_dBm;
 
-    % --- 2. Spatially Average the Path Loss ---
+    % --- Spatially Average the Path Loss ---
     % This is done to remove the small-scale fading effects and reveal the
     % underlying large-scale trend (path loss + shadowing).
     window_size_m = 5; % Averaging window of 5 meters
@@ -27,7 +27,7 @@ function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distance
     window_size_samples = max(2, round(window_size_m / avg_spacing));
     path_loss_averaged_dB = movmean(path_loss_instantaneous_dB, window_size_samples, 'omitnan');
 
-    % --- 3. Fit the Path Loss Model ---
+    % --- Fit the Path Loss Model ---
     % Model: PL(d)[dB] = PL(d0)[dB] + 10 * n * log10(d/d0)
     ref_distance_m = 1;
     log_distances = log10(distances / ref_distance_m);
@@ -45,12 +45,12 @@ function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distance
     % Reconstruct the fitted model for plotting.
     path_loss_model_dB = pl_ref + 10 * path_loss_exponent * log_distances;
 
-    % --- 4. Calculate Shadowing Standard Deviation ---
+    % --- Calculate Shadowing Standard Deviation ---
     % This is the standard deviation of the difference between the actual
     % (averaged) path loss and the value predicted by our model.
     shadowing_std_dev = std(path_loss_averaged_dB - path_loss_model_dB, 'omitnan');
 
-    % --- 5. Plotting ---
+    % --- Plotting ---
     figure('Name', 'Large-Scale Path Loss Model', 'NumberTitle', 'off', 'Position', [200 200 800 600]);
     semilogx(distances, path_loss_instantaneous_dB, 'Color', [0.7 0.7 0.7], 'DisplayName', 'Instantaneous Path Loss');
     hold on;

@@ -12,11 +12,11 @@ function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_
 %   shadowing_std_dev  - The shadowing standard deviation in dB.
 %   params         - Struct with simulation parameters.
 
-    % --- 1. Reconstruct the Mean Path Loss Model ---
+    % --- Reconstruct the Mean Path Loss Model ---
     ref_distance_m = 1;
     path_loss_model_dB = pl_ref + 10 * path_loss_exponent * log10(distances / ref_distance_m);
 
-    % --- 2. Define Reliability Levels and Calculate Fade Margins ---
+    % --- Define Reliability Levels and Calculate Fade Margins ---
     reliabilities = [0.50, 0.90, 0.99];
     colors = {'g', 'm', 'c'};
     

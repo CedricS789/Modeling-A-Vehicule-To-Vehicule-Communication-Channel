@@ -1,6 +1,4 @@
 function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, params)
-% RAY_TRACING_V2 - Performs ray tracing for a V2V communication scenario.
-%
 % This function implements the image method to find all propagation rays
 % between a transmitter (TX) and receiver (RX) for a given 2D environment.
 % It handles the Line-of-Sight (LOS) ray and reflected rays up to k_max reflections.
@@ -12,7 +10,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, para
 %
 % INPUTS:
 %   walls        - Struct array defining wall geometry and properties.
-%                  walls(i).coords: 2x2 matrix [x1 y1; x2 y2] for endpoints.
+%                  walls(i).coordinates: 2x2 matrix [x1 y1; x2 y2] for endpoints.
 %                  walls(i).eps_r: Relative permittivity of the wall.
 %   k_max        - Maximum number of reflections to consider (e.g., 3).
 %   tx_pos       - 1x2 vector [x, y] for the transmitter's position.
@@ -23,25 +21,23 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, para
 %   alphas       - 1xN complex vector of gain coefficients for N found rays.
 %   rays_data   - 1xN cell array of structs, each with detailed ray info.
 %
-% Based on the project "Modeling A Vehicle-to-Vehicle Communication Channel"
-% ELEC-H415, ULB/VUB.
 
     % =================================================================
-    % 1: INITIALIZE
+    % INITIALIZE
     % =================================================================
     % This cell array will store the detailed results for every valid
     % ray that is found.
     rays_data = {};
     
     % =================================================================
-    % 2: CALCULATE LINE-OF-SIGHT (LOS) ray
+    % CALCULATE LINE-OF-SIGHT (LOS) ray
     % =================================================================
     % The LOS ray is the simplest case: a straight line from TX to RX.
     % We must first check if this ray is blocked by any walls.
     is_ray_clear = true;
     for i = 1:length(walls)
         % Check for intersection between the TX-RX line and each wall.
-        intersection = findSegmentIntersection(tx_pos, rx_pos, walls(i).coords(1,:), walls(i).coords(2,:));
+        intersection = findSegmentIntersection(tx_pos, rx_pos, walls(i).coordinates(1,:), walls(i).coordinates(2,:));
         if ~isempty(intersection)
             is_ray_clear = false; % ray is blocked.
             break;                 % No need to check other walls.
@@ -63,7 +59,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, para
     end
 
     % =================================================================
-    % 3: FIND ALL REFLECTED rayS
+    % FIND ALL REFLECTED rayS
     % =================================================================
     % We loop from 1 to the maximum number of reflections (k_max).
     % In each iteration, we find all rays with exactly 'order' reflections.
@@ -77,7 +73,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, para
     end
 
     % =================================================================
-    % 4: PREPARE FINAL OUTPUTS AND PLOT
+    % PREPARE FINAL OUTPUTS AND PLOT
     % =================================================================
     % Extract just the complex gains from the 'rays_data' cell array 
     % into a simple vector for easy use. This uses a standard for-loop for clarity.
@@ -89,7 +85,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, para
         % For each ray found, get its struct from the cell array.
         current_ray_struct = rays_data{i};
         % Extract the 'gain' value and place it in the alphas vector.
-        alphas(i) = current_ray_struct.alpha_n
+        alphas(i) = current_ray_struct.alpha_n;
     end
 
     % Call the plotting function to visualize the environment and all found rays.
@@ -130,7 +126,7 @@ function found_rays = findReflectionrays(current_tx_pos, rx_pos, walls, reflecti
         if i == last_wall_index, continue; end 
         
         % Create the next image source by reflecting the current source across wall 'i'.
-        new_image_source = reflectPointAcrossWall(current_tx_pos, walls(i).coords);
+        new_image_source = reflectPointAcrossWall(current_tx_pos, walls(i).coordinates);
 
         % --- Make the recursive call ---
         % We now search for rays from this *new* image source, with one
@@ -148,11 +144,11 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
     % Takes a complete image chain and determines if a valid, unobstructed
     % physical ray exists. If so, it calculates its properties.
     ray_data = [];
-    num_reflections = length(image_source_sequence) - 1;
-    if num_reflections < 1, return; end
+    K = length(image_source_sequence) - 1;
+    if K < 1, return; end
 
     % This array will store the [TX, R1, R2, ..., RX] coordinates.
-    ray_points = zeros(num_reflections + 2, 2);
+    ray_points = zeros(K + 2, 2);
     ray_points(1,:) = image_source_sequence{1}; % ray starts at the original TX.
     ray_points(end,:) = rx_pos;               % ray ends at the RX.
     
@@ -160,9 +156,9 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
     current_target = rx_pos;
 
     % TRACE BACKWARDS: From RX to TX, find each reflection point.
-    for i = num_reflections:-1:1
+    for i = K:-1:1
         image_for_current_segment = image_source_sequence{i+1};
-        reflecting_wall_coords = walls(wall_index_sequence(i)).coords;
+        reflecting_wall_coords = walls(wall_index_sequence(i)).coordinates;
 
         % The reflection point is the intersection of that line and wall 'i'.
         reflection_point = findSegmentIntersection(image_for_current_segment, current_target, reflecting_wall_coords(1,:), reflecting_wall_coords(2,:));
@@ -181,10 +177,10 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
             
             % The end wall is the wall for the *next* reflection in the sequence.
             % This doesn't apply to the last segment (reflection -> rx_pos).
-            is_end_wall = (i < num_reflections && j == wall_index_sequence(i+1));
+            is_end_wall = (i < K && j == wall_index_sequence(i+1));
 
             if ~is_start_wall && ~is_end_wall
-                if ~isempty(findSegmentIntersection(reflection_point, current_target, walls(j).coords(1,:), walls(j).coords(2,:)))
+                if ~isempty(findSegmentIntersection(reflection_point, current_target, walls(j).coordinates(1,:), walls(j).coordinates(2,:)))
                     is_ray_valid = false; break;
                 end
             end
@@ -197,7 +193,7 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
     % FINAL VALIDATION: Check the first segment (TX to first reflection point).
     if is_ray_valid
         for j = 1:length(walls)
-            if j ~= wall_index_sequence(1) && ~isempty(findSegmentIntersection(ray_points(1,:), ray_points(2,:), walls(j).coords(1,:), walls(j).coords(2,:)))
+            if j ~= wall_index_sequence(1) && ~isempty(findSegmentIntersection(ray_points(1,:), ray_points(2,:), walls(j).coordinates(1,:), walls(j).coordinates(2,:)))
                 is_ray_valid = false; break;
             end
         end
@@ -208,15 +204,15 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
         total_dist = 0;
         cumulative_gamma = 1; % Start with a product of 1.
 
-        for i = 1:(num_reflections + 1)
+        for i = 1:(K + 1)
             p1 = ray_points(i,:);
             p2 = ray_points(i+1,:);
             total_dist = total_dist + norm(p2 - p1);
 
-            if i <= num_reflections
+            if i <= K
                 incident_vec = p2 - p1;
                 wall = walls(wall_index_sequence(i));
-                wall_vec = wall.coords(2,:) - wall.coords(1,:);
+                wall_vec = wall.coordinates(2,:) - wall.coordinates(1,:);
                 normal_vec = [wall_vec(2), -wall_vec(1)];
                 
                 cos_theta_i = abs(dot(incident_vec/norm(incident_vec), normal_vec/norm(normal_vec)));
@@ -232,7 +228,7 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
         end
         
         ray_data.path = ray_points;
-        ray_data.type = sprintf('%d-Refl', num_reflections);
+        ray_data.type = sprintf('%d-Refl', K);
         ray_data.dist = total_dist;
         ray_data.gamma_prod = cumulative_gamma;
         ray_data.alpha_n = calculate_alpha(ray_data, params);
@@ -290,7 +286,7 @@ function plot_environment(walls, tx_pos, rx_pos, rays_data, k_max)
     ax = gca;
 
     for i = 1:length(walls)
-        plot(ax, walls(i).coords(:,1), walls(i).coords(:,2), 'k', 'LineWidth', 2.5);
+        plot(ax, walls(i).coordinates(:,1), walls(i).coordinates(:,2), 'k', 'LineWidth', 2.5);
     end
     plot(ax, tx_pos(1), tx_pos(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', '#0077BE', 'DisplayName', 'TX');
     plot(ax, rx_pos(1), rx_pos(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', '#D95319', 'DisplayName', 'RX');

@@ -30,18 +30,15 @@ params.P_TX_dBm = 10 * log10(params.P_TX * 1000);
 params.lambda = params.c / params.fc;
 
 % --- Ray-Tracing Configuration ---
-K = 1; % Maximum number of reflections to consider
+K = 1;                          % Maximum number of reflections to consider
 
 % --- Environment Geometry (Street Canyon) ---
 w = 20;
 L = 200;                    % Length of wall
 eps_r = 4;                  % Relative permittivity (epsilon_r) of building walls
 
-walls(1).coords = [-L, w/2; L, w/2];
-walls(1).eps_r = eps_r;
-walls(2).coords = [-L, -w/2; L, -w/2];
-walls(2).eps_r = eps_r;
-
+walls(1).coordinates = [[-L, w/2]; [L, w/2]];    walls(1).eps_r = eps_r;
+walls(2).coordinates = [[-L, -w/2]; [L, -w/2]];  walls(2).eps_r = eps_r;
 fprintf('   ...Configuration complete.\n\n');
 
 
@@ -56,12 +53,12 @@ tx_pos = [-d1/2, 0];
 RX_pos = [d1/2, 0];
 
 % Run ray tracing for LOS path only (K = 0)
-[~, LOS_rays] = runRayTracing(walls, 0, tx_pos, RX_pos, params);
+[~, LOS_rays_data] = runRayTracing(walls, 0, tx_pos, RX_pos, params);
 
-if ~isempty(LOS_rays)
-    LOS_ray_data = LOS_rays{1};
-    LOS_delay = LOS_ray_data.dist / params.c;
-    h_nb_LOS = LOS_ray_data.alpha_n;
+if ~isempty(LOS_rays_data)
+    LOS_ray = LOS_rays_data{1};
+    LOS_delay = LOS_ray.dist / params.c;
+    h_nb_LOS = LOS_ray.alpha_n;
     
     % Calculate received power using the channel transfer function
     P_RX_LOS = params.P_TX * abs(h_nb_LOS)^2;
@@ -104,13 +101,13 @@ end
 h_nb_total = sum(all_alphas);
 P_RX_total = params.P_TX * abs(h_nb_total)^2;
 P_RX_total_dBm = 10 * log10(P_RX_total * 1000);
-fprintf('   - Total Narrowband Gain h_NB at %.1f m: %.3e\n', d1, h_nb_total);
+fprintf('\n   - Total Narrowband Gain h_NB at %.1f m: %.3e\n', d1, h_nb_total);
 fprintf('   - Total Received Power P_RX at %.1f m: %.2f dBm\n\n', d1, P_RX_total_dBm);
 
 
 % --- 3.3: Simulate over a range of distances for plotting ---
-fprintf('   - Simulating over distances from 1m to 1km...\n');
-distances = logspace(0, 6, 50000); % 2000 points from 1m to 10^...
+fprintf('   - Simulating over distances ...\n');
+distances = logspace(0, 6, 1000); % 2000 points from 1m to 10^...
 num_distances = length(distances);
 P_RX_LOS_dBm_vs_dist = zeros(1, num_distances);
 P_RX_total_dBm_vs_dist = zeros(1, num_distances);
@@ -140,7 +137,7 @@ for i = 1:num_distances
     alpha_LOS = 0;
     P_scatter = 0;
     for j = 1:length(rays)
-        if strcmp(rays{j}.type, 'LOS')
+        if strcmp(rays{j}.type, 'LOS') % If type is LOS
             alpha_LOS = rays{j}.alpha_n;
         else
             P_scatter = P_scatter + params.P_TX * abs(rays{j}.alpha_n)^2;
@@ -160,7 +157,7 @@ for i = 1:num_distances
     waitbar(i/num_distances, sim_waitbar);
 end
 close(sim_waitbar);
-fprintf('   ...Data computation complete.\n');
+fprintf('   ...Data computation complete.\n\n');
 
 % --- 3.4 & 3.5: Plotting Results ---
 fprintf('   - Plotting results...\n');

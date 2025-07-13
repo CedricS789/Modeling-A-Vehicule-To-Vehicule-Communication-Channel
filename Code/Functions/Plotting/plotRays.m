@@ -15,16 +15,16 @@ function plotRays(walls, transmitter_position, receiver_position, all_rays_data,
     grid on; 
     ax = gca;
 
-    % --- 1. Plot Walls ---
+    % --- Plot Walls ---
     for i = 1:length(walls)
-        plot(ax, walls(i).coords(:,1), walls(i).coords(:,2), 'k', 'LineWidth', 2.5, 'DisplayName', 'wall');
+        plot(ax, walls(i).coordinates(:,1), walls(i).coordinates(:,2), 'k', 'LineWidth', 2.5, 'DisplayName', 'wall');
     end
 
-    % --- 2. Plot Transmitter and Receiver ---
+    % --- Plot Transmitter and Receiver ---
     plot(ax, transmitter_position(1), transmitter_position(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', '#0077BE', 'DisplayName', 'TX');
     plot(ax, receiver_position(1), receiver_position(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', '#D95319', 'DisplayName', 'RX');
 
-    % --- 3. Plot All Found rays ---
+    % --- Plot All Found rays ---
     colors = lines(K); 
     
     for i = 1:length(all_rays_data)
@@ -45,7 +45,7 @@ function plotRays(walls, transmitter_position, receiver_position, all_rays_data,
     
     hold off;
     
-    % --- 4. Add Labels and a Clean Legend ---
+    % --- Add Labels and a Clean Legend ---
     title(ax, sprintf('Ray Tracing with up to %d Reflections', K));
     xlabel(ax, 'X Coordinate (m)');
     ylabel(ax, 'Y Coordinate (m)');

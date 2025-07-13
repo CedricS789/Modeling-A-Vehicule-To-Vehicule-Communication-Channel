@@ -28,7 +28,7 @@ function plotCoverageHeatmap(ax, rx_x_coords, rx_y_coords, Prx_heatmap_dBm, tx_p
     
     % Plot walls
     for i = 1:length(walls)
-        plot(ax, walls(i).coords(:,1), walls(i).coords(:,2), 'k-', 'LineWidth', 2);
+        plot(ax, walls(i).coordinates(:,1), walls(i).coordinates(:,2), 'k-', 'LineWidth', 2);
     end
     
     % Plot transmitter

@@ -13,39 +13,38 @@ function intersection_point = findSegmentIntersection(p1, p2, p3, p4)
 %   intersection_point - 1x2 vector [x, y] of the intersection, or an
 %                        empty array [] if they do not intersect on the segments.
 
-    % Represent segments as P = P_start + t * direction_vector
-    v1 = p2 - p1; % Direction vector of segment 1
-    v2 = p4 - p3; % Direction vector of segment 2
+    % Define segments using parametric form: P = P_start + t * direction_vector
+    v1 = p2 - p1;                                                                 % Vector representing the direction and magnitude of segment 1.
+    v2 = p4 - p3;                                                                 % Vector representing the direction and magnitude of segment 2.
 
-    % Calculate the 2D "cross product" of the direction vectors.
-    % If this is zero, the lines are parallel or collinear.
-    v1_cross_v2 = v1(1)*v2(2) - v1(2)*v2(1);
+    % The system is solved using Cramer's rule. The denominator is the
+    % determinant of the matrix formed by the direction vectors.
+    v1_cross_v2 = v1(1)*v2(2) - v1(2)*v2(1);                                       % This is the 2D equivalent of a cross-product's magnitude.
 
-    % Use a small tolerance to handle floating-point inaccuracies.
-    if abs(v1_cross_v2) < 1e-10
-        intersection_point = []; % Lines are parallel, no unique intersection.
+    % If the determinant is near zero, the vectors are parallel (or collinear),
+    % meaning the lines don't have a single, unique intersection point.
+    if abs(v1_cross_v2) < 1e-10                                                   % Use a small tolerance to account for floating-point errors.
+        intersection_point = [];                                                  % Return empty as parallel lines do not intersect.
         return;
     end
 
-    % Vector between the starting points of the two segments.
+    % Create a vector from the start point of segment 1 to the start of segment 2.
     p3_minus_p1 = p3 - p1;
     
-    % Solve for the parameters 't' and 'u'.
-    % Intersection Point = p1 + t * v1
-    % Intersection Point = p3 + u * v2
-    % 't' is the fractional distance along segment 1 where intersection occurs.
-    % 'u' is the fractional distance along segment 2 where intersection occurs.
-    t = (p3_minus_p1(1)*v2(2) - p3_minus_p1(2)*v2(1)) / v1_cross_v2;
-    u = (p3_minus_p1(1)*v1(2) - p3_minus_p1(2)*v1(1)) / v1_cross_v2;
+    % Solve for parameters 't' and 'u' which represent the fractional distance
+    % along each segment where the intersection occurs.
+    % Intersection point I satisfies: I = p1 + t*v1 and I = p3 + u*v2.
+    t = (p3_minus_p1(1)*v2(2) - p3_minus_p1(2)*v2(1)) / v1_cross_v2;               % 't' is the parameter for segment 1 (p1 to p2).
+    u = (p3_minus_p1(1)*v1(2) - p3_minus_p1(2)*v1(1)) / v1_cross_v2;               % 'u' is the parameter for segment 2 (p3 to p4).
 
-    % For the segments to intersect, both 't' and 'u' must be in [0, 1].
-    % A small tolerance is used to robustly include cases where the
-    % intersection is exactly at an endpoint.
-    if (t >= -1e-9 && t <= 1+1e-9) && (u >= -1e-9 && u <= 1+1e-9)
-        % Intersection is valid, calculate the point.
-        intersection_point = p1 + t * v1;
+    % An intersection exists on the segments only if both parameters are between
+    % 0 and 1, inclusive. This confirms the intersection lies within the bounds
+    % of both finite line segments.
+    if (t >= -1e-9 && t <= 1+1e-9) && (u >= -1e-9 && u <= 1+1e-9)                  % Use tolerance to robustly include intersections at the endpoints.
+        % The intersection is valid and lies on both segments.
+        intersection_point = p1 + t * v1;                                         % Calculate the coordinates using the parameter t and segment 1's equation.
     else
-        % The infinite lines intersect, but the segments themselves do not.
+        % The segments do not intersect, even if their infinite line extensions do.
         intersection_point = [];
     end
 end
