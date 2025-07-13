@@ -1,4 +1,4 @@
-function [alphas, all_rays_data] = runRayTracing(walls, max_reflection_order, transmitter_position, receiver_position, simulation_parameters)
+function [all_alphas, all_rays_data] = runRayTracing(walls, max_reflection_order, transmitter_position, receiver_position, simulation_parameters)
 % runRayTracing - Main engine to find all propagation rays.
 %
 % This function serves as the high-level coordinator for the entire ray-tracing
@@ -29,11 +29,11 @@ function [alphas, all_rays_data] = runRayTracing(walls, max_reflection_order, tr
     end
 
     if ~is_los_ray_obstructed
-        los_ray_data.coordinates = [transmitter_position; receiver_position];
+        los_ray_data.path = [transmitter_position; receiver_position];
         los_ray_data.type = 'LOS';
         los_ray_data.dist = norm(receiver_position - transmitter_position);
         los_ray_data.gamma_prod = 1;
-        los_ray_data.gain = calculateAlpha_n(los_ray_data, simulation_parameters);
+        los_ray_data.alpha_n = calculateAlpha_n(los_ray_data, simulation_parameters);
         all_rays_data{end+1} = los_ray_data;
     end
 
@@ -45,8 +45,8 @@ function [alphas, all_rays_data] = runRayTracing(walls, max_reflection_order, tr
 
     % --- 3. FINAL OUTPUT PREPARATION ---
     num_rays_found = length(all_rays_data);
-    alphas = zeros(1, num_rays_found, 'like', 1i);
+    all_alphas = zeros(1, num_rays_found, 'like', 1i);
     for i = 1:num_rays_found
-        alphas(i) = all_rays_data{i}.alpha_n;
+        all_alphas(i) = all_rays_data{i}.alpha_n;
     end
 end

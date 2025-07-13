@@ -1,91 +1,185 @@
-%% MAIN SIMULATION SCRIPT - V2V STREET CANYON (Simplified)
+%% MAIN SIMULATION SCRIPT - V2V - NARROWBAND
 % =========================================================================
-% This script sets up and runs the ray-tracing simulation for a simplified
-% urban street canyon scenario, represented by two long, continuous walls.
-%
-% 1. It defines the physical parameters for V2V communication.
-% 2. It generates a simple environment with two parallel walls.
-% 3. It places the TX and RX vehicles in the middle of the street.
-% 4. It calls the ray-tracing engine to compute the paths.
-% 5. It calls the plotting function to visualize the results.
-% 6. It displays a summary of the key physical parameters for each found ray.
+% This script performs the analysis for the V2V communication channel
 % =========================================================================
 clear; clc; close all;
-addpath('Functions')
+addpath('Functions'); 
+addpath('Functions\Plotting')
 
+
+%% STEP 1: THEORETICAL PRELIMINARIES
 % =================================================================
-% 1: DEFINE SIMULATION PARAMETERS
+% This step involves theoretical derivations.
+% The parameters derived are defined here for the simulation.
 % =================================================================
+fprintf('STEP 1: Defining simulation parameters based on theoretical preliminaries...\n');
 
 % --- Physical Channel Parameters ---
-sim_params.fc = 5.9e9;          % Carrier frequency in Hz
-sim_params.c = 3e8;             % Speed of light in m/s
-sim_params.Z_0 = 377;           % Impedance of free space in Ohms
-sim_params.R_a = 73.1;          % Radiation resistance for a half-wave dipole (Ohms)
-sim_params.B_RF = 100e6;        % RF bandwidth in Hz
-sim_params.P_TX = 0.1;          % Transmit power in Watts
-sim_params.G_TX = 1.7;          % Transmit antenna gain
-sim_params.G_RX = 1.7;          % Receive antenna gain
-sim_params.l_area = 5;          % length of the local areas in meters
-sim_params.lamda = sim_params.c/sim_params.fc;              % Wavelength in meters
-sim_params.he = sim_params.lamda/pi;                        % Transversal effective height in the horizontal plane (tetha=pi/2) in meters
-sim_params.beta = 2*pi*sim_params.fc/sim_params.c;          % Wave number in rad/m
+params.fc = 5.9e9;          % Carrier frequency in Hz (5.9 GHz)
+params.c = 3e8;             % Speed of light in m/s
+params.Z_0 = 377;           % Impedance of free space in Ohms
+params.R_a = 73.1;          % Radiation resistance for a half-wave dipole (Ohms)
+params.P_TX = 0.1;                                  % Transmit power in Watts
+params.P_TX_dBm = 10*log10(params.P_TX * 1000);     % TX Power in dBm
+params.P_sens_dBm = -70;                            % Receiver sensitivity in dBm
+params.lambda = params.c / params.fc;               % Wavelength
 
 % --- Ray Tracing Configuration ---
-k_max = 3; % The maximum order of reflections to compute.
+K = 3; % Max reflection order (1 LOS + 2*1-refl + 2*2-refl + 2*3-refl = 7 rays total)
 
-% =================================================================
-% 2: GENERATE THE ENVIRONMENT LAYOUT
-% =================================================================
-
-% --- Street and Building Geometry ---
-w = 20;     % Total width of the street (2w = 20m)
-L = 500;  % Total length of the simulated street area
+% --- Environment Geometry ---
+w = 20;         % Total width of the street
+L = 200;       % Length of the street walls to ensure they are long enough
 eps_r = 4;      % Relative permittivity of the buildings
 
-% --- Vehicle Positions ---
-dist = 150; % Separation distance 'd' between TX and RX in meters
-tx_pos = [-dist/2, 0]; % TX is at -d/2, in the middle of the lane
-rx_pos = [dist/2, 0];   % RX is at +d/2, in the middle of the lane
-
-% --- Create two simple walls for the street canyon ---
 walls = [];
-% Top wall
-walls(1).coords = [-L, w/2; L, w/2];
-walls(1).eps_r = eps_r;
-% Bottom wall
-walls(2).coords = [-L, -w/2; L, -w/2];
-walls(2).eps_r = eps_r;
+walls(1).coords = [-L, w/2; L, w/2]; walls(1).eps_r = eps_r;
+walls(2).coords = [-L, -w/2; L, -w/2]; walls(2).eps_r = eps_r;
+fprintf('   ...Setup complete.\n\n');
 
 
+%% STEP 2: LOS CHANNEL ANALYSIS (EXAMPLE)
 % =================================================================
-% 3: EXECUTE THE RAY-TRACING CALCULATION
+% This section performs the calculations for a single LOS ray as a
+% baseline, for a sample distance.
 % =================================================================
-fprintf('Starting ray-tracing calculation for up to %d reflections...\n', k_max);
-% FIXED: Changed the variable name from 'sim' to the correctly defined 'sim_params'
-[alphas, rays] = runRayTracing(walls, k_max, tx_pos, rx_pos, sim_params);
-fprintf('Calculation complete. Found %d valid propagation rays.\n', length(alphas));
+fprintf('STEP 2: Performing LOS-only channel analysis for a sample distance...\n');
+dist = 150; % Sample distance of 150m
+tx_pos = [-dist/2, 0];
+rx_pos = [dist/2, 0];
 
-% =================================================================
-% 4: VISUALIZE THE RESULTS
-% =================================================================
-fprintf('Generating plot of the environment and found rays...\n');
-plotRays(walls, tx_pos, rx_pos, rays, k_max);
-% Adjust plot limits to focus on the area around the vehicles
-xlim([tx_pos(1)-50, rx_pos(1)+50]);
-ylim([-w, w]);
-fprintf('Simulation finished.\n');
+% Run ray tracing but only consider the LOS path (max_reflection_order = 0)
+[~, rays_LOS_only] = runRayTracing(walls, 0, tx_pos, rx_pos, params);
 
-% =================================================================
-% 5: DISPLAY RAY DATA SUMMARY
-% =================================================================
-fprintf('\n--- Ray Data Summary ---\n');
+if ~isempty(rays_LOS_only)
+    LOS_ray = rays_LOS_only{1};
+    tau_1 = LOS_ray.dist / params.c;
+    
+    % Step 2.1 & 2.3: h(tau) and h_NB for LOS
+    h_NB_LOS = LOS_ray.alpha_n;
+    
+    % Step 2.4: Received Power for LOS
+    P_RX_LOS = params.P_TX * abs(h_NB_LOS)^2;
+    P_RX_LOS_dBm = 10*log10(P_RX_LOS * 1000);
+    
+    fprintf('   - For d = %.1f m:\n', dist);
+    fprintf('     - LOS Propagation Delay (tau_1): %.3e s\n', tau_1);
+    fprintf('     - Narrowband Transfer Function |h_NB|= %.3e and arg(h_NB) = %.2f deg\n', abs(h_NB_LOS), rad2deg(angle(h_NB_LOS)));
+    fprintf('     - Received Power (P_RX_LOS): %.2f dBm (matches Friis formula)\n', P_RX_LOS_dBm);
+else
+    fprintf('   - No LOS path found for d = %.1f m.\n', dist);
+end
+fprintf('   ...Step 2 analysis complete.\n\n');
+
+
+%% STEP 3: FULL CHANNEL, NARROWBAND ANALYSIS
+fprintf('STEP 3: Performing full channel, narrowband analysis...\n');
+
+% --- Step 3.1 & 3.2: Compute MPC properties and Total Received Voltage ---
+fprintf('   - Step 3.1 & 3.2: Analyzing MPCs for d = %.1f m ...\n', dist);
+[alphas, rays] = runRayTracing(walls, K, tx_pos, rx_pos, params);
+
+% --- Plot the rays for the example distance ---
+fprintf('   - Plotting ray tracing visualization for d = %.1f m...\n', dist);
+plotRays(walls, tx_pos, rx_pos, rays, K);
+% Zoom in to see the rays more clearly
+xlim([tx_pos(1)-20, rx_pos(1)+20]); % Zooming in on the TX-RX path
+ylim([-w, w]);                     % Keep the full street width visible
+
 for i = 1:length(rays)
     r = rays{i};
-    g_mag = abs(r.gain);
-    g_phase = rad2deg(angle(r.gain));
-    
-    fprintf('Ray %2d: Type = %-7s | Distance = %7.2f m | Gain Mag = %.4e | Gain Phase = %7.2f deg\n', ...
-            i, r.type, r.dist, g_mag, g_phase);
+    delay = r.dist / params.c;
+    % Angle of incidence is calculated inside calculatePhysicalProperties
+    fprintf('     - Ray %d (%s): Delay = %.3e s, Path Length = %.2f m, alpha_n = %.2e\n', i, r.type, delay, r.dist, r.alpha_n);
 end
-fprintf('------------------------\n');
+h_nb = sum(alphas);
+P_RX = params.P_TX * abs(h_nb)^2;
+P_RX_dBm = 10*log10(P_RX*1000);
+fprintf('   - Total Narrowband Gain h_NB at %.1f m: %.3e\n', dist, h_nb);
+fprintf('   - Total Received Power P_RX at %.1f m: %.2f dBm\n\n', dist, P_RX_dBm);
+
+
+% --- Data Computation Loop for Plots (Steps 3.3 to 3.7) ---
+fprintf('   - Running simulation loop across all distances for plotting...\n');
+distances = logspace(0, 3, 2000); % 2000 points from 1m to 1km
+num_dist = length(distances);
+P_RX = zeros(1, num_dist);
+P_RX_friis = zeros(1, num_dist);
+K_factors = zeros(1, num_dist);
+
+h_wait = waitbar(0, 'Running 1D Simulation vs. Distance...');
+for i = 1:num_dist
+    d = distances(i);
+    [alphas, rays] = runRayTracing(walls, K, [-d/2, 0], [d/2, 0], params);
+    if isempty(alphas), continue; end
+    h_nb = sum(alphas);
+    P_RX(i) = params.P_TX * abs(h_nb)^2;
+    alpha_LOS = 0; P_scatter = 0;
+    for j = 1:length(rays)
+        if strcmp(rays{j}.type, 'LOS'), alpha_LOS = rays{j}.alpha_n;
+        else, P_scatter = P_scatter + params.P_TX * abs(rays{j}.alpha_n)^2; end
+    end
+    P_LOS = params.P_TX * abs(alpha_LOS)^2;
+    P_RX_friis(i) = P_LOS;
+    if P_scatter > 0, K_factors(i) = P_LOS / P_scatter; else, K_factors(i) = Inf; end
+    waitbar(i/num_dist, h_wait);
+end
+close(h_wait);
+P_RX_dBm = 10*log10(P_RX * 1000);
+P_RX_friis_dBm = 10*log10(P_RX_friis * 1000);
+K_factors_dB = 10*log10(K_factors);
+fprintf('   ...Data computation complete.\n');
+
+% --- Step 3.3: Plot Received Power vs. Friis ---
+fprintf('   - Step 3.3: Plotting Received Power vs. Friis Formula...\n');
+plotPrxVsDistance(distances, P_RX_dBm, P_RX_friis_dBm);
+
+% --- Step 3.4: Plot Rician K-Factor ---
+fprintf('   - Step 3.4: Plotting Rician K-Factor vs. Distance...\n');
+% plotKFactorVsDistance(distances, K_factors_dB);
+
+% --- Step 3.5 & 3.6: Plot Path Loss Model & Compute Variability ---
+fprintf('   - Step 3.5 & 3.6: Fitting and plotting Path Loss Model...\n');
+[n_pl, sigma_L, PL_d0] = plotPathLossModel(distances, P_RX_dBm, params);
+fprintf('     - Calculated Path Loss Exponent n = %.2f\n', n_pl);
+fprintf('     - Calculated Variability sigma_L = %.2f dB\n', sigma_L);
+
+% --- Step 3.7: Plot Fade Margin & Cell Range ---
+fprintf('   - Step 3.7: Analyzing and plotting Cell Range...\n');
+% plotCellRange(distances, n_pl, PL_d0, sigma_L, params);
+fprintf('   ...Step 3 analysis complete.\n\n');
+
+
+%% STEP 6: FURTHER ANALYSIS (2D HEATMAP)
+fprintf('STEP 6: Performing further analysis (2D Heatmap)...\n');
+% Zoom in the heatmap to a 200m x 40m area around the transmitter
+rx_x_coords = linspace(-500, -300, 201); % Higher resolution over a smaller area
+rx_y_coords = linspace(-w, w, 81);      % Match the y-axis of the ray plot and increase resolution
+P_RX_heatmap_dBm = zeros(length(rx_y_coords), length(rx_x_coords));
+tx_pos_heatmap = [-500, 0];
+
+h_wait = waitbar(0, 'Generating Heatmap Data...');
+total_points = numel(P_RX_heatmap_dBm);
+point_count = 0;
+for i = 1:length(rx_x_coords)
+    for j = 1:length(rx_y_coords)
+        rx_pos = [rx_x_coords(i), rx_y_coords(j)];
+        if norm(rx_pos - tx_pos_heatmap) < 1, P_RX_heatmap_dBm(j, i) = NaN;
+        else
+            [alphas, ~] = runRayTracing(walls, K, tx_pos_heatmap, rx_pos, params);
+            if ~isempty(alphas)
+                h_nb = sum(alphas);
+                P_RX = params.P_TX * abs(h_nb)^2;
+                P_RX_heatmap_dBm(j, i) = 10*log10(P_RX * 1000);
+            else, P_RX_heatmap_dBm(j, i) = NaN; end
+        end
+        point_count = point_count + 1;
+        waitbar(point_count/total_points, h_wait);
+    end
+end
+close(h_wait);
+fprintf('   - Generating heatmap plot...\n');
+plotHeatmap(rx_x_coords, rx_y_coords, P_RX_heatmap_dBm, tx_pos_heatmap, walls);
+fprintf('   ...Step 6 analysis complete.\n\n');
+
+fprintf('All simulations and plotting complete.\n');

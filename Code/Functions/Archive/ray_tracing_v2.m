@@ -50,13 +50,13 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, sim_
     
     % If the ray is not blocked, calculate its properties.
     if is_ray_clear
-        los_ray.ray = [tx_pos; rx_pos]; % Geometric ray points
+        los_ray.path = [tx_pos; rx_pos]; % Geometric ray points
         los_ray.type = 'LOS';
         los_ray.dist = norm(rx_pos - tx_pos); % ray length
         los_ray.gamma_prod = 1; % Product of reflection coefficients is 1 (no reflections)
         
         % Calculate the complex gain 'alpha_n' for this ray.
-        los_ray.gain = calculate_alpha(los_ray, sim_params);
+        los_ray.alpha_n = calculate_alpha(los_ray, sim_params);
         
         % Add the completed LOS ray data to our list of results.
         rays_data{end+1} = los_ray;
@@ -231,11 +231,11 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
             end
         end
         
-        ray_data.coordinates = ray_points;
+        ray_data.path = ray_points;
         ray_data.type = sprintf('%d-Refl', num_reflections);
         ray_data.dist = total_dist;
         ray_data.gamma_prod = cumulative_gamma;
-        ray_data.gain = calculate_alpha(ray_data, sim_params);
+        ray_data.alpha_n = calculate_alpha(ray_data, sim_params);
     end
 end
 
@@ -299,10 +299,10 @@ function plot_environment(walls, tx_pos, rx_pos, rays_data, k_max)
     for i = 1:length(rays_data)
         ray = rays_data{i};
         if strcmp(ray.type, 'LOS')
-            plot(ax, ray.ray(:,1), ray.ray(:,2), 'g-', 'LineWidth', 1.5, 'DisplayName', 'LOS');
+            plot(ax, ray.path(:,1), ray.path(:,2), 'g-', 'LineWidth', 1.5, 'DisplayName', 'LOS');
         else
             num_refl = sscanf(ray.type, '%d-Refl');
-            plot(ax, ray.ray(:,1), ray.ray(:,2), '-', 'Color', colors(num_refl,:), 'LineWidth', 1, 'DisplayName', ray.type);
+            plot(ax, ray.path(:,1), ray.path(:,2), '-', 'Color', colors(num_refl,:), 'LineWidth', 1, 'DisplayName', ray.type);
         end
     end
     

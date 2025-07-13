@@ -45,10 +45,10 @@ function ray_data = calculatePhysicalProperties(ray_coordinates, wall_indices_se
         end
     end
     
-    ray_data.coordinates = ray_coordinates;
+    ray_data.path = ray_coordinates;
     ray_data.type = sprintf('%d-Refl', num_reflections);
     ray_data.dist = total_distance;
     ray_data.gamma_prod = cumulative_gamma;
     
-    ray_data.gain = calculateAlpha_n(ray_data, simulation_parameters);
+    ray_data.alpha_n = calculateAlpha_n(ray_data, simulation_parameters);
 end
