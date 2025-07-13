@@ -1,4 +1,4 @@
-function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, sim_params)
+function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, params)
 % RAY_TRACING_V2 - Performs ray tracing for a V2V communication scenario.
 %
 % This function implements the image method to find all propagation rays
@@ -8,7 +8,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, sim_
 % based on ray length and Fresnel reflection coefficients.
 %
 % SYNTAX:
-%   [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, sim_params)
+%   [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, params)
 %
 % INPUTS:
 %   walls        - Struct array defining wall geometry and properties.
@@ -17,7 +17,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, sim_
 %   k_max        - Maximum number of reflections to consider (e.g., 3).
 %   tx_pos       - 1x2 vector [x, y] for the transmitter's position.
 %   rx_pos       - 1x2 vector [x, y] for the rx_pos's position.
-%   sim_params   - Struct with simulation parameters (.fc, .c, .Z_0, .R_a).
+%   params   - Struct with simulation parameters (.fc, .c, .Z_0, .R_a).
 %
 % OUTPUTS:
 %   alphas       - 1xN complex vector of gain coefficients for N found rays.
@@ -56,7 +56,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, sim_
         los_ray.gamma_prod = 1; % Product of reflection coefficients is 1 (no reflections)
         
         % Calculate the complex gain 'alpha_n' for this ray.
-        los_ray.alpha_n = calculate_alpha(los_ray, sim_params);
+        los_ray.alpha_n = calculate_alpha(los_ray, params);
         
         % Add the completed LOS ray data to our list of results.
         rays_data{end+1} = los_ray;
@@ -70,7 +70,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, rx_pos, sim_
     for order = 1:k_max
         % This function starts the recursive search for rays with 'order' reflections.
         % It begins with the original transmitter position.
-        reflected_rays = findReflectionrays(tx_pos, rx_pos, walls, order, [], {tx_pos}, sim_params);
+        reflected_rays = findReflectionrays(tx_pos, rx_pos, walls, order, [], {tx_pos}, params);
         
         % Add any valid rays found to our main list of results.
         rays_data = [rays_data, reflected_rays];
@@ -102,7 +102,7 @@ end
 % =========================================================================
 
 %% --- Recursive ray Finding Engine ---
-function found_rays = findReflectionrays(current_tx_pos, rx_pos, walls, reflections_remaining, wall_index_sequence, image_source_sequence, sim_params)
+function found_rays = findReflectionrays(current_tx_pos, rx_pos, walls, reflections_remaining, wall_index_sequence, image_source_sequence, params)
     % This is the core of the image method. It recursively builds a tree of
     % all possible image source locations.
     found_rays = {};
@@ -111,7 +111,7 @@ function found_rays = findReflectionrays(current_tx_pos, rx_pos, walls, reflecti
     if reflections_remaining == 0
         % Now that we have a full chain of image sources, we can try to
         % trace the physical ray from the final image to the rx_pos.
-        ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_source_sequence, sim_params);
+        ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_source_sequence, params);
         
         % If a valid physical ray was found, it is returned.
         if ~isempty(ray_data)
@@ -136,7 +136,7 @@ function found_rays = findReflectionrays(current_tx_pos, rx_pos, walls, reflecti
         % We now search for rays from this *new* image source, with one
         % less reflection required. We also update our lists of which walls
         % we've hit and the positions of the image sources.
-        sub_rays = findReflectionrays(new_image_source, rx_pos, walls, reflections_remaining - 1, [wall_index_sequence, i], [image_source_sequence, {new_image_source}], sim_params);
+        sub_rays = findReflectionrays(new_image_source, rx_pos, walls, reflections_remaining - 1, [wall_index_sequence, i], [image_source_sequence, {new_image_source}], params);
         
         % Add any rays found by the recursive call to our list.
         found_rays = [found_rays, sub_rays];
@@ -144,7 +144,7 @@ function found_rays = findReflectionrays(current_tx_pos, rx_pos, walls, reflecti
 end
 
 %% --- Physical ray Tracer and Validator ---
-function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_source_sequence, sim_params)
+function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_source_sequence, params)
     % Takes a complete image chain and determines if a valid, unobstructed
     % physical ray exists. If so, it calculates its properties.
     ray_data = [];
@@ -235,19 +235,19 @@ function ray_data = tracePhysicalray(rx_pos, walls, wall_index_sequence, image_s
         ray_data.type = sprintf('%d-Refl', num_reflections);
         ray_data.dist = total_dist;
         ray_data.gamma_prod = cumulative_gamma;
-        ray_data.alpha_n = calculate_alpha(ray_data, sim_params);
+        ray_data.alpha_n = calculate_alpha(ray_data, params);
     end
 end
 
 %% --- Complex Gain (Alpha) Calculation ---
-function alpha_n = calculate_alpha(ray_data, sim_params)
+function alpha_n = calculate_alpha(ray_data, params)
     % Implements the formula for the complex gain from the project report.
     d_n = ray_data.dist;
     gamma_prod = ray_data.gamma_prod;
-    fc = sim_params.fc;
-    c = sim_params.c;
-    Z_0 = sim_params.Z_0;
-    R_a = sim_params.R_a;
+    fc = params.fc;
+    c = params.c;
+    Z_0 = params.Z_0;
+    R_a = params.R_a;
     lambda = c / fc;
     
     tau_n = d_n / c;

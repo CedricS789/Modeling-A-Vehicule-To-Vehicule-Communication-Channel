@@ -1,49 +1,65 @@
-function valid_rays_from_recursion = findReflectedRaysRecursive(current_source_position, receiver_position, walls, reflections_remaining, wall_indices_sequence, image_source_sequence, simulation_parameters)
-% findReflectedraysRecursive - Recursively finds reflection rays using the image method.
+function valid_rays_found = findReflectedRaysRecursive(current_source_pos, rx_pos, walls, reflections_to_go, wall_indices_path, image_source_path, params)
+% findReflectedRaysRecursive - Recursively finds reflected rays using the image method.
 %
-% This is the heart of the ray tracer. It builds a "tree" of reflections.
-% Each call to this function represents a node in the tree.
+% This function is the core of the ray tracer. It builds a reflection tree
+% where each node is an image source created by reflecting a previous source
+% across a wall.
 %
 % INPUTS:
-%   current_source_position - Position of the current source (can be the real TX or an image).
-%   receiver_position       - Position of the final receiver (this never changes).
-%   walls                   - Struct array of wall definitions.
-%   reflections_remaining   - The number of additional reflections needed for this branch.
-%   wall_indices_sequence   - The sequence of wall indices used to get to this point.
-%   image_source_sequence   - The sequence of image source positions generated so far.
-%   simulation_parameters   - Struct with simulation parameters.
+%   current_source_pos  - Position of the current source (real TX or an image).
+%   rx_pos              - Position of the final receiver (constant).
+%   walls               - Struct array of wall definitions.
+%   reflections_to_go   - The number of additional reflections to find.
+%   wall_indices_path   - The sequence of wall indices used so far.
+%   image_source_path   - The sequence of image source positions generated so far.
+%   params          - Struct with simulation parameters.
 %
 % OUTPUTS:
-%   valid_rays_from_recursion - A cell array of completed, valid ray data structs
-%                                found from this node and its children.
+%   valid_rays_found    - A cell array of completed, valid ray data structs
+%                         found from this recursive branch.
 
-    valid_rays_from_recursion = {};
+    valid_rays_found = {};
 
-    % --- BASE CASE ---
-    if reflections_remaining == 0
-        ray_coordinates = validateRayGeometry(receiver_position, walls, wall_indices_sequence, image_source_sequence);
-        if ~isempty(ray_coordinates)
-            ray_data_struct = calculatePhysicalProperties(ray_coordinates, wall_indices_sequence, walls, simulation_parameters);
-            valid_rays_from_recursion = {ray_data_struct};
+    % --- BASE CASE: No more reflections needed ---
+    % If we have reached the desired reflection order, we can trace the final
+    % path from the last image source to the receiver and validate it.
+    if reflections_to_go == 0
+        % Validate the geometry of the potential ray path.
+        ray_coords = validateRayPath(rx_pos, walls, wall_indices_path, image_source_path);
+        
+        % If the path is geometrically valid (unobstructed), calculate its
+        % physical properties (distance, gain, etc.).
+        if ~isempty(ray_coords)
+            ray_data = calculatePhysicalProperties(ray_coords, wall_indices_path, walls, params);
+            valid_rays_found = {ray_data}; % Return the completed ray data.
         end
-        return;
+        return; % End this branch of the recursion.
     end
 
-    % --- RECURSIVE STEP ---
+    % --- RECURSIVE STEP: Find the next reflection ---
     last_wall_index = 0;
-    if ~isempty(wall_indices_sequence)
-        last_wall_index = wall_indices_sequence(end);
+    if ~isempty(wall_indices_path)
+        last_wall_index = wall_indices_path(end);
     end
     
+    % Iterate through all possible walls for the next reflection.
     for i = 1:length(walls)
-        if i == last_wall_index, continue; end
+        % To avoid trivial reflections (e.g., back and forth on the same wall),
+        % do not reflect across the same wall consecutively.
+        if i == last_wall_index
+            continue;
+        end
         
-        new_image_source = reflectPointAcrossWall(current_source_position, walls(i).coords);
+        % Create a new image source by reflecting the current source across wall 'i'.
+        new_image_source = reflectPointAcrossLine(current_source_pos, walls(i).coords);
         
-        rays_from_this_branch = findReflectedRaysRecursive(new_image_source, receiver_position, walls, ...
-            reflections_remaining - 1, [wall_indices_sequence, i], ...
-            [image_source_sequence, {new_image_source}], simulation_parameters);
+        % --- Make the recursive call ---
+        % Descend one level deeper into the reflection tree.
+        rays_from_branch = findReflectedRaysRecursive(new_image_source, rx_pos, walls, ...
+            reflections_to_go - 1, [wall_indices_path, i], ...
+            [image_source_path, {new_image_source}], params);
         
-        valid_rays_from_recursion = [valid_rays_from_recursion, rays_from_this_branch];
+        % Collect all valid rays found from this deeper branch.
+        valid_rays_found = [valid_rays_found, rays_from_branch];
     end
 end

@@ -1,4 +1,4 @@
-function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_std_dev, sim_params)
+function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_std_dev, params)
 % plotCellRangeAnalysis - Calculates and plots the cell range for different reliabilities.
 %
 % This function visualizes how the communication range is affected by the
@@ -10,7 +10,7 @@ function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_
 %   path_loss_exponent - The path loss exponent, n.
 %   pl_ref             - Path loss at the reference distance d0.
 %   shadowing_std_dev  - The shadowing standard deviation in dB.
-%   sim_params         - Struct with simulation parameters.
+%   params         - Struct with simulation parameters.
 
     % --- 1. Reconstruct the Mean Path Loss Model ---
     ref_distance_m = 1;
@@ -33,7 +33,7 @@ function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_
         fade_margin_dB = -shadowing_std_dev * sqrt(2) * erfcinv(2 * R);
         
         % The maximum allowable path loss for this reliability.
-        max_allowable_pl = sim_params.transmit_power_dBm - sim_params.receiver_sensitivity_dBm - fade_margin_dB;
+        max_allowable_pl = params.P_TX - params.P_RX_sens_dBm - fade_margin_dB;
         max_pl_values(i) = max_allowable_pl;
         
         % Invert the path loss formula to find the cell range.

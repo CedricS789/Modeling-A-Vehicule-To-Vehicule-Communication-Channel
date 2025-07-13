@@ -1,54 +1,51 @@
-function intersection_point = findSegmentIntersection(segment1_point1, segment1_point2, segment2_point1, segment2_point2)
-% FINDSEGMENTINTERSECTION - Finds the intersection point of two line segments.
+function intersection_point = findSegmentIntersection(p1, p2, p3, p4)
+% findSegmentIntersection - Finds the intersection point of two line segments.
 %
-% This function determines if two line segments, defined by their endpoints,
-% intersect. It uses a standard vector cross-product method to solve the
-% system of linear equations for the intersection.
-%
-% The method represents each segment as a parametric equation P = P0 + t*v,
-% where 'v' is the direction vector and 't' is a parameter. An intersection
-% exists only if the solution yields 't' values between 0 and 1 for BOTH segments.
+% This function determines if two line segments, L1 (from p1 to p2) and
+% L2 (from p3 to p4), intersect. It uses a standard vector cross-product
+% method to solve the system of linear equations.
 %
 % INPUTS:
-%   segment1_point1, segment1_point2 - 1x2 vectors for the endpoints of segment 1.
-%   segment2_point1, segment2_point2 - 1x2 vectors for the endpoints of segment 2.
+%   p1, p2 - 1x2 vectors for the endpoints of segment 1.
+%   p3, p4 - 1x2 vectors for the endpoints of segment 2.
 %
 % OUTPUTS:
 %   intersection_point - 1x2 vector [x, y] of the intersection, or an
 %                        empty array [] if they do not intersect on the segments.
 
-    % Define the direction vectors for the two line segments.
-    segment1_vector = segment1_point2 - segment1_point1;
-    segment2_vector = segment2_point2 - segment2_point1;
+    % Represent segments as P = P_start + t * direction_vector
+    v1 = p2 - p1; % Direction vector of segment 1
+    v2 = p4 - p3; % Direction vector of segment 2
 
     % Calculate the 2D "cross product" of the direction vectors.
-    % If this is zero, the lines are parallel.
-    v1_cross_v2 = segment1_vector(1)*segment2_vector(2) - segment1_vector(2)*segment2_vector(1);
+    % If this is zero, the lines are parallel or collinear.
+    v1_cross_v2 = v1(1)*v2(2) - v1(2)*v2(1);
 
-    % If the cross product is very close to zero, the lines are parallel
-    % and are considered not to intersect for this application.
+    % Use a small tolerance to handle floating-point inaccuracies.
     if abs(v1_cross_v2) < 1e-10
-        intersection_point = [];
+        intersection_point = []; % Lines are parallel, no unique intersection.
         return;
     end
 
     % Vector between the starting points of the two segments.
-    start_points_vector = segment2_point1 - segment1_point1;
+    p3_minus_p1 = p3 - p1;
     
-    % Solve for the parameters t and u for the intersection point.
-    % Intersection Point = segment1_point1 + t * segment1_vector
-    % Intersection Point = segment2_point1 + u * segment2_vector
-    t_param = (start_points_vector(1)*segment2_vector(2) - start_points_vector(2)*segment2_vector(1)) / v1_cross_v2;
-    u_param = (start_points_vector(1)*segment1_vector(2) - start_points_vector(2)*segment1_vector(1)) / v1_cross_v2;
+    % Solve for the parameters 't' and 'u'.
+    % Intersection Point = p1 + t * v1
+    % Intersection Point = p3 + u * v2
+    % 't' is the fractional distance along segment 1 where intersection occurs.
+    % 'u' is the fractional distance along segment 2 where intersection occurs.
+    t = (p3_minus_p1(1)*v2(2) - p3_minus_p1(2)*v2(1)) / v1_cross_v2;
+    u = (p3_minus_p1(1)*v1(2) - p3_minus_p1(2)*v1(1)) / v1_cross_v2;
 
-    % Check if the intersection point lies within BOTH segments.
-    % The parameters 't' and 'u' must be between 0 and 1.
-    % A small tolerance (1e-9) is used to robustly include endpoints.
-    if (t_param >= -1e-9 && t_param <= 1+1e-9) && (u_param >= -1e-9 && u_param <= 1+1e-9)
-        % If the conditions are met, calculate the intersection point.
-        intersection_point = segment1_point1 + t_param * segment1_vector;
+    % For the segments to intersect, both 't' and 'u' must be in [0, 1].
+    % A small tolerance is used to robustly include cases where the
+    % intersection is exactly at an endpoint.
+    if (t >= -1e-9 && t <= 1+1e-9) && (u >= -1e-9 && u <= 1+1e-9)
+        % Intersection is valid, calculate the point.
+        intersection_point = p1 + t * v1;
     else
-        % Otherwise, the infinite lines intersect, but the segments do not.
+        % The infinite lines intersect, but the segments themselves do not.
         intersection_point = [];
     end
 end

@@ -11,11 +11,11 @@ The project is structured in a modular way, with each function having a single, 
 ## 2. How to Run the Simulation
 
 1.  **File Placement**: Ensure all the `.m` function files are located in the same directory as the main script, or that the folder containing them is added to the MATLAB path.
-2.  **Configure the Scenario**: Open the main script `main.m`. Inside this file, you can easily modify the simulation scenario:
+2.  **Configure the Scenario**: Open the main script `main.m`:
     * Define the environment by changing the coordinates of the `walls`.
     * Set the `transmitter_position` and `receiver_position`.
     * Adjust `k_max` to control the maximum number of reflections to compute.
-    * Modify physical constants in the `sim_params` struct.
+    * Modify physical constants in the `params` struct.
 3.  **Execute**: Run the `main.m` script from the MATLAB command window or editor.
 4.  **View Results**: A plot will be generated showing the environment, the TX and RX, and all the valid propagation paths found by the simulator. The MATLAB console will print the total number of paths found.
 
@@ -37,7 +37,7 @@ The code is broken down into several specialized functions. Here is a detailed l
 * **Purpose**: The main entry point of the simulation. It is a script, not a function.
 * **Logic**:
     1.  Clears the workspace (`clear`), command window (`clc`), and closes all figures (`close all`).
-    2.  Sets up the simulation `sim_params` struct, which holds all physical constants.
+    2.  Sets up the simulation `params` struct, which holds all physical constants.
     3.  Defines the `walls` of the environment and the `tx_pos` and `rx_pos`.
     4.  Calls the main computational engine, `runRayTracing`, to get all path data.
     5.  Passes the results to `plotRays` for visualization.

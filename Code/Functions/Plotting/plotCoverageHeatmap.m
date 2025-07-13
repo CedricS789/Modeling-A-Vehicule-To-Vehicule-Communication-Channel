@@ -1,47 +1,52 @@
-function plotCoverageHeatmap(rx_x_coords, rx_y_coords, rx_power_heatmap_dBm, tx_pos, walls)
-% plotCoverageHeatmap - Generates a 2D heatmap of the received power.
+function plotCoverageHeatmap(ax, rx_x_coords, rx_y_coords, Prx_heatmap_dBm, tx_pos, walls, sens_dBm)
+% PLOTCOVERAGEHEATMAP - Generates a 2D heatmap of the received power on a given axes.
 %
 % INPUTS:
-%   rx_x_coords          - Vector of x-coordinates for the heatmap grid.
-%   rx_y_coords          - Vector of y-coordinates for the heatmap grid.
-%   rx_power_heatmap_dBm - Matrix of received power values in dBm.
-%   tx_pos               - 1x2 position of the transmitter.
-%   walls                - Struct array defining wall geometry.
+%   ax              - Axes handle to plot on. If empty, a new figure is created.
+%   rx_x_coords     - Vector of x-coordinates for the heatmap grid.
+%   rx_y_coords     - Vector of y-coordinates for the heatmap grid.
+%   Prx_heatmap_dBm - Matrix of received power values in dBm.
+%   tx_pos          - 1x2 position of the transmitter.
+%   walls           - Struct array defining wall geometry.
+%   sens_dBm        - Receiver sensitivity in dBm. Points below this will not be shown.
 
-    figure('Name', '2D Received Power Coverage Map', 'NumberTitle', 'off', 'Position', [250 250 1000 450]);
-    
-    % Use imagesc to display the power matrix as an image.
-    imagesc(rx_x_coords, rx_y_coords, rx_power_heatmap_dBm);
-    
-    % By default, the y-axis is inverted in imagesc. 'normal' fixes this.
-    set(gca, 'YDir', 'normal');
-    hold on;
-    
-    % Overlay the walls on the heatmap.
-    for i = 1:length(walls)
-        plot(walls(i).coords(:,1), walls(i).coords(:,2), 'w-', 'LineWidth', 3);
+    % If no axes handle is provided, create a new figure.
+    if isempty(ax)
+        figure('Name', 'Received Power Heatmap', 'NumberTitle', 'off', 'Position', [300 300 1000 400]);
+        ax = gca;
     end
     
-    % Overlay the transmitter position.
-    plot(tx_pos(1), tx_pos(2), 'w^', 'MarkerSize', 12, 'MarkerFaceColor', '#D95319', 'DisplayName', 'Transmitter');
+    % Plot the heatmap image on the specified axes
+    h_img = imagesc(ax, rx_x_coords, rx_y_coords, Prx_heatmap_dBm);
+    set(ax, 'YDir', 'normal');
     
-    title('Received Power Coverage Map');
-    xlabel('X Coordinate (m)');
-    ylabel('Y Coordinate (m)');
+    % Apply transparency for values below sensitivity
+    set(h_img, 'AlphaData', (Prx_heatmap_dBm >= sens_dBm));
+    set(ax, 'Color', 'w'); 
     
-    % Add and label the color bar.
-    c = colorbar;
+    hold(ax, 'on');
+    
+    % Plot walls
+    for i = 1:length(walls)
+        plot(ax, walls(i).coords(:,1), walls(i).coords(:,2), 'k-', 'LineWidth', 2);
+    end
+    
+    % Plot transmitter
+    plot(ax, tx_pos(1), tx_pos(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', 'r', 'MarkerEdgeColor', 'k');
+    
+    % Set titles, labels, and colorbar for the specified axes
+    title(ax, 'Received Power Heatmap');
+    xlabel(ax, 'X Coordinate (m)');
+    ylabel(ax, 'Y Coordinate (m)');
+    c = colorbar(ax);
     ylabel(c, 'Received Power (dBm)');
+    caxis(ax, [-90 -40]); % Adjust color axis limits as needed
     
-    % Set the color axis limits to a reasonable range for dBm values.
-    caxis([-90 -30]);
+    % Configure axes properties
+    axis(ax, 'equal', 'tight');
+    xlim(ax, [min(rx_x_coords), max(rx_x_coords)]);
+    ylim(ax, [min(rx_y_coords), max(rx_y_coords)]);
+    colormap(ax, 'jet');
     
-    axis equal tight; % Use tight, equal aspect ratio for the axes.
-    xlim([min(rx_x_coords), max(rx_x_coords)]);
-    ylim([min(rx_y_coords), max(rx_y_coords)]);
-    
-    % Use a perceptually uniform colormap.
-    colormap('jet');
-    
-    hold off;
+    hold(ax, 'off');
 end

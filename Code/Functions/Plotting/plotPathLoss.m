@@ -1,4 +1,4 @@
-function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distances, total_rx_power_dBm, sim_params)
+function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distances, total_rx_power_dBm, params)
 % plotPathLoss - Calculates, fits, and plots the large-scale path loss model.
 %
 % This function processes the received power data to extract key large-scale
@@ -8,7 +8,7 @@ function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distance
 % INPUTS:
 %   distances          - Vector of distances for the x-axis.
 %   total_rx_power_dBm - Vector of total received power in dBm.
-%   sim_params         - Struct with simulation parameters.
+%   params         - Struct with simulation parameters.
 %
 % OUTPUTS:
 %   path_loss_exponent - The calculated path loss exponent, n.
@@ -17,7 +17,7 @@ function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distance
 
     % --- 1. Calculate Path Loss ---
     % Path Loss (dB) = Transmit Power (dBm) - Received Power (dBm)
-    path_loss_instantaneous_dB = sim_params.transmit_power_dBm - total_rx_power_dBm;
+    path_loss_instantaneous_dB = params.P_TX - total_rx_power_dBm;
 
     % --- 2. Spatially Average the Path Loss ---
     % This is done to remove the small-scale fading effects and reveal the
