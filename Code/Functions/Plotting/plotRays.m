@@ -1,4 +1,4 @@
-function plotRays(walls, transmitter_position, receiver_position, all_rays_data, max_reflection_order)
+function plotRays(walls, transmitter_position, receiver_position, all_rays_data, K)
 % plotRays - Visualizes the environment and all found ray rays.
 %
 % This function is dedicated to creating a 2D plot of the simulation results.
@@ -8,7 +8,7 @@ function plotRays(walls, transmitter_position, receiver_position, all_rays_data,
 %   transmitter_position - 1x2 vector [x, y] for the transmitter's position.
 %   receiver_position    - 1x2 vector [x, y] for the receiver's position.
 %   all_rays_data       - Cell array of structs with ray information.
-%   max_reflection_order - Maximum number of reflections, used for the plot title.
+%   K - Maximum number of reflections, used for the plot title.
 
     figure('Name', 'V2V Ray Tracing Results', 'NumberTitle', 'off');
     hold on; 
@@ -25,7 +25,7 @@ function plotRays(walls, transmitter_position, receiver_position, all_rays_data,
     plot(ax, receiver_position(1), receiver_position(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', '#D95319', 'DisplayName', 'RX');
 
     % --- 3. Plot All Found rays ---
-    colors = lines(max_reflection_order); 
+    colors = lines(K); 
     
     for i = 1:length(all_rays_data)
         current_ray = all_rays_data{i};
@@ -46,7 +46,7 @@ function plotRays(walls, transmitter_position, receiver_position, all_rays_data,
     hold off;
     
     % --- 4. Add Labels and a Clean Legend ---
-    title(ax, sprintf('Ray Tracing with up to %d Reflections', max_reflection_order));
+    title(ax, sprintf('Ray Tracing with up to %d Reflections', K));
     xlabel(ax, 'X Coordinate (m)');
     ylabel(ax, 'Y Coordinate (m)');
     
