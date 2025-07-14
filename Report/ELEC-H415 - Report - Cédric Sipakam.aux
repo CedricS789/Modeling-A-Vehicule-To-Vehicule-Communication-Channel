@@ -16,8 +16,8 @@
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:tx_circuit}{{1.1a}{4}{Transmit antenna equivalent circuit, showing the source voltage $V_S$, source impedance $Z_S$, transmit voltage $V_{TX}$, and antenna current $I_a$}{figure.caption.5}{}}
 \newlabel{sub@fig:tx_circuit}{{a}{4}{Transmit antenna equivalent circuit, showing the source voltage $V_S$, source impedance $Z_S$, transmit voltage $V_{TX}$, and antenna current $I_a$}{figure.caption.5}{}}
-\newlabel{fig:rx_circuit}{{1.1b}{4}{Receive antenna equivalent circuit, showing the induced open-circuit voltage $V_{oc}$, the load impedance $Z_L$, and the received voltage $V_{RX}$}{figure.caption.5}{}}
-\newlabel{sub@fig:rx_circuit}{{b}{4}{Receive antenna equivalent circuit, showing the induced open-circuit voltage $V_{oc}$, the load impedance $Z_L$, and the received voltage $V_{RX}$}{figure.caption.5}{}}
+\newlabel{fig:RX_circuit}{{1.1b}{4}{Receive antenna equivalent circuit, showing the induced open-circuit voltage $V_{oc}$, the load impedance $Z_L$, and the received voltage $V_{RX}$}{figure.caption.5}{}}
+\newlabel{sub@fig:RX_circuit}{{b}{4}{Receive antenna equivalent circuit, showing the induced open-circuit voltage $V_{oc}$, the load impedance $Z_L$, and the received voltage $V_{RX}$}{figure.caption.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Equivalent circuits for the transmit and receive antennas}}{4}{figure.caption.5}\protected@file@percent }
 \newlabel{fig:equivalent_circuits}{{1.1}{4}{Equivalent circuits for the transmit and receive antennas}{figure.caption.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Antenna Effective Height}{5}{section.1.1}\protected@file@percent }
@@ -29,6 +29,7 @@
 \newlabel{eq:he_perp_general}{{1.19}{7}{Antenna Effective Height}{equation.1.19}{}}
 \newlabel{eq:he_perp_horizontal}{{1.20}{7}{Antenna Effective Height}{equation.1.20}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Emitted Electric Field in Free-Space}{7}{section.1.2}\protected@file@percent }
+\newlabel{eq:el-field}{{1.24}{7}{Emitted Electric Field in Free-Space}{equation.1.24}{}}
 \newlabel{eq:E_field_final}{{1.26}{8}{Emitted Electric Field in Free-Space}{equation.1.26}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Received Voltage in Free-Space}{8}{section.1.3}\protected@file@percent }
 \newlabel{eq:VRX_vs_VTX}{{1.32}{8}{Received Voltage in Free-Space}{equation.1.32}{}}
@@ -41,7 +42,7 @@
 \newlabel{eq:h-l}{{2.6}{10}{Line-of-Sight Channel - Narrowband Analysis}{equation.2.6}{}}
 \newlabel{eq:tdl_model}{{2.7}{10}{Line-of-Sight Channel - Narrowband Analysis}{equation.2.7}{}}
 \newlabel{eq:tdl-narrow}{{2.9}{10}{Line-of-Sight Channel - Narrowband Analysis}{equation.2.9}{}}
-\newlabel{eq:narrow}{{2.10}{10}{Line-of-Sight Channel - Narrowband Analysis}{equation.2.10}{}}
+\newlabel{eq:narrow}{{2.10}{11}{Line-of-Sight Channel - Narrowband Analysis}{equation.2.10}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Antenna Gain}{11}{section.2.1}\protected@file@percent }
 \newlabel{eq:gain_general}{{2.11}{11}{Antenna Gain}{equation.2.11}{}}
 \newlabel{eq:gain_derived}{{2.15}{11}{Antenna Gain}{equation.2.15}{}}
@@ -60,27 +61,29 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{chap:full_narrow}{{3}{16}{Full Channel, Narrowband Analysis}{chapter.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces The image method for a single reflection. The ray of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter I to RX.}}{16}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:image_method_single}{{3.1}{16}{The image method for a single reflection. The ray of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter I to RX}{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Multiray Component Geometry}{17}{section.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Line-of-Sight (LOS) ray}{17}{subsubsection*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Multiray Component Geometry}{16}{section.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{LOS ray}{16}{subsubsection*.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces The image method for a single reflection. The ray of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter I to RX.}}{17}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:image_method_single}{{3.1}{17}{The image method for a single reflection. The ray of the reflected ray from TX to RX is found by drawing a straight line from the image transmitter I to RX}{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Single Reflection rays}{17}{subsubsection*.10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Double Reflection rays}{17}{subsubsection*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Triple Reflection rays}{17}{subsubsection*.12}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Simulation of the Image method ray-tracing for 3 reflections}}{18}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:raytracing-3reflex}{{3.2}{18}{Simulation of the Image method ray-tracing for 3 reflections}{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Total Received Voltage}{18}{section.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Received Power and Comparison with Friis Formula}{19}{section.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison of the total received power in the full multiray channel versus the power predicted by the Friis formula. The Friis formula (dashed line) represents the LOS power, while the actual power (solid line) shows significant fading due to multiray interference.}}{20}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:prx_vs_friis}{{3.3}{20}{Comparison of the total received power in the full multiray channel versus the power predicted by the Friis formula. The Friis formula (dashed line) represents the LOS power, while the actual power (solid line) shows significant fading due to multiray interference}{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Rician K-factor}{20}{section.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}ray Loss Model}{21}{section.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{22}{section.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{22}{section.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Interpretation of Results}{22}{section.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{K-th Order Reflection Rays (Recursive Approach)}{18}{subsubsection*.12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Conceptual tree of image sources generated by \texttt  {findReflectedRaysRecursive}. Each level corresponds to an order of reflection.}}{18}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:image_tree}{{3.2}{18}{Conceptual tree of image sources generated by \texttt {findReflectedRaysRecursive}. Each level corresponds to an order of reflection}{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Flowchart of the backward path validation process in \texttt  {validateRayPath}.}}{19}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:validation_flowchart}{{3.3}{19}{Flowchart of the backward path validation process in \texttt {validateRayPath}}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Total Received Voltage}{20}{section.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Simulation of the Image method ray-tracing for 10 reflections, showing the 21 valid MPCs found.}}{21}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:raytracing-3reflex}{{3.4}{21}{Simulation of the Image method ray-tracing for 10 reflections, showing the 21 valid MPCs found}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Received Power and Comparison with Friis Formula}{21}{section.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Received power as a function of the separation distances in the Multipath Narrow band scenario for 1 Reflection}}{22}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:pRX_vs_friis}{{3.5}{22}{Received power as a function of the separation distances in the Multipath Narrow band scenario for 1 Reflection}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Rician factor}{23}{section.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Ray Loss Model}{23}{section.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{24}{section.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{24}{section.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Interpretation of Results}{24}{section.3.8}\protected@file@percent }
 \abx@aux@nociteall
-\abx@aux@page{1}{24}
 \abx@aux@read@bbl@mdfivesum{}
 \abx@aux@read@bblrerun
-\abx@aux@defaultrefcontext{0}{Example}{nyt/global//global/global/global}
-\gdef \@abspage@last{26}
+\gdef \@abspage@last{27}

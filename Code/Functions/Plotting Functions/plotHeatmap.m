@@ -27,9 +27,10 @@ function plotHeatmap(ax, RX_x_coordinates, RX_y_coordinates, PRX_dBm_domain, tx_
     
     plot(ax, tx_pos(1), tx_pos(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', 'r', 'MarkerEdgeColor', 'k', 'DisplayName', '$T_x$');
     
-    title(ax, 'Received Power Heatmap', 'Interpreter', 'latex');
-    xlabel(ax, '$x$ axis (m)', 'Interpreter', 'latex');
-    ylabel(ax, '$y$ axis (m)', 'Interpreter', 'latex');
+    title(ax, 'Received Power Heatmap', 'FontSize', 16, 'Interpreter', 'latex');
+    xlabel(ax, '$x$ axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
+    ylabel(ax, '$y$ axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
+
     c = colorbar(ax);
     ylabel(c, 'Received Power (dBm)', 'Interpreter', 'latex');
     caxis(ax, [-90 -40]);
@@ -38,7 +39,6 @@ function plotHeatmap(ax, RX_x_coordinates, RX_y_coordinates, PRX_dBm_domain, tx_
     xlim(ax, [min(RX_x_coordinates), max(RX_x_coordinates)]);   
     ylim(ax, [min(RX_y_coordinates), max(RX_y_coordinates)]);
     
-    % Use 256 color levels from the 'jet' colormap for a finer gradient
     colormap(ax, jet(256));
     
     hold(ax, 'off');

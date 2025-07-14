@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  13 JUL 2025 00:04
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  14 JUL 2025 17:22
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -779,13 +779,13 @@ decorations.code.tex
 \tikz@lib@dec@box=\box66
 )
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/tik
-z/libraries/tikzlibrarydecorations.coordinatesmorphing.code.tex
+z/libraries/tikzlibrarydecorations.pathmorphing.code.tex
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/libraries/decorat
-ions/pgflibrarydecorations.coordinatesmorphing.code.tex))
+ions/pgflibrarydecorations.pathmorphing.code.tex))
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/tik
-z/libraries/tikzlibrarydecorations.coordinatesreplacing.code.tex
+z/libraries/tikzlibrarydecorations.pathreplacing.code.tex
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/libraries/decorat
-ions/pgflibrarydecorations.coordinatesreplacing.code.tex))
+ions/pgflibrarydecorations.pathreplacing.code.tex))
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgfplots/libs/tikzlib
 rarypgfplots.contourlua.code.tex)
 \pgfplots@numplots=\count311
@@ -1272,7 +1272,11 @@ Package: xparse 2024-08-16 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2024/03/21 v3.20 expl3 case changing code for biblatex
 ))
-(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabulaRX.sty
+
+LaTeX Warning: You have requested package `tabulaRX',
+               but the package provides `tabularx'.
+
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 \TX@col@width=\dimen314
 \TX@old@table=\dimen315
@@ -1281,8 +1285,7 @@ Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 \TX@delta=\dimen318
 \TX@cols=\count466
 \TX@ftn=\toks53
-)
-(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/listings/listings.sty
+) (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/listings/listings.sty
 \lst@mode=\count467
 \lst@gtempboxa=\box77
 \lst@token=\toks54
@@ -1295,7 +1298,6 @@ Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 \lst@newlines=\count471
 \lst@lineno=\count472
 \lst@maxwidth=\dimen322
-
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
 )
@@ -1628,6 +1630,28 @@ File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 94.
 )
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2023/07/05 v6.0f a miscellany of footnote facilities
+\FN@temptoken=\toks61
+\footnotemargin=\dimen333
+\@outputbox@depth=\dimen334
+Package footmisc Info: Declaring symbol style bringhurst on input line 696.
+Package footmisc Info: Declaring symbol style chicago on input line 704.
+Package footmisc Info: Declaring symbol style wiley on input line 713.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 724.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 744.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 765
+.
+)
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/tik
+z/libraries/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/libraries/shapes/
+pgflibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -1636,26 +1660,26 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 ("./ELEC-H415 - Report - Cédric Sipakam.aux")
 \openout1 = ELEC-H415 - Report - Cédric Sipakam.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1696,22 +1720,30 @@ LaTeX Font Info:    ... okay on input line 7.
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count498
-\scratchdimen=\dimen333
+\scratchdimen=\dimen335
 \scratchbox=\box95
 \nofMPsegments=\count499
 \nofMParguments=\count500
-\everyMPshowfont=\toks61
+\everyMPshowfont=\toks62
 \MPscratchCnt=\count501
-\MPscratchDim=\dimen334
+\MPscratchDim=\dimen336
 \MPnumerator=\count502
 \makeMPintoPDFobject=\count503
-\everyMPtoPDFconversion=\toks62
+\everyMPtoPDFconversion=\toks63
 )
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-b
 ase.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sys.c
 fg
@@ -1742,10 +1774,10 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file '"ELEC-H415 - Report - Cédric Sipakam".bbl' fo
 und.
  ("./ELEC-H415 - Report - Cédric Sipakam.bbl")
-Package biblatex Info: Reference section=0 on input line 7.
-Package biblatex Info: Reference segment=0 on input line 7.
+Package biblatex Info: Reference section=0 on input line 10.
+Package biblatex Info: Reference segment=0 on input line 10.
 \c@lstlisting=\count504
-Package hyperref Info: Link coloring ON on input line 7.
+Package hyperref Info: Link coloring ON on input line 10.
 
 ("./ELEC-H415 - Report - Cédric Sipakam.out")
 ("./ELEC-H415 - Report - Cédric Sipakam.out")
@@ -1755,62 +1787,62 @@ Package hyperref Info: Link coloring ON on input line 7.
 <Pictures/logos.jpg, id=126, 816.04875pt x 118.19156pt>
 File: Pictures/logos.jpg Graphic file (type jpg)
 <use Pictures/logos.jpg>
-Package luatex.def Info: Pictures/logos.jpg  used on input line 18.
+Package luatex.def Info: Pictures/logos.jpg  used on input line 19.
 (luatex.def)             Requested size: 396.06015pt x 57.3625pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--18
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-8.
+9.
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-8.
+9.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-18.
+19.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-18.
+19.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 18.
+(Font)              <10.95> on input line 19.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 18.
+(Font)              <8> on input line 19.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 18.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 18.
+(Font)              <6> on input line 19.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
 
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 18.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
 
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 18
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 19
 .
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/jknappen/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for U+esint on input line 1
-8.
+9.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/esint/uesint.fd
 File: uesint.fd 
@@ -1819,7 +1851,7 @@ File: uesint.fd
 <Pictures/sceauULB.jpg, id=127, 1250.6725pt x 1250.6725pt>
 File: Pictures/sceauULB.jpg Graphic file (type jpg)
 <use Pictures/sceauULB.jpg>
-Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 18.
+Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 19.
 (luatex.def)             Requested size: 569.05688pt x 569.05688pt.
 [1
 
@@ -1835,7 +1867,13 @@ auULB.jpg><./Pictures/logos.jpg>]
 warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 [2
 
-] ("./ELEC-H415 - Report - Cédric Sipakam.lof")
+] ("./ELEC-H415 - Report - Cédric Sipakam.lof"
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
+0.
+
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
 \tf@lof=\write7
 
 \openout7 = ELEC-H415 - Report - Cédric Sipakam.lof
@@ -1858,7 +1896,7 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.'
 
 ]
 Chapter 1.
-<content/4-images/ant-recep.png, id=199, 1251.92719pt x 503.63156pt>
+<content/4-images/ant-recep.png, id=204, 1251.92719pt x 503.63156pt>
 File: content/4-images/ant-recep.png Graphic file (type png)
 <use content/4-images/ant-recep.png>
 Package luatex.def Info: content/4-images/ant-recep.png  used on input line 9.
@@ -1869,7 +1907,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 10.
-<content/4-images/ant-trans.png, id=200, 1050.92625pt x 493.0922pt>
+<content/4-images/ant-trans.png, id=205, 1050.92625pt x 493.0922pt>
 File: content/4-images/ant-trans.png Graphic file (type png)
 <use content/4-images/ant-trans.png>
 Package luatex.def Info: content/4-images/ant-trans.png  used on input line 15.
@@ -1885,7 +1923,7 @@ Underfull \hbox (badness 3657) in paragraph at lines 16--16
 [4
 
 <./content/4-images/ant-recep.png><./content/4-images/ant-trans.png>]
-<content/4-images/axes.png, id=215, 789.70032pt x 664.73344pt>
+<content/4-images/axes.png, id=220, 789.70032pt x 664.73344pt>
 File: content/4-images/axes.png Graphic file (type png)
 <use content/4-images/axes.png>
 Package luatex.def Info: content/4-images/axes.png  used on input line 40.
@@ -1900,11 +1938,13 @@ Package luatex.def Info: content/4-images/axes.png  used on input line 40.
 
 [8]
 Chapter 2.
-<content/4-images/taps.png, id=282, 947.79094pt x 417.05812pt>
+<content/4-images/taps.png, id=288, 947.79094pt x 417.05812pt>
 File: content/4-images/taps.png Graphic file (type png)
 <use content/4-images/taps.png>
 Package luatex.def Info: content/4-images/taps.png  used on input line 15.
 (luatex.def)             Requested size: 455.24411pt x 200.31926pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 19.
 
 
 [9
@@ -1913,60 +1953,60 @@ Package luatex.def Info: content/4-images/taps.png  used on input line 15.
 
 [10]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 93.
+(Font)              <14.4> on input line 94.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 93.
+(hyperref)                removing `math shift' on input line 94.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tau' on input line 93.
+(hyperref)                removing `\tau' on input line 94.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 93.
+(hyperref)                removing `math shift' on input line 94.
 
 
 
 [11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 142.
+(hyperref)                removing `math shift' on input line 143.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 142.
+(hyperref)                removing `math shift' on input line 143.
 
 
 
 [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 159.
+(hyperref)                removing `math shift' on input line 160.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 159.
+(hyperref)                removing `subscript' on input line 160.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 159.
+(hyperref)                removing `math shift' on input line 160.
 
 
 
 [13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 179.
+(hyperref)                removing `math shift' on input line 180.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 179.
+(hyperref)                removing `subscript' on input line 180.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 179.
+(hyperref)                removing `math shift' on input line 180.
 
 
 
@@ -1974,87 +2014,89 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [15]
 Chapter 3.
-<content/4-images/image-method.png, id=376, 1158.57843pt x 563.85657pt>
+<content/4-images/image-method.png, id=389, 2647.8925pt x 1614.03pt>
 File: content/4-images/image-method.png Graphic file (type png)
 <use content/4-images/image-method.png>
 Package luatex.def Info: content/4-images/image-method.png  used on input line 
 17.
-(luatex.def)             Requested size: 318.66948pt x 155.09114pt.
-
-
-[16
-
-<./content/4-images/image-method.png>]
-
-[17]
-<content/4-images/ray-tracing-3-reflect.png, id=398, 1499.6025pt x 995.21812pt>
-
-File: content/4-images/ray-tracing-3-reflect.png Graphic file (type png)
-<use content/4-images/ray-tracing-3-reflect.png>
-Package luatex.def Info: content/4-images/ray-tracing-3-reflect.png  used on in
-put line 82.
-(luatex.def)             Requested size: 455.24411pt x 302.12122pt.
-
-
-[18<./content/4-images/ray-tracing-3-reflect.png>]
-
-LaTeX Warning: File `content/4-images/prx_vs_friis_placeholder.png' not found o
-n input line 132.
-
-
-! Package luatex.def Error: File `content/4-images/prx_vs_friis_placeholder.png
-' not found: using draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.132 ...tent/4-images/prx_vs_friis_placeholder.png}
-                                                   % Placeholder ray
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-32.
-(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+(luatex.def)             Requested size: 318.66948pt x 194.24168pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
+[16
+
+]
+
+[17<./content/4-images/image-method.png>]
+Overfull \hbox (3.15274pt too wide) in paragraph at lines 74--75
+\T1/lmr/m/n/10.95 mir-rors the cur-rent source across ev-ery wall in the en-vi-r
+on-ment us-ing \T1/lmtt/m/n/10.95 findSymmetricAcrossLine\T1/lmr/m/n/10.95 ,
+ []
+
+
+
+[18]
+
 [19]
+<content/4-images/ray-tracing-10-reflections.png, id=428, 1034.9064pt x 574.305
+6pt>
+File: content/4-images/ray-tracing-10-reflections.png Graphic file (type png)
+<use content/4-images/ray-tracing-10-reflections.png>
+Package luatex.def Info: content/4-images/ray-tracing-10-reflections.png  used 
+on input line 199.
+(luatex.def)             Requested size: 455.24411pt x 252.6339pt.
+
 
 [20]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 175.
+[21<./content/4-images/ray-tracing-10-reflections.png>]
+<content/4-images/pRX_vs_friis_placeholder.png, id=451, 1047.915pt x 645.1302pt
+>
+File: content/4-images/pRX_vs_friis_placeholder.png Graphic file (type png)
+<use content/4-images/pRX_vs_friis_placeholder.png>
+Package luatex.def Info: content/4-images/pRX_vs_friis_placeholder.png  used on
+ input line 250.
+(luatex.def)             Requested size: 409.71692pt x 252.22977pt.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sigma' on input line 175.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 175.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 175.
-
-
-
-[21]
-
-[22]) (./content/1-project/4-los-wide.tex) (./content/1-project/5-full-wide.tex
-) (./content/1-project/6-further.tex) (./content/1-project/7-conclu.tex)
+[22<./content/4-images/pRX_vs_friis_placeholder.png>]
 
 [23]
+Underfull \hbox (badness 10000) in paragraph at lines 291--293
 
-[24
+ []
 
-] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 294.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 294.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 294.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 294.
+
+
+
+[24]) (./content/1-project/4-los-wide.tex) (./content/1-project/5-full-wide.tex
+) (./content/1-project/6-further.tex) (./content/1-project/7-conclu.tex)
+
+Package biblatex Warning: Type 'article' not found on input line 35.
+
+
+LaTeX Warning: Empty bibliography on input line 35.
+
+
+
+[25] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
@@ -2062,9 +2104,6 @@ L3 programming layer <2024-11-02>
 
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `"ELEC-H415 - Report - Cédric Sipakam".out' 
 has not changed.
@@ -2081,27 +2120,26 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 53623 strings out of 475664
+ 54283 strings out of 475664
  125165,2373549 words of node,token memory allocated
- 2398 words of node memory still in use:
-   32 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 406 attribute, 74 glue_s
-pec, 241 attribute_list, 3 write, 24 pdf_literal, 3 pdf_action, 24 pdf_colorstac
+ 2449 words of node memory still in use:
+   32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 420 attribute, 72 glue_s
+pec, 248 attribute_list, 3 write, 24 pdf_literal, 5 pdf_action, 24 pdf_colorstac
 k nodes
-   avail lists: 1:3,2:809,3:252,4:168,5:696,6:74,7:5809,8:95,9:1591,10:11,11:464
-
- 74915 multiletter control sequences out of 65536+600000
- 82 fonts using 5138919 bytes
- 99i,13n,108p,1230b,1878s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/U
-sers/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users
-/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/sipa
-k/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/sipak
+   avail lists: 1:4,2:4087,3:1365,4:168,5:694,6:72,7:5494,8:95,9:1591,10:10,11:3
+82
+ 75543 multiletter control sequences out of 65536+600000
+ 89 fonts using 5564023 bytes
+ 99i,13n,108p,1214b,1924s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/
+Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users
+/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/
+sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/sipak
 /AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/sipak/
 AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}<<C:\Users\sipak\
 AppData\Local\MiKTeX\fonts/pk/ljfour/public/esint/dpi657\esint10.pk>><C:/Users/s
 ipak/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/si
 pak/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/sip
-ak/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/sip
 ak/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/sipa
 k/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/sipak
 /AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/sipak/
@@ -2112,16 +2150,17 @@ a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/sipak/AppData/
 Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/sipak/AppData/Lo
 cal/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/sipak/AppData/Local
 /Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/sipak/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/sipak/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/sipak/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (26 pages, 1087953 by
+ograms/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/sipak/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/sipak/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/sipak/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (27 pages, 1807369 by
 tes).
 
-PDF statistics: 543 PDF objects out of 1000 (max. 8388607)
- 161 named destinations out of 1000 (max. 131072)
- 424 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 564 PDF objects out of 1000 (max. 8388607)
+ 169 named destinations out of 1000 (max. 131072)
+ 434 words of extra memory for PDF output out of 10000 (max. 100000000)
 

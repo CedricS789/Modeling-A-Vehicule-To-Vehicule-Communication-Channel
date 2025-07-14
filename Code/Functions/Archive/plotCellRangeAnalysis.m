@@ -1,10 +1,5 @@
 function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_std_dev, params)
-% plotCellRangeAnalysis - Calculates and plots the cell range for different reliabilities.
-%
-% This function visualizes how the communication range is affected by the
-% required service reliability, considering the fade margin needed to
-% overcome shadowing.
-%
+% Calculates and plots the cell range for different reliabilities.
 % INPUTS:
 %   distances          - Vector of distances for the x-axis.
 %   path_loss_exponent - The path loss exponent, n.
@@ -51,7 +46,7 @@ function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_
     
     grid on;
     title('Communication Range vs. Service Reliability');
-    xlabel('Separation Distance, d (m)');
+    xlabel('Distance, d (m)');
     ylabel('Path Loss (dB)');
     legend('show', 'Location', 'southeast');
     xlim([1, 1000]);

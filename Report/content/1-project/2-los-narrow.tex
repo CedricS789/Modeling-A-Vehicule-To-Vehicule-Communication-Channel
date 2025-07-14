@@ -1,7 +1,7 @@
 \chapter{Line-of-Sight Channel - Narrowband Analysis}
 \label{chap:los}
 
-The analysis begins with the simplest communication scenario: a direct Line-of-Sight (LOS) ray between the transmitter TX and the receiver RX. A narrowband analysis is conducted, which assumes that the signal's bandwidth is much smaller than the channel's coherence bandwidth. This simplification allows the channel to be characterized by one complex coefficient.
+The analysis begins with the simplest communication scenario: a direct Line-of-Sight ray between the transmitter TX and the receiver RX. A narrowband analysis is conducted, which assumes that the signal's bandwidth is much smaller than the channel's coherence bandwidth. This simplification allows the channel to be characterized by one complex coefficient.
 
 The physical channel can be described by its time-variant impulse response, which for a set of $N$ multiray components is:
 \begin{equation}
@@ -13,15 +13,16 @@ where $\alpha_n(t)$ and $\tau_n$ are the complex amplitude and propagation delay
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{content/4-images/taps}
-	\caption{Physical impulse response and TDL model under the Uncorrelated Scattering assumption}
+	\caption[Physical impulse response and TDL model under the Uncorrelated Scattering assumption]{Physical impulse response and TDL model under the Uncorrelated Scattering assumption\footnotemark}
 	\label{fig:taps}
 \end{figure}
+\footnotetext{The US assumption posits that the complex amplitudes of multipath components arriving at different delays are statistically uncorrelated, meaning they are independent from one another}
 
 A practical communication system has a finite bandwidth $B$, which limits its ability to resolve rays arriving at different times. The system's time resolution is $\Delta\tau = 1/B$. 
 
-The received signal is thus defined by:
+The received signal is defined by:
 \begin{equation}
-	y(t) = \sum_l x(t-l \Delta \tau) \int_0^{\infty} h(\tau, t) \operatorname{sinc}(B(\tau-l \Delta \tau)) d \tau
+	y(t) = \sum_l x(t-l \Delta \tau) \underbrace{\int_0^{\infty} h(\tau, t) \operatorname{sinc}(B(\tau-l \Delta \tau)) d \tau}_{h_l(t)}
 \end{equation}
 
 From there, can be defined the complex gain of the $l$-th tap:
@@ -35,7 +36,7 @@ From there, can be defined the complex gain of the $l$-th tap:
 	\label{eq:h-l}
 	\implies \boxed{h_l(t) \approx \sum_{\tau_n \in \operatorname{tap} l} \alpha_n(t)} 
 \end{equation}
-Equation \ref{eq:h-l} can be written because $\operatorname{sinc(.)}$ maximizes the amplitude of the components of the  $l$-th tap, and the components of other taps are drastically attenuated. The components of the $l$-th tap appear not to be delayed between one another.
+Equation \eqref{eq:h-l} can be written because $\operatorname{sinc(.)}$ maximizes the amplitude of the components of the  $l$-th tap, and the components of other taps are drastically attenuated. The components of the $l$-th tap appear not to be delayed between one another.
 
 The physical limitation of the finite bandwidth of the system leads to the Tapped Delay Line model. The impulse response of the TDL model is a discrete-time representation of the physical channel as shown in Figure \ref{fig:taps}:
 \begin{equation}
@@ -49,7 +50,7 @@ The condition for a narrowband channel is that the signal bandwidth $B$ is much 
 	B \ll \Delta f_c \approx \frac{1}{\sigma_\tau} \implies \Delta\tau \gg \sigma_\tau
 \end{equation}
 
-This inequality means the system's time resolution is much larger than the delay spread. From the receiver's perspective, all MPCs arrive at effectively the same time. Consequently, all MPCs fall into the first tap ($l=0$) of the TDL model. The summation in Equation \ref{eq:tdl_model} therefore reduces to one term for $l=0$:
+This inequality means the system's time resolution is much larger than the delay spread. From the receiver's perspective, all MPCs arrive at effectively the same time. Consequently, all MPCs fall into the first tap ($l=0$) of the TDL model. The summation in Equation \eqref{eq:tdl_model} therefore reduces to one term for $l=0$:
 \begin{equation}
 	\label{eq:tdl-narrow}
 	h_{TDL}(\tau, t) = h_0(t) \delta(\tau)
@@ -80,7 +81,7 @@ The magnitude squared of this vector is therefore:
 	\left|\vec{h}_{e\perp}\left(\frac{\pi}{2},\phi\right)\right|^2 = \left|-\frac{\lambda}{\pi}\vec{1}_{\theta}\right|^2 = \frac{\lambda^2}{\pi^2}
 \end{equation}
 
-Substituting this result into the general gain formula (Equation \ref{eq:gain_general}) provides the expression for the gain of a lossless half-wave dipole in the horizontal plane:
+Substituting this result into the general gain Equation \eqref{eq:gain_general} provides the expression for the gain of a lossless half-wave dipole in the horizontal plane:
 \begin{equation}
 	G = G\left(\frac{\pi}{2}, \phi\right) = \frac{\pi Z_0}{R_a} \frac{1}{\lambda^2} \left(\frac{\lambda^2}{\pi^2}\right) = \frac{\pi Z_0 \lambda^2}{\pi^2 R_a \lambda^2}
 \end{equation}
@@ -95,7 +96,7 @@ For a single, time-invariant Line-of-Sight ray, the channel impulse response is 
 \begin{equation}
 	h(\tau) = \alpha_1 \delta(\tau - \tau_1)
 \end{equation}
-The central task is to determine the complex amplitude $\alpha_1$. This can be achieved by relating the circuit-level voltages at the transmitter and receiver. The relationship between the transmitted power $P_{TX}$ and the received power $P_{RX}$ is defined by the squared magnitude of the complex amplitude:
+The complex amplitude $\alpha_1$ has to be determined. This can be achieved by relating the circuit-level voltages at the transmitter and receiver. The relationship between the transmitted power $P_{TX}$ and the received power $P_{RX}$ is defined by the squared magnitude of the complex amplitude:
 \begin{equation}
 	P_{RX} = |\alpha_1|^2 P_{TX}
 \end{equation}
@@ -119,7 +120,7 @@ This implies a relationship between the magnitudes: $|\alpha_1| = 2 \frac{|\unde
 	\alpha_1 = 2 \frac{\underline{V}_{RX}}{\underline{V}_{TX}}
 	\label{eq:alpha_from_voltages}
 \end{equation}
-The relationship between the received and transmitted voltages for a free-space LOS ray was derived previously (Equation \ref{eq:VRX_vs_VTX}) as:
+The relationship between the received and transmitted voltages for a free-space LOS ray was derived previously in Equation \eqref{eq:VRX_vs_VTX} as:
 \begin{equation}
 	\underline{V}_{RX} = j \frac{\lambda Z_0}{8\pi^2 R_a c\tau_1} \underline{V}_{TX} e^{-j2\pi f_c \tau_1}
 \end{equation}
@@ -148,7 +149,7 @@ Applying the sifting property of the Dirac delta function, which states that $\i
 \begin{equation}
 	H(f) = \alpha_1 e^{-j2\pi f \tau_1}
 \end{equation}
-Substituting the derived expression for $\alpha_1$ from Equation \ref{eq:alpha1_derived}:
+Substituting the derived expression for $\alpha_1$ from Equation \eqref{eq:alpha1_derived}:
 \begin{align}
 	H(f) &= \left( j \frac{\lambda Z_0}{4\pi^2 R_a d_1} e^{-j2\pi f_c \tau_1} \right) e^{-j2\pi f \tau_1} \\
 	\Rightarrow \Aboxed{H(f) &= j \frac{\lambda Z_0}{4\pi^2 R_a d_1} e^{-j2\pi (f_c + f) \tau_1}}
@@ -157,7 +158,7 @@ Substituting the derived expression for $\alpha_1$ from Equation \ref{eq:alpha1_
 This function shows that the channel introduces a phase shift that is linear with the baseband frequency $f$, which corresponds to the time delay $\tau_1$. The magnitude $|H(f)|$ is constant across all frequencies.
 
 \section{Narrowband Transfer Function $h_{NB}$}
-As said mentioned in Equation \ref{eq:tdl-narrow}, the narrowband is defined such that all MPCs fall into a single tap:
+As said in Equation \eqref{eq:tdl-narrow}, the narrowband is defined such that all MPCs fall into a single tap:
 \begin{align}
 	h_{NB} &= \mathcal{FT}\{ h_{TDL}(t, \tau)\} = \mathcal{FT}\{ h_{0}(t)\delta(\tau)\} \\
 	&= \int_{-\infty}^{\infty} h_0(t) e^{-j2\pi f \tau} \delta(\tau) d\tau \\
@@ -165,11 +166,11 @@ As said mentioned in Equation \ref{eq:tdl-narrow}, the narrowband is defined suc
 	\implies \Aboxed{h_{NB} &= h_0(t)}
 \end{align}
 
-As found in Equation \ref{eq:narrow}, for a single LOS ray, the narrowband channel transfer function is equal to the complex amplitude $\alpha_1$:
+As found in Equation \eqref{eq:narrow}, for a single LOS ray, the narrowband channel transfer function is equal to the complex amplitude $\alpha_1$:
 \begin{equation}
 	h_{NB} = \sum_{n=1}^{N=1} \alpha_n(t) = \alpha_1
 \end{equation}
-Using the result from Equation \ref{eq:alpha1_derived}, the narrowband transfer function is:
+Using the result from Equation \eqref{eq:alpha1_derived}, the narrowband transfer function is:
 \begin{equation}
 	\boxed{h_{NB} = j \frac{\lambda Z_0}{4\pi^2 R_a d_1} e^{-j2\pi f_c \tau_1}}
 	\label{eq:los_narrowband_tf_detailed}
@@ -185,13 +186,13 @@ Substituting this into the power equation gives the received power as a function
 \begin{equation}
 	\boxed{P_{RX} = \left( \frac{\lambda Z_0}{4\pi^2 R_a d_1} \right)^2 P_{TX}}
 \end{equation}
-To demonstrate that this result is equivalent to the well-known Friis formula, the terms are rearranged. The expression is factored to isolate terms corresponding to the antenna gains:
+To demonstrate that this result is equivalent to the Friis formula, the terms are rearranged. The expression is factored to isolate terms corresponding to the antenna gains:
 \begin{align}
 	P_{RX} &= \frac{\lambda^2 Z_0^2}{16\pi^4 R_a^2 d_1^2} P_{TX} \\
 	&= \left( \frac{Z_0^2}{\pi^2 R_a^2} \right) \left( \frac{\lambda^2}{16\pi^2 d_1^2} \right) P_{TX} \\
 	&= \left( \frac{Z_0}{\pi R_a} \right) \left( \frac{Z_0}{\pi R_a} \right) \left( \frac{\lambda}{4\pi d_1} \right)^2 P_{TX}
 \end{align}
-Using the expression for the gain of a lossless half-wave dipole in the horizontal plane as derived in Equation \ref{eq:gain_derived}, $G = Z_0/(\pi R_a)$, and assuming identical transmit and receive antennas ($G_{TX} = G_{RX} = G$):
+Using the expression for the gain of a lossless half-wave dipole in the horizontal plane as derived in Equation \eqref{eq:gain_derived}, $G = Z_0/(\pi R_a)$, and assuming identical transmit and receive antennas ($G_{TX} = G_{RX} = G$):
 \begin{equation}
 	P_{RX} = G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d_1} \right)^2 P_{TX} \label{eq:los_power_final_detailed}
 \end{equation}
@@ -200,6 +201,6 @@ This result is identical to the Friis transmission formula. This validates the e
 \section{Interpretation of Results}
 The derivations confirm the principles of a simple LOS communication link.
 \begin{itemize}
-	\item \textbf{Frequency-Flat Channel:} The single propagation ray results in a transfer function $|H(f)|$ that is constant with frequency. This means the channel does not distort the signal's spectrum, a condition known as flat fading. This is a direct consequence of having no time dispersion (zero delay spread).
-	\item \textbf{Validation of Friis' Formula:} The derivation, starting from the circuit-level voltage relationship to find the complex amplitude $\alpha_1$, and then using it to find the received power, shows a result identical to the Friis' formula. This demonstrates a consistency between the low-level physical model (fields and circuits) and the high-level system model (power and gains).
+	\item \textbf{Frequency-Flat Channel:} The single propagation ray results in a transfer function $|H(f)|$ that is constant with frequency. This means the channel does not distort the signal's spectrum, illustrating flat fading. This is a direct consequence of having no time dispersion, meaning zero delay spread).
+	\item \textbf{Validation of Friis' Formula:} The derivation, starting from the circuit-level voltage relationship to find the complex amplitude $\alpha_1$, and then using it to find the received power, shows a result identical to the Friis' formula.
 \end{itemize}

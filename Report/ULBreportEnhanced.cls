@@ -59,7 +59,7 @@
 \RequirePackage[backend=biber,citestyle=alphabetic,bibstyle=authoryear]{biblatex}
 
 % --- Special Content & Utilities ---
-\RequirePackage{tabularx}
+\RequirePackage{tabulaRX}
 \RequirePackage{listings}
 \RequirePackage{etoolbox}
 \RequirePackage[pages=some]{background}
