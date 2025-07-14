@@ -11,7 +11,7 @@ function plotHeatmap(ax, RX_x_coordinates, RX_y_coordinates, PRX_dBm_domain, tx_
 %   sens_dBm        - Receiver sensitivity in dBm. Points below this will not be shown.
 
     if isempty(ax)
-        figure('Name', 'Received Power Heatmap', 'NumberTitle', 'off', 'Position', [300 300 1000 400]);
+        figure('Name', 'Received Power Heatmap', 'NumberTitle', 'off');
         ax = gca;
     end
     
@@ -28,12 +28,12 @@ function plotHeatmap(ax, RX_x_coordinates, RX_y_coordinates, PRX_dBm_domain, tx_
     plot(ax, tx_pos(1), tx_pos(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', 'r', 'MarkerEdgeColor', 'k', 'DisplayName', '$T_x$');
     
     title(ax, 'Received Power Heatmap', 'FontSize', 16, 'Interpreter', 'latex');
-    xlabel(ax, '$x$ axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
-    ylabel(ax, '$y$ axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
+    xlabel(ax, '$x$-axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
+    ylabel(ax, '$y$-axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
 
     c = colorbar(ax);
-    ylabel(c, 'Received Power (dBm)', 'Interpreter', 'latex');
-    caxis(ax, [-90 -40]);
+    ylabel(c, '$P_{RX}$ (dBm)', 'FontSize', 14, 'Interpreter', 'latex');
+    clim(ax, [-90 -40]);
     
     axis(ax, 'equal', 'tight');
     xlim(ax, [min(RX_x_coordinates), max(RX_x_coordinates)]);   

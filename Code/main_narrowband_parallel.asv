@@ -25,7 +25,7 @@ params.lambda = params.c / params.fc;
 
 M = 1;                      % Maximum number of reflections to consider
 w = 20;
-L = 10000e3;                % Length of wall in meters
+L = 10000e3;                   % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
 walls(1).coordinates = [[0, w/2]; [L, w/2]];    walls(1).eps_r = eps_r;
 walls(2).coordinates = [[0, -w/2]; [L, -w/2]];  walls(2).eps_r = eps_r;
@@ -33,12 +33,12 @@ walls(2).coordinates = [[0, -w/2]; [L, -w/2]];  walls(2).eps_r = eps_r;
 
 
 %% NARROWBAND LOS ANALYSIS
-d = 120;
-TX_pos = [0, 0];
+d = 150;
+tx_pos = [0, 0];
 RX_pos = [d, 0];
 
 % Run ray tracing for LOS path : M = 0
-[~, LOS_rays_data] = runRayTracing(walls, 0, TX_pos, RX_pos, params);
+[~, LOS_rays_data] = runRayTracing(walls, 0, tx_pos, RX_pos, params);
 fprintf('\nPerforming LOS analysis for d = %.1fm \n', d);
 
 if ~isempty(LOS_rays_data)
@@ -65,11 +65,11 @@ fprintf('\nPerforming full multipath channel analysis\n');
 
 % Analyze MPCs for one distance
 fprintf('   - Analyzing MPCs for d = %.1fm\n', d);
-[all_alphas, all_rays] = runRayTracing(walls, M, TX_pos, RX_pos, params);
+[all_alphas, all_rays] = runRayTracing(walls, M, tx_pos, RX_pos, params);
 
 % Plot the ray paths for the distance
-fprintf('   - Plotting ray-tracing visualization\n');
-plotRays(walls, TX_pos, RX_pos, all_rays, M);
+fprintf('   - Plotting ray-tracing visualization\n\n');
+plotRays(walls, tx_pos, RX_pos, all_rays, M); xlim([tx_pos(1)-10, RX_pos(1)+10]); ylim([-w/2-2, w/2+2]);
 
 % Display properties of each found ray
 for i = 1:length(all_rays)
@@ -87,7 +87,7 @@ fprintf('   - Total Received Power at %.1fm: P_RX = %.2fdBm\n\n', d, P_RX_total_
 
 % Simulate over a range of distances
 fprintf('   - Simulating over distances\n');
-distances_domain = logspace(0, log10(L), 50000); % points from 1m to 10^
+distances_domain = logspace(0, log10(L), 5000); % points from 1m to 10^
 num_distances = length(distances_domain);
 P_RX_LOS_dBm_domain = zeros(1, num_distances);
 P_RX_total_dBm_domain = zeros(1, num_distances);
@@ -159,16 +159,12 @@ plotReceivedPower(distances_domain, P_RX_total_dBm_domain, P_RX_LOS_dBm_domain);
 
 %% NARROWBAND HEATMAP
 fprintf('\nGenerating 2D coverage heatmap\n');
-TX_pos     = [10, 0];
-
+tx_pos     = [10, 0];
 x_start    = -20;
-x_end      = 400;
-
-y_start    = -w/2-30;
-y_end      = w/2+30;
-
-resolution = 0.05;
-
+x_end      = 1000;
+y_start    = -w/2-20;
+y_end      = w/2+20;
+resolution = 10;
 fprintf('   - Generating %.1fm x %.1fm grid with %.1fm resolution\n', ...
         (x_end - x_start), (y_end - y_start), resolution);
         
@@ -197,14 +193,14 @@ parfor i = 1:num_x_points
     temp_P_RX_local_dBm_col = zeros(num_y_points, 1);
     for j = 1:num_y_points
         RX_pos = [RX_x_coordinates(i), RX_y_coordinates(j)];
-        dist_from_tx = norm(RX_pos - TX_pos);
+        dist_from_tx = norm(RX_pos - tx_pos);
         
         % Avoid calculating at the transmitter's exact location
         if dist_from_tx < resolution
             temp_P_RX_dBm_col(j) = NaN;
             temp_P_RX_local_dBm_col(j) = NaN;
         else
-            [alphas, ~] = runRayTracing(walls, M, TX_pos, RX_pos, params);
+            [alphas, ~] = runRayTracing(walls, M, tx_pos, RX_pos, params);
             if ~isempty(alphas)
 
                 % Instantaneous Power P_RX
@@ -241,19 +237,22 @@ end
 
 % Plotting Results
 fprintf('   - Plotting heatmaps\n');
-% figure('Name', 'Power Heatmap Comparison', 'NumberTitle', 'off');
+figure('Name', 'Power Heatmap Comparison', 'NumberTitle', 'off', 'Position', [50, 200, 1800, 400]);
 
 % Plot Instantaneous Power
-% subplot(2, 1, 1);
-figure('Name', 'Instantaneous Power Heatmap', 'NumberTitle', 'off');
-plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, P_RX_dBm, TX_pos, walls, params.P_RX_sens_dBm);
-title('Instantaneous Power $P_{RX}$', 'Interpreter', 'latex');
+% ax1 = subplot(2, 1, 1);
+ax1 = gca;
+figure('Name', 'Local Average Power (<P_RX>)', 'NumberTitle', 'off', 'Position', [960, 400, 900, 450]);
+plotHeatmap(ax1, RX_x_coordinates, RX_y_coordinates, P_RX_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+title('Instantaneous Power (P_{RX})', 'Interpreter', 'latex');
 
 % Plot Local Average Power
-% subplot(2, 1, 2);
-figure('Name', 'Local Average Power Heatmap', 'NumberTitle', 'off');
-plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, P_RX_local_dBm, TX_pos, walls, params.P_RX_sens_dBm);
-title('Local Average Power $<P_{RX}>$', 'Interpreter', 'latex');
+% ax2 = subplot(2, 1, 2);
+ax1 = gca;
+
+figure('Name', 'Local Average Power (<P_RX>)', 'NumberTitle', 'off', 'Position', [960, 400, 900, 450]);
+plotHeatmap(ax2, RX_x_coordinates, RX_y_coordinates, P_RX_local_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+title('Local Average Power (<P_{RX}>)', 'Interpreter', 'latex');
 fprintf('   analysis complete.\n\n');
 
 

@@ -10,21 +10,20 @@ function plotReceivedPower(distances, total_RX_power_dBm, los_power_dBm)
 %   total_RX_power_dBm - Vector of total received power in dBm (multipath).
 %   los_power_dBm      - Vector of LOS-only received power in dBm (Friis).
 
-    figure('Name', 'Received Power vs. Distance', 'NumberTitle', 'off', 'Position', [150 150 800 600]);
+    figure('Name', 'Received Power vs. Distance', 'NumberTitle', 'off');
     
     % Use a semilogarithmic scale for the x-axis
-    semilogx(distances, total_RX_power_dBm, 'b-', 'LineWidth', 2, 'DisplayName', 'Total Received Power (Multipath)');
+    semilogx(distances, total_RX_power_dBm, 'b-', 'LineWidth', 2, 'DisplayName', 'Total Received Power');
     hold on;
     
     % Plot the theoretical LOS power as a dashed red line
     semilogx(distances, los_power_dBm, 'r--', 'LineWidth', 2, 'DisplayName', 'Friis Formula');
     
     grid on;
-    title('Received Power vs. Distance ($K=5$ Reflections)', 'FontSize', 16, 'Interpreter', 'latex');
-    xlabel('Distance, $d$ (m)', 'FontSize', 12, 'Interpreter', 'latex');
-    ylabel('Received Power, $P_{RX}$ (dBm)', 'FontSize', 12, 'Interpreter', 'latex');
-    legend('show', 'Location', 'northeast', 'FontSize', 12, 'Interpreter', 'latex');
-    xlim([min(distances), max(distances)]);
-    ylim([-110, -20]);
+    title('$P_{RX} = f(d)$', 'FontSize', 16, 'Interpreter', 'latex');
+    xlabel('$d$ (m)', 'FontSize', 14, 'Interpreter', 'latex');
+    ylabel('$P_{RX}$ (dBm)', 'FontSize', 14, 'Interpreter', 'latex');
+    legend('show', 'Location', 'northeast', 'FontSize', 14, 'Interpreter', 'latex');
+    axis tight;
     hold off;
 end
