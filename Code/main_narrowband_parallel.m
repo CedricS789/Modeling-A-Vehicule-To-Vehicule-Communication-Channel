@@ -19,11 +19,15 @@ params.c = 3e8;
 params.Z_0 = 377;
 params.R_a = 73.1;
 params.PTX = 0.1; 
-params.PRX_sens_dBm = -70;
+params.PRX_sens_dBm = -1000;
 params.PTX_dBm = 10 * log10(params.PTX * 1000);
 params.lambda = params.c / params.fc;
 
-M = 10;                     % Maximum number of reflections to consider
+PTX = params.PTX;
+lambda = params.lambda;
+sens_dBm = params.PRX_sens_dBm;
+
+M = 1;                     % Maximum number of reflections to consider
 w = 20;
 L = 10000e3;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
@@ -48,13 +52,13 @@ if ~isempty(LOS_rays_data)
     h_nb_LOS = LOS_ray.alpha_n;
     
     % Calculate received power using the channel transfer function
-    PRX_LOS = params.PTX * abs(h_nb_LOS)^2;
+    PRX_LOS = PTX * abs(h_nb_LOS)^2;
     PRX_LOS_dBm = 10 * log10(PRX_LOS * 1000);
     
     fprintf('   - For d = %.1fm:\n', d);
-    fprintf('      tau_LOS = %.3es\n', LOS_delay);
-    fprintf('      Narrowband Gain |h_NB| = %.3e, Angle = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
-    fprintf('      Received Power (LOS): %.2fdBm (should match Friis formula)\n', PRX_LOS_dBm);
+    fprintf('      * tau_LOS = %.3es\n', LOS_delay);
+    fprintf('      * Narrowband Gain |h_NB| = %.3e, Angle = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
+    fprintf('      * Received Power (LOS): %.2fdBm (should match Friis formula)\n', PRX_LOS_dBm);
 else
     fprintf('   - No LOS path found for d = %.1fm.\n', d);
 end
@@ -75,16 +79,16 @@ plotRays(walls, TX_pos, RX_pos, all_rays, M);
 % Display properties of each found ray
 for i = 1:length(all_rays)
     ray = all_rays{i};
-    fprintf('      Ray %2d: Type = %-7s          d_%d = %7.2fm          |alpha_%d| = %.4e         arg(alpha_%2d) = %7.2f° \n', ... 
+    fprintf('      * Ray %2d: Type = %-7s          d_%d = %7.2fm          |alpha_%d| = %.4e         arg(alpha_%2d) = %7.2f° \n', ... 
         i, ray.type, i, ray.distance_total, i, abs(ray.alpha_n), i, rad2deg(angle(ray.alpha_n)));
 end
 
 % Calculate total received power from all paths
 h_nb_total = sum(all_alphas);
-PRX_total = params.PTX * abs(h_nb_total)^2;
+PRX_total = PTX * abs(h_nb_total)^2;
 PRX_total_dBm = 10 * log10(PRX_total * 1000);
 fprintf('\n   - Total Narrowband Gain at %.1fm: |h_NB| = %.3e\n', d, abs(h_nb_total));
-fprintf('   - Total Received Power at %.1fm: PRX = %.2fdBm\n\n', d, PRX_total_dBm);
+fprintf('   - Total Received Power at %.1fm: PRX = %.2fdBm\n', d, PRX_total_dBm);
 
 % Simulate over a range of distances
 fprintf('   - Simulating over distances\n');
@@ -114,7 +118,7 @@ parfor i = 1:length(distances_domain)
 
     % Calculate total power
     h_nb = sum(alphas);
-    PRX_total = params.PTX * abs(h_nb)^2;
+    PRX_total = PTX * abs(h_nb)^2;
     PRX_total_dBm_domain(i) = 10 * log10(PRX_total * 1000);
     
     % Separate LOS and NLOS power for K-factor calculation
@@ -124,10 +128,10 @@ parfor i = 1:length(distances_domain)
         if strcmp(rays{j}.type, 'LOS') % If type is LOS
             alpha_LOS = rays{j}.alpha_n;
         else
-            P_NLOS = P_NLOS + params.PTX * abs(rays{j}.alpha_n)^2;
+            P_NLOS = P_NLOS + PTX * abs(rays{j}.alpha_n)^2;
         end
     end
-    P_LOS = params.PTX * abs(alpha_LOS)^2;
+    P_LOS = PTX * abs(alpha_LOS)^2;
     PRX_LOS_dBm_domain(i) = 10 * log10(P_LOS * 1000);
     if P_NLOS > 0
         K_factor = P_LOS / P_NLOS;
@@ -137,14 +141,14 @@ parfor i = 1:length(distances_domain)
     end
     send(queue_1, 1);
 end
-fprintf('      PRX vs Distance simulation took %.2f seconds.\n', toc);
+fprintf('      * PRX vs Distance simulation took %.2f seconds.\n', toc);
 
 % Cleanup waitbar
 if exist('waitbar_1', 'var') && ishandle(waitbar_1)
     close(waitbar_1);
 end
 
-fprintf('      Data computation complete.\n\n');
+fprintf('      * Data computation complete.\n\n');
 
 % Plotting Results
 fprintf('   - Plotting results\n');
@@ -201,7 +205,7 @@ parfor i = 1:length(PTX_dBm_domain)
     PRX_LOS_dBm_domain(i) = 10 * log10(PRX_los * 1000);
     send(queue_3, 1);
 end
-fprintf('      PRX vs PTX simulation took %.2f seconds.\n', toc);
+fprintf('      * PRX vs PTX simulation took %.2f seconds.\n', toc);
 
 % Cleanup waitbar
 if exist('waitbar_3', 'var') && ishandle(waitbar_3)
@@ -215,76 +219,135 @@ plotPRXvsPTX(PTX_dBm_domain, PRX_total_dBm_domain, PRX_LOS_dBm_domain);
 
 
 %% NARROWBAND HEATMAP
-fprintf('\nGenerating 2D coverage heatmap\n');
+fprintf('\nGenerating 2D coverage heatmap and local averages\n');
 TX_pos     = [10, 0];
-
 x_start    = -20;
 x_end      = 500;
-
 y_start    = -w/2-30;
 y_end      = w/2+30;
-
-resolution = 0.5;
-
-fprintf('   - Generating %.1fm x %.1fm grid with %.1fm resolution\n', ...
-        (x_end - x_start), (y_end - y_start), resolution);
+d_samp     = 0.5;
+fprintf('   - Generating %.1fm x %.1fm grid with %.1fm sampling interval\n', ...
+        (x_end - x_start), (y_end - y_start), d_samp);
         
-num_x_points = round((x_end - x_start) / resolution) + 1;
-num_y_points = round((y_end - y_start) / resolution) + 1;
+num_x_points = round((x_end - x_start) / d_samp) + 1;
+num_y_points = round((y_end - y_start) / d_samp) + 1;
 RX_x_coordinates = linspace(x_start, x_end, num_x_points);
 RX_y_coordinates = linspace(y_start, y_end, num_y_points);
 
 % Run Simulation for each point on the grid
 PRX_dBm = zeros(num_y_points, num_x_points);
-fprintf('      Generating Heatmap Data \n');
+PRX_avg_dBm = zeros(num_y_points, num_x_points);
+
+fprintf('      Generating Heatmap and Averaged Power Data \n');
 
 % Progress bar setup
 queue_2 = parallel.pool.DataQueue;
 num_iterations = num_x_points;
-waitbar_2 = waitbar(0, 'Initializing');
+waitbar_2 = waitbar(0, '2D Heatmap');
 set(waitbar_2, 'UserData', 0);
-afterEach(queue_2, @(~) updateWaitbar(waitbar_2, num_iterations, 'Heatmap'));
-
+afterEach(queue_2, @(~) updateWaitbar(waitbar_2, num_iterations, '2D Heatmap'));
 tic;
-parfor i = 1:num_x_points
 
+parfor i = 1:num_x_points
     % Create temporary column variables to avoid slicing errors in parfor
     temp_PRX_dBm_col = zeros(num_y_points, 1);
-    temp_PRX_local_dBm_col = zeros(num_y_points, 1);
+    temp_PRX_avg_dBm_col = zeros(num_y_points, 1);
+
     for j = 1:num_y_points
         RX_pos = [RX_x_coordinates(i), RX_y_coordinates(j)];
-        dist_from_tx = norm(RX_pos - TX_pos);
+        dist = norm(RX_pos - TX_pos);
         
         % Avoid calculating at the transmitter's exact location
-        if dist_from_tx < resolution
+        if dist < d_samp
             temp_PRX_dBm_col(j) = NaN;
-            temp_PRX_local_dBm_col(j) = NaN;
-        else
-            [alphas, ~] = runRayTracing(walls, M, TX_pos, RX_pos, params);
-            if ~isempty(alphas)
+            temp_PRX_avg_dBm_col(j) = NaN;
+            continue;
+        end
 
-                % Instantaneous Power PRX
-                h_nb = sum(alphas);
-                PRX = params.PTX * abs(h_nb)^2;
-                temp_PRX_dBm_col(j) = 10 * log10(PRX * 1000);
-                
-            else
-                temp_PRX_dBm_col(j) = NaN;
-                temp_PRX_local_dBm_col(j) = NaN;
+        
+        d_local = 5.0; % Cannot be smaller than d_samp
+        is_window_valid = true; % Boundary Check
+        
+        % Define the four corners of the averaging window
+        corners = [RX_pos(1) - (d_local/2), RX_pos(2) - (d_local/2);
+                   RX_pos(1) + (d_local/2), RX_pos(2) - (d_local/2);
+                   RX_pos(1) + (d_local/2), RX_pos(2) + (d_local/2);
+                   RX_pos(1) - (d_local/2), RX_pos(2) + (d_local/2)];
+        
+        % Define the four boundary lines of the averaging window
+        window_lines = { [corners(1,:); corners(2,:)], ...
+                         [corners(2,:); corners(3,:)], ...
+                         [corners(3,:); corners(4,:)], ...
+                         [corners(4,:); corners(1,:)] };
+
+        % Check if any boundary line of the window intersects with any wall
+        for c = 1:length(window_lines)
+            line_segment = window_lines{c};
+            for index = 1:length(walls)
+                if ~isempty(findSegmentIntersection(line_segment(1,:), line_segment(2,:), walls(index).coordinates(1,:), walls(index).coordinates(2,:)))
+                    is_window_valid = false;
+                    break; % No need to check other walls
+                end
+            end
+            if ~is_window_valid
+                break; % No need to check other boundary lines
             end
         end
-    end
 
-    % Assign the entire column at once
+        % Only calculate an average if the window is valid
+        if is_window_valid
+            num_samples_local = round(d_local / d_samp);
+            local_x = linspace(RX_pos(1) - (d_local/2), RX_pos(1) + (d_local/2), num_samples_local);
+            local_y = linspace(RX_pos(2) - (d_local/2), RX_pos(2) + (d_local/2), num_samples_local);
+            PRX_matrix = zeros(num_samples_local, num_samples_local);
+
+            for k = 1:num_samples_local
+                for l = 1:num_samples_local
+                    RX_pos_local = [local_x(k), local_y(l)];
+                    [alphas_local, ~] = runRayTracing(walls, M, TX_pos, RX_pos_local, params);
+                    if ~isempty(alphas_local)
+                        h_nb_local = sum(alphas_local);
+                        PRX_matrix(l, k) = PTX * abs(h_nb_local)^2;
+                    else
+                        PRX_matrix(l, k) = 0;
+                    end
+                end
+            end
+            PRX_avg = mean(PRX_matrix(:));
+            if PRX_avg > 0
+                temp_PRX_avg_dBm_col(j) = 10 * log10(PRX_avg * 1000);
+            else
+                temp_PRX_avg_dBm_col(j) = -Inf;
+            end
+        else
+            temp_PRX_avg_dBm_col(j) = NaN;
+        end
+        
+        % Store the instantaneous power at the center point for the heatmap
+        [alphas_center, ~] = runRayTracing(walls, M, TX_pos, RX_pos, params);
+        if ~isempty(alphas_center)
+            h_nb_center = sum(alphas_center);
+            PRX = PTX * abs(h_nb_center)^2;
+            if PRX > 0
+                temp_PRX_dBm_col(j) = 10 * log10(PRX * 1000);
+            else
+                temp_PRX_dBm_col(j) = -Inf;
+            end
+        else
+            temp_PRX_dBm_col(j) = -Inf;
+        end
+    end
+    
+    % Assign the entire columns at once
     PRX_dBm(:, i) = temp_PRX_dBm_col;
-    PRX_local_dBm(:, i) = temp_PRX_local_dBm_col;
+    PRX_avg_dBm(:, i) = temp_PRX_avg_dBm_col;
     
     % Send a message to the queue to update the progress bar
     if ~isempty(queue_2)
         send(queue_2, 1);
     end
 end
-fprintf('      Heatmap generation took %.2f seconds.\n', toc);
+
 
 % Cleanup waitbar
 if exist('waitbar_2', 'var') && ishandle(waitbar_2)
@@ -296,8 +359,14 @@ fprintf('   - Plotting heatmaps\n');
 
 % Plot Instantaneous Power
 figure('Name', 'Instantaneous Power Heatmap', 'NumberTitle', 'off');
-plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_dBm, TX_pos, walls, params.PRX_sens_dBm);
+plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_dBm, TX_pos, walls, sens_dBm);
 title('Instantaneous Power $P_{RX}$', 'Interpreter', 'latex');
+
+% Plot Averaged Power
+figure('Name', 'Averaged Power Heatmap', 'NumberTitle', 'off');
+plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_avg_dBm, TX_pos, walls, sens_dBm);
+title('Averaged Power $\langle P_{RX} \rangle$', 'Interpreter', 'latex');
+
 
 
 %% Function to update the waitbar

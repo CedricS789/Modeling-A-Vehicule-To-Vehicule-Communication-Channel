@@ -298,23 +298,23 @@ A high K-factor indicates that the channel is dominated by the LOS ray, and fadi
 \section{Path Loss Model}
 To analyze the large-scale path loss, small-scale fading caused by the rapid phase changes of the MPCs must be averaged out. This is done by computing the average received power, $\langle P_{RX} \rangle$, over local areas, defined as 5m segments. This averaging smooths out the fast fluctuations, revealing the slower trend of power decay with distance.
 \begin{equation}
-	\langle P_{RX}(d) \rangle = \frac{1}{5m} \int_{d-2.5m}^{d+2.5m} P_{RX}(x) dx
+	\langle P_{RX}(d) \rangle = \frac{1}{5m} \int_{d-2.5m}^{d+2.5m} P_{RX}(x) dx \approx \frac{1}{M} \sum_{i=1}^{M} P_{RX}(x_i)
 \end{equation}
+Where $M$ here is the total number of sample taken within a 5m segment.
 
-The loss of the channel is defined as $L(d)$ such that:
+The path loss of the channel is defined as $L(d)$ such that:
 \begin{align}
 	\label{eq:loss}
 	L(d) [dB] &= P_{TX} [dBm] - \langle P_{RX}(d) \rangle [dBm]\\
 			  &= L_0(d) [dB] - 10 \log G_{TX} - 10 \log G_{RX}
 \end{align}
-
-Where $L_0(d)$ represent the part of the path loss that does not depend on the antenna. It can be from Equation \eqref{eq:loss} expressed as
+Where $L_0(d)$ represent the part of the path loss that does not depend on the antenna. Using Equation \eqref{eq:loss}, it can be expressed as:
 \begin{equation}
 	L_0(d) [dB] =  P_{TX} [dBm] + 10 \log G_{TX} + 10 \log G_{RX} - \langle P_{RX}(d) \rangle [dBm]
 	\label{eq:loss-2}
 \end{equation}
 
-It is empirically proven that in general the path loss model follows a canonical form. The path loss model is fit into the canonical form and a linear regression is done:
+It is empirically proven that in general the path loss model follows a canonical form. The path loss model is fit into the canonical form and a linear regression is performed:
 \begin{align}
 	L_0(d) [dB] &= L_0(d_0) + 10n \log\left(\frac{d}{d_0}\right)\\
 				&= \underbrace{10n}_{slope} \log(d) + \underbrace{(L_0(d_0) - 10n \log(d_0))}_{intercept} \label{eq:lin-reg}
