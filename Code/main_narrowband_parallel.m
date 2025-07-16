@@ -24,8 +24,8 @@ params.PTX_dBm = 10 * log10(params.PTX * 1000);
 params.lambda = params.c / params.fc;
 
 PTX = params.PTX;
-lambda = params.lambda;
 sens_dBm = params.PRX_sens_dBm;
+lambda = params.lambda;
 
 M = 1;                     % Maximum number of reflections to consider
 w = 20;
@@ -226,6 +226,8 @@ x_end      = 500;
 y_start    = -w/2-30;
 y_end      = w/2+30;
 d_samp     = 0.5;
+d_local = 5.0;  % Cannot be smaller than d_samp
+
 fprintf('   - Generating %.1fm x %.1fm grid with %.1fm sampling interval\n', ...
         (x_end - x_start), (y_end - y_start), d_samp);
         
@@ -238,8 +240,7 @@ RX_y_coordinates = linspace(y_start, y_end, num_y_points);
 PRX_dBm = zeros(num_y_points, num_x_points);
 PRX_avg_dBm = zeros(num_y_points, num_x_points);
 
-fprintf('      Generating Heatmap and Averaged Power Data \n');
-
+fprintf('      * Generating Heatmap and Averaged Power Data \n');
 % Progress bar setup
 queue_2 = parallel.pool.DataQueue;
 num_iterations = num_x_points;
@@ -264,77 +265,52 @@ parfor i = 1:num_x_points
             continue;
         end
 
+        % Calculation of <PRX> over a d_local x d_local area
+        num_samples_local = round(d_local / d_samp);
         
-        d_local = 5.0; % Cannot be smaller than d_samp
-        is_window_valid = true; % Boundary Check
+        % Define the sample points for the 2D local area
+        local_x = linspace(RX_pos(1) - d_local/2, RX_pos(1) + d_local/2, num_samples_local);
+        local_y = linspace(RX_pos(2) - d_local/2, RX_pos(2) + d_local/2, num_samples_local);
         
-        % Define the four corners of the averaging window
-        corners = [RX_pos(1) - (d_local/2), RX_pos(2) - (d_local/2);
-                   RX_pos(1) + (d_local/2), RX_pos(2) - (d_local/2);
-                   RX_pos(1) + (d_local/2), RX_pos(2) + (d_local/2);
-                   RX_pos(1) - (d_local/2), RX_pos(2) + (d_local/2)];
+        % Use a 2D matrix to store powers for the 2D local area
+        PRX_matrix = zeros(num_samples_local, num_samples_local);
         
-        % Define the four boundary lines of the averaging window
-        window_lines = { [corners(1,:); corners(2,:)], ...
-                         [corners(2,:); corners(3,:)], ...
-                         [corners(3,:); corners(4,:)], ...
-                         [corners(4,:); corners(1,:)] };
-
-        % Check if any boundary line of the window intersects with any wall
-        for c = 1:length(window_lines)
-            line_segment = window_lines{c};
-            for index = 1:length(walls)
-                if ~isempty(findSegmentIntersection(line_segment(1,:), line_segment(2,:), walls(index).coordinates(1,:), walls(index).coordinates(2,:)))
-                    is_window_valid = false;
-                    break; % No need to check other walls
+        for k = 1:num_samples_local
+            for l = 1:num_samples_local
+                RX_pos_local = [local_x(k), local_y(l)];
+                
+                % Run ray tracing for this sample point
+                [alphas_local, ~] = runRayTracing(walls, M, TX_pos, RX_pos_local, params);
+                
+                % calculate power if rays are found
+                if ~isempty(alphas_local)
+                    h_nb_local = sum(alphas_local);
+                    PRX_matrix(l, k) = PTX * abs(h_nb_local)^2;
+                else
+                    PRX_matrix(l, k) = 0;
                 end
             end
-            if ~is_window_valid
-                break; % No need to check other boundary lines
-            end
         end
-
-        % Only calculate an average if the window is valid
-        if is_window_valid
-            num_samples_local = round(d_local / d_samp);
-            local_x = linspace(RX_pos(1) - (d_local/2), RX_pos(1) + (d_local/2), num_samples_local);
-            local_y = linspace(RX_pos(2) - (d_local/2), RX_pos(2) + (d_local/2), num_samples_local);
-            PRX_matrix = zeros(num_samples_local, num_samples_local);
-
-            for k = 1:num_samples_local
-                for l = 1:num_samples_local
-                    RX_pos_local = [local_x(k), local_y(l)];
-                    [alphas_local, ~] = runRayTracing(walls, M, TX_pos, RX_pos_local, params);
-                    if ~isempty(alphas_local)
-                        h_nb_local = sum(alphas_local);
-                        PRX_matrix(l, k) = PTX * abs(h_nb_local)^2;
-                    else
-                        PRX_matrix(l, k) = 0;
-                    end
-                end
-            end
-            PRX_avg = mean(PRX_matrix(:));
-            if PRX_avg > 0
-                temp_PRX_avg_dBm_col(j) = 10 * log10(PRX_avg * 1000);
-            else
-                temp_PRX_avg_dBm_col(j) = -Inf;
-            end
-        else
-            temp_PRX_avg_dBm_col(j) = NaN;
-        end
+        
+        % Calculate the average power <PRX> over the 2D area
+        PRX_avg = mean(PRX_matrix(:));
         
         % Store the instantaneous power at the center point for the heatmap
-        [alphas_center, ~] = runRayTracing(walls, M, TX_pos, RX_pos, params);
-        if ~isempty(alphas_center)
-            h_nb_center = sum(alphas_center);
-            PRX = PTX * abs(h_nb_center)^2;
-            if PRX > 0
-                temp_PRX_dBm_col(j) = 10 * log10(PRX * 1000);
-            else
-                temp_PRX_dBm_col(j) = -Inf;
-            end
+        local_center = round(num_samples_local / 2);
+        PRX = PRX_matrix(local_center, local_center);
+        
+        % Store the instaneous power
+        if PRX > 0 % Health check
+            temp_PRX_dBm_col(j) = 10 * log10(PRX * 1000);
         else
             temp_PRX_dBm_col(j) = -Inf;
+        end
+        
+        % Store the averaged power
+        if PRX_avg > 0 % Health check
+            temp_PRX_avg_dBm_col(j) = 10 * log10(PRX_avg * 1000);
+        else
+            temp_PRX_avg_dBm_col(j) = -Inf;
         end
     end
     
@@ -348,6 +324,7 @@ parfor i = 1:num_x_points
     end
 end
 
+fprintf('      * Data generation took %.2f seconds.\n', toc);
 
 % Cleanup waitbar
 if exist('waitbar_2', 'var') && ishandle(waitbar_2)
@@ -363,6 +340,10 @@ plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_dBm, TX_pos, walls, sen
 title('Instantaneous Power $P_{RX}$', 'Interpreter', 'latex');
 
 % Plot Averaged Power
+% Trick to make the heatmap display well
+walls(1).coordinates = walls(1).coordinates + d_local/2 * [[1  1]; [1  1]];
+walls(2).coordinates = walls(2).coordinates + d_local/2 * [[1 -1]; [1 -1]];
+
 figure('Name', 'Averaged Power Heatmap', 'NumberTitle', 'off');
 plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_avg_dBm, TX_pos, walls, sens_dBm);
 title('Averaged Power $\langle P_{RX} \rangle$', 'Interpreter', 'latex');
