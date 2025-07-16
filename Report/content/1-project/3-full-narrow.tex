@@ -296,11 +296,11 @@ A high K-factor indicates that the channel is dominated by the LOS ray, and fadi
 \end{figure}
 
 \section{Path Loss Model}
-To analyze the large-scale path loss, small-scale fading caused by the rapid phase changes of the MPCs must be averaged out. This is done by computing the average received power, $\langle P_{RX} \rangle$, over local areas, defined as 5m segments. This averaging smooths out the fast fluctuations, revealing the slower trend of power decay with distance.
+To analyze the large-scale path loss, small-scale fading caused by the rapid phase changes of the MPCs must be averaged out. This is done by computing the average received power, $\langle P_{RX} \rangle$, over local areas, defined as 5m segments. This averaging smooths out the fast fluctuations.
 \begin{equation}
-	\langle P_{RX}(d) \rangle = \frac{1}{5m} \int_{d-2.5m}^{d+2.5m} P_{RX}(x) dx \approx \frac{1}{M} \sum_{i=1}^{M} P_{RX}(x_i)
+	\langle P_{RX}(d) \rangle = \frac{1}{5m} \int_{d-2.5m}^{d+2.5m} P_{RX}(x) dx \approx \frac{1}{M} \sum_{i=1}^{N_{samp}} P_{RX}(x_i)
 \end{equation}
-Where $M$ here is the total number of sample taken within a 5m segment.
+Where $N_{samp}$ here is the total number of sample taken within a 5m segment.
 
 The path loss of the channel is defined as $L(d)$ such that:
 \begin{align}
