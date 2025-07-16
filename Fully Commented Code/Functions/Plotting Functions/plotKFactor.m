@@ -14,7 +14,7 @@ function plotKFactor(distances, K_factor_dB)
     semilogx(distances, K_factor_dB, 'k-', 'LineWidth', 2);
     
     grid on;
-    title('Rician K-Factor vs. Distance (5 Reflections)', 'FontSize', 16);
+    title('Rician K-Factor vs. Distance (5 Reflections)', 'FontSize', 20);
     xlabel('Distance, d (m)', 'FontSize', 12);
     ylabel('Rician K-Factor (dB)', 'FontSize', 12);
     xlim([min(distances), max(distances)]);

@@ -45,11 +45,10 @@ function plotRays(walls, tx_pos, rx_pos, all_rays_data, M)
     
     hold off;
     
-    title(ax, sprintf('Ray Tracing with up to $M = %d$ Reflections', M), 'FontSize', 16, 'Interpreter', 'latex');
-    xlabel(ax, '$x$-axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
-    ylabel(ax, '$y$-axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
+    title(ax, sprintf('Ray Tracing with up to $M = %d$ Reflections', M), 'FontSize', 20, 'Interpreter', 'latex');
+    xlabel(ax, '$x$-axis (m)', 'FontSize', 18, 'Interpreter', 'latex');
+    ylabel(ax, '$y$-axis (m)', 'FontSize', 18, 'Interpreter', 'latex');
 
-    axis(ax, 'tight');
     w = 20;
     xlim(ax, [tx_pos(1)-5, rx_pos(1)+20]);
     ylim(ax, [-w/2-5, w/2+5]);
@@ -58,6 +57,6 @@ function plotRays(walls, tx_pos, rx_pos, all_rays_data, M)
     all_plot_handles = findobj(gcf,'Type','line');
     if ~isempty(all_plot_handles)
         [~, unique_indices] = unique(get(all_plot_handles, 'DisplayName'), 'stable');
-        legend(all_plot_handles(unique_indices), 'Interpreter', 'latex', 'FontSize', 14, 'Location', 'northeast');
+        legend(all_plot_handles(unique_indices), 'Interpreter', 'latex', 'FontSize', 18, 'Location', 'northeast');
     end
 end

@@ -27,19 +27,16 @@ function plotHeatmap(ax, RX_x_coordinates, RX_y_coordinates, PRX_dBm_domain, tx_
     
     plot(ax, tx_pos(1), tx_pos(2), 'o', 'MarkerSize', 10, 'MarkerFaceColor', 'r', 'MarkerEdgeColor', 'k', 'DisplayName', '$T_x$');
     
-    title(ax, 'Received Power Heatmap', 'FontSize', 16, 'Interpreter', 'latex');
-    xlabel(ax, '$x$-axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
-    ylabel(ax, '$y$-axis (m)', 'FontSize', 14, 'Interpreter', 'latex');
+    title(ax, 'Received Power Heatmap', 'FontSize', 20, 'Interpreter', 'latex');
+    xlabel(ax, '$x$-axis (m)', 'FontSize', 18, 'Interpreter', 'latex');
+    ylabel(ax, '$y$-axis (m)', 'FontSize', 18, 'Interpreter', 'latex');
 
     c = colorbar(ax);
-    ylabel(c, '$P_{RX}$ (dBm)', 'FontSize', 14, 'Interpreter', 'latex');
+    ylabel(c, '$P_{RX}$ (dBm)', 'FontSize', 18, 'Interpreter', 'latex');
     clim(ax, [-90 -40]);
-    
-    axis(ax, 'equal', 'tight');
+    axis(ax, 'equal');
     xlim(ax, [min(RX_x_coordinates), max(RX_x_coordinates)]);   
     ylim(ax, [min(RX_y_coordinates), max(RX_y_coordinates)]);
-    
     colormap(ax, jet(256));
-    
     hold(ax, 'off');
 end

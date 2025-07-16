@@ -1,5 +1,5 @@
-function plotReceivedPower(distances, total_RX_power_dBm, los_power_dBm)
-% plotReceivedPower - Plots received power vs. distance.
+function plotPRXvsDistance(distances, total_RX_power_dBm, los_power_dBm)
+% plotPRXvsDistance - Plots received power vs. distance.
 %
 % This function plots the total received power from all multipath components
 % and compares it against the power from the Line-of-Sight (LOS) path alone,
@@ -22,7 +22,7 @@ function plotReceivedPower(distances, total_RX_power_dBm, los_power_dBm)
     semilogx(distances, los_power_dBm, 'r--', 'LineWidth', 2, 'DisplayName', 'LOS Power (Friis Formula)');
     
     grid on;                                                                                          % Add a grid to make it easier to read power values at specific distances.
-    title('Received Power vs. Distance (5 Reflections)', 'FontSize', 16);                                                  % Set a clear and descriptive title for the plot.
+    title('Received Power vs. Distance (5 Reflections)', 'FontSize', 20);                                                  % Set a clear and descriptive title for the plot.
     xlabel('Distance, d (m)', 'FontSize', 12);                                                             % Label the x-axis to indicate the physical quantity and its units.
     ylabel('Received Power, P_{RX} (dBm)', 'FontSize', 12);                                                           % Label the y-axis to indicate the physical quantity and its units.
     legend('show', 'Location', 'northeast', 'FontSize', 12);                                                          % Display the legend in the top-right corner to identify each line.

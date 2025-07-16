@@ -28,7 +28,7 @@ function plotCellRangeAnalysis(distances, path_loss_exponent, pl_ref, shadowing_
         fade_margin_dB = -shadowing_std_dev * sqrt(2) * erfcinv(2 * R);
         
         % The maximum allowable path loss for this reliability.
-        max_allowable_pl = params.P_TX - params.P_RX_sens_dBm - fade_margin_dB;
+        max_allowable_pl = params.PTX - params.PRX_sens_dBm - fade_margin_dB;
         max_pl_values(i) = max_allowable_pl;
         
         % Invert the path loss formula to find the cell range.

@@ -46,7 +46,7 @@ function plotRays(walls, transmitter_position, receiver_position, all_rays_data,
     hold off;                                                                             % Release the plot hold, a good practice for figure manipulation.
     
     % --- Add Labels and a Clean Legend ---
-    title(ax, sprintf('Ray Tracing with up to %d Reflections', K), 'FontSize', 16);                       % Set a descriptive title for the plot.
+    title(ax, sprintf('Ray Tracing with up to %d Reflections', K), 'FontSize', 20);                       % Set a descriptive title for the plot.
     xlabel(ax, 'x axis(m)', 'FontSize', 12);
     ylabel(ax, 'y axis(m)', 'FontSize', 12);
     

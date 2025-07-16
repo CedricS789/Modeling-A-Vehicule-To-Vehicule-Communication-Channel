@@ -11,9 +11,9 @@ params.fc = 5.9e9;
 params.c = 3e8;
 params.Z_0 = 377;
 params.R_a = 73.1;
-params.P_TX = 0.1; 
-params.P_RX_sens_dBm = -70;
-params.P_TX_dBm = 10 * log10(params.P_TX * 1000);
+params.PTX = 0.1; 
+params.PRX_sens_dBm = -70;
+params.PTX_dBm = 10 * log10(params.PTX * 1000);
 params.lambda = params.c / params.fc;
 
 M = 10;                      % Maximum number of reflections to consider
@@ -41,13 +41,13 @@ if ~isempty(LOS_rays_data)
     h_nb_LOS = LOS_ray.alpha_n;
     
     % Calculate received power using the channel transfer function
-    P_RX_LOS = params.P_TX * abs(h_nb_LOS)^2;
-    P_RX_LOS_dBm = 10 * log10(P_RX_LOS * 1000);
+    PRX_LOS = params.PTX * abs(h_nb_LOS)^2;
+    PRX_LOS_dBm = 10 * log10(PRX_LOS * 1000);
     
     fprintf('   - For d = %.1fm:\n', d);
     fprintf('     - \tau_LOS = %.3es\n', LOS_delay);
     fprintf('     - Narrowband Gain |h_NB|: %.3e, Angle: %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
-    fprintf('     - Received Power (LOS): %.2f dBm (should match Friis formula)\n', P_RX_LOS_dBm);
+    fprintf('     - Received Power (LOS): %.2f dBm (should match Friis formula)\n', PRX_LOS_dBm);
 else
     fprintf('   - No LOS path found for d = %.1fm.\n', d);
 end
@@ -76,18 +76,18 @@ end
 
 % Calculate total received power from all paths
 h_nb_total = sum(all_alphas);
-P_RX_total = params.P_TX * abs(h_nb_total)^2;
-P_RX_total_dBm = 10 * log10(P_RX_total * 1000);
+PRX_total = params.PTX * abs(h_nb_total)^2;
+PRX_total_dBm = 10 * log10(PRX_total * 1000);
 fprintf('\n   - Total Narrowband Gain h_NB at %.1fm: %.3e\n', d, h_nb_total);
-fprintf('   - Total Received Power P_RX at %.1fm: %.2f dBm\n\n', d, P_RX_total_dBm);
+fprintf('   - Total Received Power PRX at %.1fm: %.2f dBm\n\n', d, PRX_total_dBm);
 
 
 % Simulate over a range of distances
 fprintf('   - Simulating over distances \n');
 distances_domain = logspace(0, log10(L), 50000); % points from 1m to 10^
 num_distances = length(distances_domain);
-P_RX_LOS_dBm_domain = zeros(1, num_distances);
-P_RX_total_dBm_domain = zeros(1, num_distances);
+PRX_LOS_dBm_domain = zeros(1, num_distances);
+PRX_total_dBm_domain = zeros(1, num_distances);
 K_factor_dB_domain = zeros(1, num_distances);
 
 sim_waitbar = waitbar(0, 'Running P_{RX} vs. Distance');
@@ -99,16 +99,16 @@ for i = 1:num_distances
     [alphas, rays] = runRayTracing(walls, M, current_tx_pos, current_RX_pos, params);
 
     if isempty(alphas)
-        P_RX_total_dBm_domain(i) = -Inf;
-        P_RX_LOS_dBm_domain(i) = -Inf;
+        PRX_total_dBm_domain(i) = -Inf;
+        PRX_LOS_dBm_domain(i) = -Inf;
         K_factor_dB_domain(i) = -Inf;
         continue;
     end
 
     % Calculate total power
     h_nb = sum(alphas);
-    P_RX_total = params.P_TX * abs(h_nb)^2;
-    P_RX_total_dBm_domain(i) = 10 * log10(P_RX_total * 1000);
+    PRX_total = params.PTX * abs(h_nb)^2;
+    PRX_total_dBm_domain(i) = 10 * log10(PRX_total * 1000);
 
     % Separate LOS and NLOS power for K-factor calculation
     alpha_LOS = 0;
@@ -117,12 +117,12 @@ for i = 1:num_distances
         if strcmp(rays{j}.type, 'LOS') % If type is LOS
             alpha_LOS = rays{j}.alpha_n;
         else
-            P_NLOS = P_NLOS + params.P_TX * abs(rays{j}.alpha_n)^2;
+            P_NLOS = P_NLOS + params.PTX * abs(rays{j}.alpha_n)^2;
         end
     end
 
-    P_LOS = params.P_TX * abs(alpha_LOS)^2;
-    P_RX_LOS_dBm_domain(i) = 10 * log10(P_LOS * 1000);
+    P_LOS = params.PTX * abs(alpha_LOS)^2;
+    PRX_LOS_dBm_domain(i) = 10 * log10(P_LOS * 1000);
 
     if P_NLOS > 0
         K_factor = P_LOS / P_NLOS;
@@ -138,9 +138,9 @@ fprintf('   Data computation complete.\n\n');
 
 % Plotting Results
 fprintf('   - Plotting results\n');
-plotReceivedPower(distances_domain, P_RX_total_dBm_domain, P_RX_LOS_dBm_domain);
+plotPRXvsDistance(distances_domain, PRX_total_dBm_domain, PRX_LOS_dBm_domain);
 % plotKFactor(distances_domain, K_factor_dB_domain);
-% [n_pl, sigma_L, PL_d0] = plotPathLoss(distances, P_RX_total_dBm_domain, params);
+% [n_pl, sigma_L, PL_d0] = plotPathLoss(distances, PRX_total_dBm_domain, params);
 % fprintf('     - Calculated Path Loss Exponent n = %.2f\n', n_pl);
 % fprintf('     - Shadowing Standard Deviation sigma_L = %.2f dB\n', sigma_L);
 % plotCellRangeAnalysis(distances, n_pl, PL_d0, sigma_L, params);
@@ -167,12 +167,12 @@ RX_x_coordinates = linspace(x_start, x_end, num_x_points);
 RX_y_coordinates = linspace(y_start, y_end, num_y_points);
 
 % Run Simulation for each point on the grid
-P_RX_dBm = zeros(length(RX_y_coordinates), length(RX_x_coordinates));
-P_RX_local_dBm = zeros(length(RX_y_coordinates), length(RX_x_coordinates));
-% P_RX_global_dBm = zeros(length(RX_y_coordinates), length(RX_x_coordinates));
+PRX_dBm = zeros(length(RX_y_coordinates), length(RX_x_coordinates));
+PRX_local_dBm = zeros(length(RX_y_coordinates), length(RX_x_coordinates));
+% PRX_global_dBm = zeros(length(RX_y_coordinates), length(RX_x_coordinates));
 
 heatmap_waitbar = waitbar(0, 'Generating Heatmap Data');
-total_points = length(P_RX_dBm);
+total_points = length(PRX_dBm);
 point_count = 0;
 % d0 = 1; % Reference distance for path loss model is 1m
 
@@ -183,30 +183,30 @@ for i = 1:length(RX_x_coordinates)
         
         % Avoid calculating at the transmitter's exact location
         if dist_from_tx < resolution
-            P_RX_dBm(j, i) = NaN;
-            P_RX_local_dBm(j, i) = NaN;
-            % P_RX_global_dBm(j, i) = NaN;
+            PRX_dBm(j, i) = NaN;
+            PRX_local_dBm(j, i) = NaN;
+            % PRX_global_dBm(j, i) = NaN;
         else
-            % Global Average Power <<P_RX>>
+            % Global Average Power <<PRX>>
             % path_loss_dB = PL_d0 + 10 * n_pl * log10(dist_from_tx / d0);
-            % P_RX_global_dBm(j, i) = params.P_TX_dBm - path_loss_dB;
+            % PRX_global_dBm(j, i) = params.PTX_dBm - path_loss_dB;
             
             % Ray Tracing for Instantaneous and Local Average Power
             [alphas, ~] = runRayTracing(walls, M, tx_pos, RX_pos, params);
             if ~isempty(alphas)
 
-                % Instantaneous Power P_RX
+                % Instantaneous Power PRX
                 h_nb = sum(alphas);
-                P_RX = params.P_TX * abs(h_nb)^2;
-                P_RX_dBm(j, i) = 10 * log10(P_RX * 1000);
+                PRX = params.PTX * abs(h_nb)^2;
+                PRX_dBm(j, i) = 10 * log10(PRX * 1000);
                 
-                % Local Average Power <P_RX>
-                power_of_each_path = params.P_TX * abs(alphas).^2;
-                P_RX_local_avgs = sum(power_of_each_path);                      %TODO: This is not what the teacher wants I think, will resolve later
-                P_RX_local_dBm(j, i) = 10 * log10(P_RX_local_avgs * 1000);
+                % Local Average Power <PRX>
+                power_of_each_path = params.PTX * abs(alphas).^2;
+                PRX_local_avgs = sum(power_of_each_path);                      %TODO: This is not what the teacher wants I think, will resolve later
+                PRX_local_dBm(j, i) = 10 * log10(PRX_local_avgs * 1000);
             else
-                P_RX_dBm(j, i) = NaN;
-                P_RX_local_dBm(j, i) = NaN;
+                PRX_dBm(j, i) = NaN;
+                PRX_local_dBm(j, i) = NaN;
             end
         end
     end
@@ -221,15 +221,15 @@ figure('Name', 'Power Heatmap Comparison', 'NumberTitle', 'off', 'Position', [50
 
 % Plot Instantaneous Power
 ax1 = subplot(2, 1, 1);
-plotHeatmap(ax1, RX_x_coordinates, RX_y_coordinates, P_RX_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+plotHeatmap(ax1, RX_x_coordinates, RX_y_coordinates, PRX_dBm, tx_pos, walls, params.PRX_sens_dBm);
 title('Instantaneous Power (P_{RX})');
 
 % Plot Local Average Power
 ax2 = subplot(2, 1, 2);
-plotHeatmap(ax2, RX_x_coordinates, RX_y_coordinates, P_RX_local_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+plotHeatmap(ax2, RX_x_coordinates, RX_y_coordinates, PRX_local_dBm, tx_pos, walls, params.PRX_sens_dBm);
 title('Local Average Power (<P_{RX}>)');
 
 % Plot Global Average Power
 % ax3 = subplot(3, 1, 3);
-% plotHeatmap(ax3, RX_x_coordinates, RX_y_coordinates, P_RX_global_dBm, tx_pos, walls, params.P_RX_sens_dBm);
+% plotHeatmap(ax3, RX_x_coordinates, RX_y_coordinates, PRX_global_dBm, tx_pos, walls, params.PRX_sens_dBm);
 % title('Global Average Power (<<P_{RX}>>)');

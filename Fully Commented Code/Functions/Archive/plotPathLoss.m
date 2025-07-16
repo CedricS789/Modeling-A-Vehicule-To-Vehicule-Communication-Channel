@@ -17,7 +17,7 @@ function [path_loss_exponent, shadowing_std_dev, pl_ref] = plotPathLoss(distance
 
     % --- Calculate Path Loss ---
     % Path Loss (dB) = Transmit Power (dBm) - Received Power (dBm)
-    path_loss_instantaneous_dB = params.P_TX - total_RX_power_dBm;
+    path_loss_instantaneous_dB = params.PTX - total_RX_power_dBm;
 
     % --- Spatially Average the Path Loss ---
     % This is done to remove the small-scale fading effects and reveal the

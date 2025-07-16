@@ -14,9 +14,12 @@ function plotKFactor(distances, K_factor_dB)
     semilogx(distances, K_factor_dB, 'k-', 'LineWidth', 2);
     
     grid on;
-    title('Rician K-Factor vs. Distance', 'FontSize', 16);
-    xlabel('Distance, d (m)', 'FontSize', 14);
-    ylabel('Rician K-Factor (dB)', 'FontSize', 14);
-    xlim([min(distances), max(distances)]);
-
+    grid minor;
+    
+    title('$K = f(d)$', 'FontSize', 20, 'Interpreter', 'latex');
+    xlabel('$d$ (m)', 'FontSize', 18, 'Interpreter', 'latex');
+    ylabel('$K$-factor (dB)', 'FontSize', 18, 'Interpreter', 'latex');
+    % xlim([min(distances), max(distances)]);
+    
+    axis tight;
 end
