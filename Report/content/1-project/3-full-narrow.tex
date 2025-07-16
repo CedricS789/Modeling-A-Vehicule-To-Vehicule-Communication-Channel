@@ -295,12 +295,45 @@ A high K-factor indicates that the channel is dominated by the LOS ray, and fadi
 	\label{fig:k-factor}
 \end{figure}
 
+
+
+
 \section{Path Loss Model}
-To analyze the large-scale path loss, small-scale fading caused by the rapid phase changes of the MPCs must be averaged out. This is done by computing the average received power, $\langle P_{RX} \rangle$, over local areas, defined as 5m segments. This averaging smooths out the fast fluctuations.
+To analyze the large-scale path loss characteristics of the channel, the effects of small-scale fading, which arise from the rapid phase changes of the MPCs, must be averaged out. This is accomplished by computing the local average of the received power, $\langle P_{RX} \rangle$, in 5-meter segments. This spatial averaging smooths out the fast fluctuations, revealing the underlying distance-dependent trend.
+
+The continuous-time definition of this local average at a distance $d$ is given by the integral:
 \begin{equation}
-	\langle P_{RX}(d) \rangle = \frac{1}{5m} \int_{d-2.5m}^{d+2.5m} P_{RX}(x) dx \approx \frac{1}{M} \sum_{i=1}^{N_{samp}} P_{RX}(x_i)
+	\langle P_{RX}(d) \rangle = \frac{1}{5m} \int_{d-2.5m}^{d+2.5m} P_{RX}(x) dx
 \end{equation}
-Where $N_{samp}$ here is the total number of sample taken within a 5m segment.
+In the simulation, where the received power is sampled at discrete points, this integral is approximated by a discrete summation. This is implemented as a moving average filter, which mathematically corresponds to a discrete convolution. The instantaneous power signal, $P_{RX}[i]$, is convolved with a normalized rectangular kernel, $h[k]$, of length $N_{samp, local}$. This length corresponds to the number of samples within the 5m averaging window. The kernel is defined as:
+\begin{equation}
+	h[k] = 
+	\begin{cases} 
+		\frac{1}{N_{samp, local}} & \text{for } 0 \le k < N_{samp, local} \\ 
+		0 & \text{otherwise} 
+	\end{cases}
+\end{equation}
+This corresponds to a vector, $\mathbf{h}$, of $N_{samp, local}$ uniformly weighted coefficients:
+\begin{equation}
+	\mathbf{h} = \frac{1}{N_{samp, local}} \cdot
+	\underbrace{\begin{bmatrix}
+			{1, 1, \dots, 1}
+	\end{bmatrix}}_{N_{samp, local} \text{ elements}}
+\end{equation}
+The resulting averaged power at sample $i$, which is the convolution $(P_{RX} * h)[i]$, is then given by:
+\begin{equation}
+	\langle P_{RX}[i] \rangle = \sum_{k=0}^{N_{samp, local}-1} P_{RX}[i-k] \cdot h[k] = \frac{1}{N_{samp, local}} \sum_{k=0}^{N_{samp, local}-1} P_{RX}[i-k]
+\end{equation}
+
+$N_{samp, local}$ is defined as:
+\begin{equation}
+	N_{samp} = \text{round}\left(\frac{\text{local window distance}}{\text{sampling distance}}\right)
+\end{equation}
+
+
+
+
+
 
 The path loss of the channel is defined as $L(d)$ such that:
 \begin{align}

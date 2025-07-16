@@ -58,7 +58,7 @@ if ~isempty(LOS_rays_data)
     
     fprintf('   - For d = %.1fm:\n', d_fixed);
     fprintf('      * tau_LOS = %.3es\n', LOS_delay);
-    fprintf('      * Narrowband Gain LOSS |h_NB| = %.3e, Angle = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
+    fprintf('      * Narrowband Gain |h_NB_LOS| = %.3e, Angle = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
     fprintf('      * PRX_LOS: %.2fdBm\n', PRX_LOS_dBm);
 else
     fprintf('   - No LOS path found for d = %.1fm.\n', d_fixed);
@@ -225,11 +225,11 @@ fprintf('\nFitting Path Loss Model\n');
 
 % Define simulation parameters for path loss analysis
 d_local = 5.0;      % 5m local area for averaging
-d_samp = 0.05;      % Sampling interval for averaging
+d_samp = 0.01;      % Sampling interval for averaging
 d0 = 1;             % Reference distance for the model
 
 % Define the distance range for the final path loss model
-x_start_model = 50;
+x_start_model = TX_pos(1) + 50;
 x_end_model   = 1000;
 
 % Create a padded domain for simulation to ensure correct convolution at edges
@@ -276,7 +276,10 @@ end
 fprintf('   - Averaging instantaneous power using 1D convolution\n');
 tic;
 num_samples_local = round(d_local / d_samp);
+
+if mod(num_samples_local, 2) == 0; num_samples_local = num_samples_local + 1; end % Ensure the kernel has a center
 kernel = ones(1, num_samples_local) / num_samples_local; % Normalized 1D filter kernel
+
 PRX_avg = conv(PRX, kernel, 'same');
 fprintf('      * Convolution took %.2f seconds.\n', toc);
 

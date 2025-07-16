@@ -44,7 +44,7 @@ function [n, L0_d0_dB] = pathLoss(distance_domain_padded, PRX_dBm, distance_doma
     figure('Name', 'Path Loss Model Fit', 'NumberTitle', 'off');
     
     % Use semilogx for a logarithmic distance axis
-    semilogx(distance_domain_model, L_d_dB_data, 'LineWidth', 2, 'DisplayName', '$L_{data}(d)$');
+    semilogx(distance_domain_model, L_d_dB_data, 'b-', 'LineWidth', 1.2, 'DisplayName', '$L_{data}(d)$');
     hold on;
 
     % Calculate the y-values for the fitted line
@@ -73,7 +73,7 @@ function [n, L0_d0_dB] = pathLoss(distance_domain_padded, PRX_dBm, distance_doma
     hold on;
     
     % Plot <PRX> power on top
-    semilogx(distance_domain_model, PRX_avg_model_dBm, 'LineWidth', 2, 'DisplayName', 'Averaged Power $\langle P_{RX} \rangle$');
+    semilogx(distance_domain_model, PRX_avg_model_dBm, 'b-', 'LineWidth', 1.2, 'DisplayName', 'Averaged Power $\langle P_{RX} \rangle$');
     
     % Plot <<PRX>>
     semilogx(distance_domain_model, PRX_avg_dBm_fit, 'r-', 'LineWidth', 2, 'DisplayName', '$\ll P_{RX} \gg$');
