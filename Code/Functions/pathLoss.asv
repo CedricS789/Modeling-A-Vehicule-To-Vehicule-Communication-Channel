@@ -39,7 +39,7 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     L0_d_dB_fitted = polyval(p_coeffs, log10(distance_domain_model));
     L_d_dB_fitted = L0_d_dB_fitted - 2 * G_dBi;
 
-    shadowing_error = L_d_dB_data - L_d_dB_fitted;
+    shadowing_error = L0_d_dB_data - L0_d_dB_fitted; % We use L_0 because we want to focus on the channel
     sigma_L = std(shadowing_error);
     fprintf('      * Shadowing Standard Deviation sigma_L = %.2f dB\n', sigma_L);
 
@@ -48,12 +48,12 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     figure('Name', 'Path Loss Model Fit', 'NumberTitle', 'off');
     
     % Use semilogx for a logarithmic distance axis
-    semilogx(distance_domain_model, L_d_dB_data, 'b-', 'LineWidth', 1.2, 'DisplayName', '$L_{data}(d)$');
+    semilogx(distance_domain_model, L0_d_dB_data, 'b-', 'LineWidth', 1.2, 'DisplayName', '$L_{data}(d)$');
     hold on;
 
     % Calculate the y-values for the fitted line
 
-    semilogx(distance_domain_model, L_d_dB_fitted, 'r-', 'LineWidth', 2, 'DisplayName', sprintf('$L_{fitted}(d)$  (n=%.2f)', n));
+    semilogx(distance_domain_model, L0_d_dB_fitted, 'r-', 'LineWidth', 2, 'DisplayName', sprintf('$L(d)$  (n=%.2f)', n));
     
     grid on;
     grid minor;

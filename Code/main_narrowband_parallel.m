@@ -224,13 +224,13 @@ plotPRXvsPTX(PTX_dBm_domain, PRX_total_dBm_domain, PRX_LOS_dBm_domain);
 fprintf('\nFitting Path Loss Model\n');
 
 % Define simulation parameters for path loss analysis
-d_local = 5.0;      % 5m local area for averaging
 d_samp = 0.01;      % Sampling interval for averaging
-d0 = 1;             % Reference distance for the model
+d_local = 5.0;   % Must be greater than d_samp
+d0 = 1;          % Reference distance for the model
 
 % Define the distance range for the final path loss model
 x_start_model = TX_pos(1) + 50;
-x_end_model   = 1000;
+x_end_model   = 10000;
 
 % Create a padded domain for simulation to ensure correct convolution at edges
 x_start_padded = x_start_model - d_local;
@@ -292,7 +292,7 @@ PRX_dBm = 10 * log10(PRX * 1000);
 PRX_avg_model_dBm = 10 * log10(PRX_avg_model * 1000);
 
 % Call the dedicated function with the CORRECT data
-[n_fit, L0_d0_fit] = pathLoss(distance_domain_padded, PRX_dBm, distance_domain_model, PRX_avg_model_dBm, params, d0);
+[n, L0_d0, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, distance_domain_model, PRX_avg_model_dBm, params, d0);
 
 
 
