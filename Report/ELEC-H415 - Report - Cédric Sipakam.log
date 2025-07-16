@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  16 JUL 2025 13:09
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  16 JUL 2025 17:06
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -2084,19 +2084,19 @@ Package luatex.def Info: content/4-images/k-factor.png  used on input line 293.
 [24<./content/4-images/k-factor.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 328.
+(hyperref)                removing `math shift' on input line 329.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sigma' on input line 328.
+(hyperref)                removing `\sigma' on input line 329.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 328.
+(hyperref)                removing `subscript' on input line 329.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 328.
+(hyperref)                removing `math shift' on input line 329.
 
 
 
@@ -2134,15 +2134,15 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 54323 strings out of 475664
+ 54325 strings out of 475664
  125165,2373549 words of node,token memory allocated
- 2473 words of node memory still in use:
-   32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 424 attribute, 72 glue_s
-pec, 250 attribute_list, 3 write, 24 pdf_literal, 7 pdf_action, 24 pdf_colorstac
+ 2461 words of node memory still in use:
+   32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 420 attribute, 72 glue_s
+pec, 248 attribute_list, 3 write, 24 pdf_literal, 7 pdf_action, 24 pdf_colorstac
 k nodes
-   avail lists: 1:4,2:4087,3:1365,4:168,5:694,6:70,7:5494,8:95,9:1591,10:10,11:3
+   avail lists: 1:4,2:4093,3:1365,4:168,5:694,6:70,7:5494,8:95,9:1591,10:10,11:3
 82
- 75570 multiletter control sequences out of 65536+600000
+ 75571 multiletter control sequences out of 65536+600000
  89 fonts using 5564023 bytes
  99i,15n,108p,1214b,1924s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/
@@ -2171,10 +2171,10 @@ s/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (28 pages, 2057191 by
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (28 pages, 2057635 by
 tes).
 
 PDF statistics: 584 PDF objects out of 1000 (max. 8388607)
- 176 named destinations out of 1000 (max. 131072)
+ 177 named destinations out of 1000 (max. 131072)
  434 words of extra memory for PDF output out of 10000 (max. 100000000)
 

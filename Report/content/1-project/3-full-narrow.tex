@@ -305,25 +305,26 @@ Where $N_{samp}$ here is the total number of sample taken within a 5m segment.
 The path loss of the channel is defined as $L(d)$ such that:
 \begin{align}
 	\label{eq:loss}
-	L(d) [dB] &= P_{TX} [dBm] - \langle P_{RX}(d) \rangle [dBm]\\
-			  &= L_0(d) [dB] - 10 \log G_{TX} - 10 \log G_{RX}
+	L_{data}(d) [dB] &= P_{TX} [dBm] - \langle P_{RX}(d) \rangle [dBm]\\
+			  &= L_{0, data}(d) [dB] - 10 \log G_{TX} - 10 \log G_{RX} \label{eq:loss-3}
 \end{align}
 Where $L_0(d)$ represent the part of the path loss that does not depend on the antenna. Using Equation \eqref{eq:loss}, it can be expressed as:
-\begin{equation}
-	L_0(d) [dB] =  P_{TX} [dBm] + 10 \log G_{TX} + 10 \log G_{RX} - \langle P_{RX}(d) \rangle [dBm]
-	\label{eq:loss-2}
-\end{equation}
-
-It is empirically proven that in general the path loss model follows a canonical form. The path loss model is fit into the canonical form and a linear regression is performed:
 \begin{align}
-	L_0(d) [dB] &= L_0(d_0) + 10n \log\left(\frac{d}{d_0}\right)\\
+	L_{0, data}(d) [dB] &=  P_{TX} [dBm] + 10 \log G_{TX} + 10 \log G_{RX} - \langle P_{RX}(d) \rangle [dBm]
+	\label{eq:loss-2}\\
+				&= P_{TX} [dBm] + 2 \cdot G_{TX} [dBi] - \langle P_{RX}(d) \rangle [dBm]
+\end{align}
+
+It is empirically proven that in general the path loss model follows the canonical form:
+\begin{align}
+	L_{0}(d) [dB] &= L_0(d_0) + 10n \log\left(\frac{d}{d_0}\right)\\
 				&= \underbrace{10n}_{slope} \log(d) + \underbrace{(L_0(d_0) - 10n \log(d_0))}_{intercept} \label{eq:lin-reg}
 \end{align}
 
 
 Where $d_0$ is a reference distance, and $n$ is the path loss exponent. This exponent describes how quickly the signal attenuates with distance on a large scale.
 
-By combining Equation \eqref{eq:loss-2} and \eqref{eq:lin-reg}, $n$ and $L_0(d_0)$ can be found
+$n$ and $L_0(d_0)$ can be found by performing a linear regression. When $L_0(d)$ is found, it is simply replace in Equation \ref{eq:loss-3} to find $L(d)$
 
 \section{Variability $\sigma_L$}
 The variability, or shadowing standard deviation $\sigma_L$, quantifies the variation of the actual received power around the path loss model prediction. It is calculated as the standard deviation of the difference (in dB) between the local-area averaged power and the path loss model prediction.
