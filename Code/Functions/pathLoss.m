@@ -1,4 +1,4 @@
-function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, distance_domain_model, PRX_avg_model_dBm, params, d0)
+function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, distance_domain_model, PRX_Friis_model_dBm, PRX_avg_model_dBm, params, d0)
 % INPUTS:
 %   distance_domain_padded  - Vector of distances for the full simulation (m).
 %   PRX_dBm                 - Vector of instantaneous received power (dBm).
@@ -52,7 +52,6 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     hold on;
 
     % Calculate the y-values for the fitted line
-
     semilogx(distance_domain_model, L_d_dB_fitted, 'r-', 'LineWidth', 2, 'DisplayName', sprintf('$L_{fitted}(d)$  (n=%.2f)', n));
     
     grid on;
@@ -77,9 +76,13 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     % Plot <PRX> power on top
     semilogx(distance_domain_model, PRX_avg_model_dBm, 'b-', 'LineWidth', 1.2, 'DisplayName', 'Averaged Power $\langle P_{RX} \rangle$');
     
+    % Plot Friis model
+    semilogx(distance_domain_model, PRX_Friis_model_dBm, '--', 'LineWidth', 1.2, 'DisplayName', '$P_{RX, Friis}$');
+
+
     % Plot <<PRX>>
     semilogx(distance_domain_model, PRX_avg_dBm_fit, 'r-', 'LineWidth', 2, 'DisplayName', '$\ll P_{RX} \gg$');
-
+    
     grid on;
     grid minor;
     title('Instantaneous and Averaged Power vs. Distance', 'FontSize', 20, 'Interpreter', 'latex');
