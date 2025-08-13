@@ -206,11 +206,11 @@ For a simulation considering up to $M=10$ reflections, this process identifies t
 \section{Total Received Voltage}
 The complex amplitude $\alpha_n$ for each ray $n$ must account for the path loss and any phase changes from reflections. The general form for the complex amplitude of a ray of length $d_n$ with $M$ reflections is:
 \begin{equation}
-	\alpha_n = \left( j \frac{\lambda Z_0}{4\pi^2 R_a d_n} e^{-j2\pi f_c \tau_n} \right) \times \prod_{m=1}^{M}(\Gamma_{\perp, m}(\theta_{n}))
+	\alpha_n = \left( j \frac{\lambda Z_0}{4\pi^2 R_a d_n} e^{-j2\pi f_c \tau_n} \right) \times \underbrace{\prod_{m=1}^{M}(\Gamma_{\perp, m}(\theta_{n}))}_{\Gamma_{\text{tot}, n}}
 \end{equation}
-where $\Gamma_{\perp}$ is the reflection coefficient for perpendicular polarization for the $n$-th MPC experiencing $M$ reflections:
+where $\Gamma_{\perp, m}(\theta_n)$ is the reflection coefficient for perpendicular polarization for the $n$-th MPC at its  $m$-th reflections:
 \begin{equation}
-	\Gamma_{\perp, m}(\theta_n) = \frac{\cos\theta_n - \sqrt{\epsilon_{r, m} - \sin^2\theta_n}}{\cos\theta_n + \sqrt{\epsilon_{r, m} - \sin^2\theta_m}}
+	\Gamma_{\perp, m}(\theta_n) = \frac{\cos\theta_n - \sqrt{\epsilon_{r, m} - \sin^2\theta_n}}{\cos\theta_n + \sqrt{\epsilon_{r, m} - \sin^2\theta_n}}
 \end{equation}
 with $\epsilon_{r,m} = 4$ for the buildings. The angle of incidence $\theta_n$ is specific to each reflection order.
 
@@ -225,6 +225,31 @@ The total received voltage $\underline{V}_{RX}$ is then:
 \end{equation}
 
 
+\begin{table}[h!]
+	\centering
+
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		Ray & Type & $d_n$ [m] & $\tau_n$ [ns] & $\theta_n$ [\si{\degree}] & $\Gamma_{\mathrm{tot},n}$ & $\lvert \alpha_n \rvert$ & $\arg(\alpha_n)$ [\si{\degree}] \\
+		\hline
+		1 & LOS     & 100.00 & 333.33 & 0.00  & $1.00$  & $6.6425\times 10^{-5}$ & -150.00 \\
+		\hline
+		2 & 1-Ref1  & 101.98 & 339.93 & 78.69 & $-0.798$ & $5.1961\times 10^{-5}$ & 48.84  \\
+		\hline
+		3 & 1-Ref1  & 101.98 & 339.93 & 78.69 & $-0.798$ & $5.1961\times 10^{-5}$ & 48.84  \\
+		\hline
+		4 & 2-Ref1  & 107.70 & 359.01 & 68.20 & $0.427$  & $2.6328\times 10^{-5}$ & 30.66  \\
+		\hline
+		5 & 2-Ref1  & 107.70 & 359.01 & 68.20 & $0.427$  & $2.6328\times 10^{-5}$ & 30.66  \\
+		\hline
+		6 & 3-Ref1  & 116.62 & 388.73 & 59.04 & $-0.173$ & $9.8285\times 10^{-6}$ & 87.21  \\
+		\hline
+		7 & 3-Ref1  & 116.62 & 388.73 & 59.04 & $-0.173$ & $9.8285\times 10^{-6}$ & 87.21  \\
+		\hline
+	\end{tabular}
+		\caption{Multipath Component Parameters, $M = 3$ reflections, $d = 100$ m}
+	\label{tab:multipath_parameters}
+\end{table}
 
 \textcolor{red}{TABLE OF VALUES FOR THE FIRST M REFLECTIONS}
 

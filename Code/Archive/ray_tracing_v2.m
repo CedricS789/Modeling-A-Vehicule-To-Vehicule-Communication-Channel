@@ -13,7 +13,7 @@ function [alphas, rays_data] = ray_tracing_v2(walls, k_max, tx_pos, RX_pos, para
         los_ray.coordinates = [tx_pos; RX_pos];
         los_ray.type = 'LOS';
         los_ray.distance_total = norm(RX_pos - tx_pos);
-        los_ray.gamma_prod = 1;
+        los_ray.gamma_tot_n = 1;
         los_ray.alpha_n = calculate_alpha(los_ray, params);
         rays_data{end+1} = los_ray;
     end
@@ -138,14 +138,14 @@ function ray_data = tracePhysicalray(RX_pos, walls, wall_index_sequence, image_s
         ray_data.coordinates = ray_points;
         ray_data.type = sprintf('%d-Refl', K);
         ray_data.distance_total = total_dist;
-        ray_data.gamma_prod = cumulative_gamma;
+        ray_data.gamma_tot_n = cumulative_gamma;
         ray_data.alpha_n = calculate_alpha(ray_data, params);
     end
 end
 
 function alpha_n = calculate_alpha(ray_data, params)
     d_n = ray_data.distance_total;
-    gamma_prod = ray_data.gamma_prod;
+    gamma_tot_n = ray_data.gamma_tot_n;
     fc = params.fc;
     c = params.c;
     Z_0 = params.Z_0;
@@ -156,7 +156,7 @@ function alpha_n = calculate_alpha(ray_data, params)
     phase_shift = exp(-1j * 2 * pi * fc * tau_n);
     amplitude = (lambda * Z_0) / (4 * pi^2 * R_a * d_n);
     
-    alpha_n = 1j * amplitude * phase_shift * gamma_prod;
+    alpha_n = 1j * amplitude * phase_shift * gamma_tot_n;
 end
 
 function reflected_point = reflectPointAcrossWall(point, wall_coordinates)

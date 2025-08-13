@@ -1,5 +1,5 @@
-%% V2V NARROWBAND CHANNEL SIMULATION - Parallelism Implementation
-% Parallelism Processing toolbox required
+    %% V2V NARROWBAND CHANNEL SIMULATION - Parallelism Implementation
+% Parallel Processing toolbox required
 clear; close all; clc;
 addpath('Functions');
 addpath('Functions/Plotting Functions');
@@ -30,9 +30,9 @@ PTX = params.PTX;
 sens_dBm = params.PRX_sens_dBm;
 lambda = params.lambda;
 
-M = 1;                      % Maximum number of reflections to consider
+M = 3;                      % Maximum number of reflections to consider
 w = 20;
-L = 10000e3;                % Length of wall in meters
+L = 1e6;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
 
 TX_pos = [0, 0];
@@ -51,7 +51,7 @@ fprintf('\nPerforming LOS analysis for d = %.1fm \n', d_fixed);
 
 if ~isempty(all_rays)
     LOS_ray = all_rays{1};
-    LOS_delay = LOS_ray.distance_total / params.c;
+    LOS_delay = LOS_ray.tau_n;
     h_nb_LOS = LOS_ray.alpha_n;
     
     % Calculate received power using the channel transfer function
@@ -68,11 +68,11 @@ end
 
 
 
-%% NARROWBAND PRX vs Distance and K-factor
+%% Full Channel - NARROWBAND
 fprintf('\nPerforming full multipath channel analysis\n');
 
 % Analyze MPCs for one distance
-fprintf('   - Analyzing MPCs for d = %.1fm\n', d_fixed);
+fprintf('   - Analyzing MPCs for d = %.1f m, M = %.0f reflections\n', d_fixed, M);
 [all_alphas, all_rays_local] = runRayTracing(walls, M, TX_pos, RX_pos, params);
 
 % Plot the ray paths for the distance
@@ -82,8 +82,8 @@ plotRays(walls, TX_pos, RX_pos, all_rays_local, M);
 % Display properties of each found ray
 for i = 1:length(all_rays_local)
     ray = all_rays_local{i};
-    fprintf('      * Ray %2d: Type = %-7s          d_%d = %7.2fm          |alpha_%d| = %.4e         arg(alpha_%2d) = %7.2f° \n', ... 
-        i, ray.type, i, ray.distance_total, i, abs(ray.alpha_n), i, rad2deg(angle(ray.alpha_n)));
+    fprintf('      * Ray %2d: Type = %-7s          d_%.2d = %1.2f m          tau_%.2d = %5.2f ns          theta_%.2d = %5.2f°          gamma_tot_%.2d = %9.2e          |alpha_%.2d| = %8.4e         arg(alpha_%.2d) = %8.2f° \n', ... 
+        i, ray.type, i, ray.distance_total, i, ray.tau_n*1e9, i, ray.theta_n, i, ray.gamma_tot_n, i, abs(ray.alpha_n), i, rad2deg(angle(ray.alpha_n)));
 end
 
 % Calculate total received power from all paths
@@ -93,6 +93,9 @@ PRX_total_dBm = 10 * log10(PRX_total * 1000);
 fprintf('\n   - Total Narrowband Gain at %.1fm: |h_NB| = %.3e\n', d_fixed, abs(h_nb_total));
 fprintf('   - Total Received Power at %.1fm: PRX = %.2fdBm\n', d_fixed, PRX_total_dBm);
 
+
+
+%% Full Channel - NARROWBAND PRX vs Distance and K-factor
 % Simulate over a range of distances
 fprintf('   - Simulating over distances\n');
 distance_domain = logspace(0, log10(L), 50000); % points from 1m to 10^

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  13 AUG 2025 14:12
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  13 AUG 2025 20:17
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -1644,6 +1644,78 @@ Package footmisc Info: Declaring symbol style lamport* on input line 744.
 Package footmisc Info: Declaring symbol style lamport*-robust on input line 765
 .
 )
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen335
+\lightrulewidth=\dimen336
+\cmidrulewidth=\dimen337
+\belowrulesep=\dimen338
+\belowbottomsep=\dimen339
+\aboverulesep=\dimen340
+\abovetopsep=\dimen341
+\cmidrulesep=\dimen342
+\cmidrulekern=\dimen343
+\defaultaddspace=\dimen344
+\@cmidla=\count498
+\@cmidlb=\count499
+\@aboverulesep=\dimen345
+\@belowrulesep=\dimen346
+\@thisruleclass=\count500
+\@lastruleclass=\count501
+\@thisrulewidth=\dimen347
+)
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/siunitx/siunitx.sty
+Package: siunitx 2024-11-19 v3.3.24 A comprehensive (SI) units package
+\l__siunitx_number_uncert_offset_int=\count502
+\l__siunitx_number_exponent_fixed_int=\count503
+\l__siunitx_number_min_decimal_int=\count504
+\l__siunitx_number_min_integer_int=\count505
+\l__siunitx_number_round_precision_int=\count506
+\l__siunitx_number_lower_threshold_int=\count507
+\l__siunitx_number_upper_threshold_int=\count508
+\l__siunitx_number_group_first_int=\count509
+\l__siunitx_number_group_size_int=\count510
+\l__siunitx_number_group_minimum_int=\count511
+\l__siunitx_angle_tmp_dim=\dimen348
+\l__siunitx_angle_marker_box=\box95
+\l__siunitx_angle_unit_box=\box96
+\l__siunitx_compound_count_int=\count512
+
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/translations/translatio
+ns.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
+ (CN)
+)
+\l__siunitx_table_tmp_box=\box97
+\l__siunitx_table_tmp_dim=\dimen349
+\l__siunitx_table_column_width_dim=\dimen350
+\l__siunitx_table_integer_box=\box98
+\l__siunitx_table_decimal_box=\box99
+\l__siunitx_table_uncert_box=\box100
+\l__siunitx_table_before_box=\box101
+\l__siunitx_table_after_box=\box102
+\l__siunitx_table_before_dim=\dimen351
+\l__siunitx_table_carry_dim=\dimen352
+\l__siunitx_unit_tmp_int=\count513
+\l__siunitx_unit_position_int=\count514
+\l__siunitx_unit_total_int=\count515
+)
+
+Package siunitx Info: Option "detect-all" has been deprecated in this release.
+(siunitx)             
+(siunitx)             Use "mode = match, propagate-math-font = true,
+(siunitx)             reset-math-version = false, reset-text-family = false,
+(siunitx)             reset-text-series = false, reset-text-shape = false,
+(siunitx)             text-family-to-math = true, text-series-to-math = true"
+(siunitx)             as a replacement.
+
+
+Package siunitx Info: Option "separate-uncertainty" has been deprecated in
+(siunitx)             this release.
+(siunitx)             
+(siunitx)             Use "uncertainty-mode = separate" as a replacement.
+
+
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/generic/pgf/frontendlayer/tik
 z/libraries/tikzlibraryshapes.geometric.code.tex
 File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -1660,26 +1732,26 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 ("./ELEC-H415 - Report - Cédric Sipakam.aux")
 \openout1 = ELEC-H415 - Report - Cédric Sipakam.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1719,31 +1791,23 @@ LaTeX Font Info:    ... okay on input line 10.
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count498
-\scratchdimen=\dimen335
-\scratchbox=\box95
-\nofMPsegments=\count499
-\nofMParguments=\count500
+\scratchcounter=\count516
+\scratchdimen=\dimen353
+\scratchbox=\box103
+\nofMPsegments=\count517
+\nofMParguments=\count518
 \everyMPshowfont=\toks62
-\MPscratchCnt=\count501
-\MPscratchDim=\dimen336
-\MPnumerator=\count502
-\makeMPintoPDFobject=\count503
+\MPscratchCnt=\count519
+\MPscratchDim=\dimen354
+\MPnumerator=\count520
+\makeMPintoPDFobject=\count521
 \everyMPtoPDFconversion=\toks63
 )
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-b
 ase.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-
-(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/grfext/grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sys.c
 fg
@@ -1774,84 +1838,92 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file '"ELEC-H415 - Report - Cédric Sipakam".bbl' fo
 und.
  ("./ELEC-H415 - Report - Cédric Sipakam.bbl")
-Package biblatex Info: Reference section=0 on input line 10.
-Package biblatex Info: Reference segment=0 on input line 10.
-\c@lstlisting=\count504
-Package hyperref Info: Link coloring ON on input line 10.
+Package biblatex Info: Reference section=0 on input line 16.
+Package biblatex Info: Reference segment=0 on input line 16.
+\c@lstlisting=\count522
+Package hyperref Info: Link coloring ON on input line 16.
 
 ("./ELEC-H415 - Report - Cédric Sipakam.out")
 ("./ELEC-H415 - Report - Cédric Sipakam.out")
 \@outlinefile=\write5
 
 \openout5 = ELEC-H415 - Report - Cédric Sipakam.out
-<Pictures/logos.jpg, id=126, 816.04875pt x 118.19156pt>
+
+(C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/translations/dicts/tran
+slations-basic-dictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `tra
+nslations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' f
+or `english'. on input line 16.
+<Pictures/logos.jpg, id=130, 816.04875pt x 118.19156pt>
 File: Pictures/logos.jpg Graphic file (type jpg)
 <use Pictures/logos.jpg>
-Package luatex.def Info: Pictures/logos.jpg  used on input line 19.
+Package luatex.def Info: Pictures/logos.jpg  used on input line 25.
 (luatex.def)             Requested size: 396.06015pt x 57.3625pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
 
  []
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-9.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
+5.
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-9.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+5.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-19.
+25.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-19.
+25.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 19.
+(Font)              <10.95> on input line 25.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 19.
+(Font)              <8> on input line 25.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 19.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
+(Font)              <6> on input line 25.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 25.
 
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
 
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 19
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 25
 .
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/jknappen/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+esint on input line 1
-9.
+LaTeX Font Info:    Trying to load font information for U+esint on input line 2
+5.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/esint/uesint.fd
 File: uesint.fd 
 )
 
-<Pictures/sceauULB.jpg, id=127, 1250.6725pt x 1250.6725pt>
+<Pictures/sceauULB.jpg, id=131, 1250.6725pt x 1250.6725pt>
 File: Pictures/sceauULB.jpg Graphic file (type jpg)
 <use Pictures/sceauULB.jpg>
-Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 19.
+Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 25.
 (luatex.def)             Requested size: 569.05688pt x 569.05688pt.
 [1
 
@@ -1896,7 +1968,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 ]
 Chapter 1.
-<content/4-images/ant-recep.png, id=210, 1251.92719pt x 503.63156pt>
+<content/4-images/ant-recep.png, id=218, 1251.92719pt x 503.63156pt>
 File: content/4-images/ant-recep.png Graphic file (type png)
 <use content/4-images/ant-recep.png>
 Package luatex.def Info: content/4-images/ant-recep.png  used on input line 9.
@@ -1907,7 +1979,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 10.
-<content/4-images/ant-trans.png, id=211, 1050.92625pt x 493.0922pt>
+<content/4-images/ant-trans.png, id=219, 1050.92625pt x 493.0922pt>
 File: content/4-images/ant-trans.png Graphic file (type png)
 <use content/4-images/ant-trans.png>
 Package luatex.def Info: content/4-images/ant-trans.png  used on input line 15.
@@ -1923,7 +1995,7 @@ Underfull \hbox (badness 3657) in paragraph at lines 16--16
 [4
 
 <./content/4-images/ant-recep.png><./content/4-images/ant-trans.png>]
-<content/4-images/axes.png, id=226, 789.70032pt x 664.73344pt>
+<content/4-images/axes.png, id=234, 789.70032pt x 664.73344pt>
 File: content/4-images/axes.png Graphic file (type png)
 <use content/4-images/axes.png>
 Package luatex.def Info: content/4-images/axes.png  used on input line 40.
@@ -1938,7 +2010,7 @@ Package luatex.def Info: content/4-images/axes.png  used on input line 40.
 
 [8]
 Chapter 2.
-<content/4-images/taps.png, id=294, 947.79094pt x 417.05812pt>
+<content/4-images/taps.png, id=302, 947.79094pt x 417.05812pt>
 File: content/4-images/taps.png Graphic file (type png)
 <use content/4-images/taps.png>
 Package luatex.def Info: content/4-images/taps.png  used on input line 15.
@@ -2014,7 +2086,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [15]
 Chapter 3.
-<content/4-images/image-method.png, id=395, 2647.8925pt x 1614.03pt>
+<content/4-images/image-method.png, id=403, 2647.8925pt x 1614.03pt>
 File: content/4-images/image-method.png Graphic file (type png)
 <use content/4-images/image-method.png>
 Package luatex.def Info: content/4-images/image-method.png  used on input line 
@@ -2040,7 +2112,7 @@ on-ment us-ing \T1/lmtt/m/n/10.95 findSymmetricAcrossLine\T1/lmr/m/n/10.95 ,
 [18]
 
 [19]
-<content/4-images/ray-tracing-10-reflections.png, id=434, 1046.4696pt x 583.941
+<content/4-images/ray-tracing-10-reflections.png, id=442, 1046.4696pt x 583.941
 6pt>
 File: content/4-images/ray-tracing-10-reflections.png Graphic file (type png)
 <use content/4-images/ray-tracing-10-reflections.png>
@@ -2050,55 +2122,60 @@ on input line 199.
 
 
 [20]
-
-[21<./content/4-images/ray-tracing-10-reflections.png>]
-<content/4-images/PRX-vs-PTX.png, id=456, 1051.2876pt x 585.8688pt>
-File: content/4-images/PRX-vs-PTX.png Graphic file (type png)
-<use content/4-images/PRX-vs-PTX.png>
-Package luatex.def Info: content/4-images/PRX-vs-PTX.png  used on input line 24
-7.
-(luatex.def)             Requested size: 455.24411pt x 253.69766pt.
-<content/4-images/PRX-vs-Friis.png, id=458, 1053.6966pt x 589.2414pt>
-File: content/4-images/PRX-vs-Friis.png Graphic file (type png)
-<use content/4-images/PRX-vs-Friis.png>
-Package luatex.def Info: content/4-images/PRX-vs-Friis.png  used on input line 
-264.
-(luatex.def)             Requested size: 455.24411pt x 254.57365pt.
+Overfull \hbox (26.14398pt too wide) in paragraph at lines 231--250
+ [][] 
+ []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
+[21<./content/4-images/ray-tracing-10-reflections.png>]
+<content/4-images/PRX-vs-PTX.png, id=464, 1051.2876pt x 585.8688pt>
+File: content/4-images/PRX-vs-PTX.png Graphic file (type png)
+<use content/4-images/PRX-vs-PTX.png>
+Package luatex.def Info: content/4-images/PRX-vs-PTX.png  used on input line 27
+2.
+(luatex.def)             Requested size: 455.24411pt x 253.69766pt.
+
+
 [22<./content/4-images/PRX-vs-PTX.png>]
+<content/4-images/PRX-vs-Friis.png, id=471, 1053.6966pt x 589.2414pt>
+File: content/4-images/PRX-vs-Friis.png Graphic file (type png)
+<use content/4-images/PRX-vs-Friis.png>
+Package luatex.def Info: content/4-images/PRX-vs-Friis.png  used on input line 
+289.
+(luatex.def)             Requested size: 455.24411pt x 254.57365pt.
+
 
 [23<./content/4-images/PRX-vs-Friis.png>]
-<content/4-images/k-factor.png, id=473, 1038.7608pt x 657.657pt>
+<content/4-images/k-factor.png, id=478, 1038.7608pt x 657.657pt>
 File: content/4-images/k-factor.png Graphic file (type png)
 <use content/4-images/k-factor.png>
-Package luatex.def Info: content/4-images/k-factor.png  used on input line 299.
+Package luatex.def Info: content/4-images/k-factor.png  used on input line 324.
 
 (luatex.def)             Requested size: 455.24411pt x 288.21594pt.
 
 
-[24<./content/4-images/k-factor.png>]
+[24]
 
-[25]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 379.
-
+[25<./content/4-images/k-factor.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sigma' on input line 379.
+(hyperref)                removing `math shift' on input line 404.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 379.
+(hyperref)                removing `\sigma' on input line 404.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 379.
+(hyperref)                removing `subscript' on input line 404.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 404.
 
 
 
@@ -2114,10 +2191,10 @@ on input line 2.
 ) (./content/1-project/5-full-wide.tex) (./content/1-project/6-further.tex)
 (./content/1-project/7-conclu.tex)
 
-Package biblatex Warning: Type 'article' not found on input line 35.
+Package biblatex Warning: Type 'article' not found on input line 41.
 
 
-LaTeX Warning: Empty bibliography on input line 35.
+LaTeX Warning: Empty bibliography on input line 41.
 
 
 
@@ -2145,15 +2222,15 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 54343 strings out of 475664
- 125165,2373549 words of node,token memory allocated
+ 58098 strings out of 475664
+ 125165,2848258 words of node,token memory allocated
  2509 words of node memory still in use:
    32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 436 attribute, 72 glue_s
 pec, 256 attribute_list, 3 write, 24 pdf_literal, 7 pdf_action, 24 pdf_colorstac
 k nodes
-   avail lists: 1:4,2:4069,3:1365,4:168,5:694,6:70,7:5494,8:95,9:1591,10:10,11:3
-91
- 75583 multiletter control sequences out of 65536+600000
+   avail lists: 1:5,2:4069,3:1365,4:176,5:694,6:73,7:5494,8:95,9:1591,10:10,11:3
+82
+ 79322 multiletter control sequences out of 65536+600000
  95 fonts using 6060167 bytes
  99i,16n,108p,1214b,1924s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/U
@@ -2182,10 +2259,10 @@ s/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (29 pages, 2064915 by
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (29 pages, 2074705 by
 tes).
 
-PDF statistics: 596 PDF objects out of 1000 (max. 8388607)
- 183 named destinations out of 1000 (max. 131072)
- 434 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 602 PDF objects out of 1000 (max. 8388607)
+ 184 named destinations out of 1000 (max. 131072)
+ 442 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -13,7 +13,7 @@ function [all_alphas, all_rays_data] = runRayTracing(walls, M, tx_pos, RX_pos, p
 % OUTPUTS:
 %   all_alphas           - 1xN complex vector of channel gains for the N found rays.
 %   all_rays_data        - 1xN cell array of structs, each with detailed ray info.
-
+    
     all_rays_data = {};
 
     % LOS PATH CALCULATION
@@ -31,7 +31,9 @@ function [all_alphas, all_rays_data] = runRayTracing(walls, M, tx_pos, RX_pos, p
         los_ray.coordinates = [tx_pos; RX_pos];
         los_ray.type = 'LOS';
         los_ray.distance_total = norm(RX_pos - tx_pos);
-        los_ray.gamma_prod = 1;                                                 % Reflection coefficient product is 1 for LOS.
+        los_ray.tau_n =  los_ray.distance_total / params.c;
+        los_ray.theta_n = 0;
+        los_ray.gamma_tot_n = 1;                                                 % Reflection coefficient product is 1 for LOS.
         los_ray.alpha_n = calculateAlpha_n(los_ray, params);
         all_rays_data{end+1} = los_ray;
     end
