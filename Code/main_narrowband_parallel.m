@@ -1,4 +1,5 @@
-%% V2V NARROWBAND CHANNEL SIMULATION - Parrallelism application for speed
+%% V2V NARROWBAND CHANNEL SIMULATION - Parallelism Implementation
+% Parallelism Processing toolbox required
 clear; close all; clc;
 addpath('Functions');
 addpath('Functions/Plotting Functions');
@@ -38,17 +39,18 @@ TX_pos = [0, 0];
 walls(1).coordinates = [[0, w/2];  [L, w/2]];  walls(1).eps_r = eps_r;
 walls(2).coordinates = [[0, -w/2]; [L, -w/2]];  walls(2).eps_r = eps_r;
 
-
-%% NARROWBAND LOS ANALYSIS
-d_fixed = 120;
+d_fixed = 100;
 RX_pos = [d_fixed, 0];
 
+
+%% NARROWBAND LOS ANALYSIS
+
 % Run ray tracing for LOS path : M = 0
-[~, LOS_rays_data] = runRayTracing(walls, 0, TX_pos, RX_pos, params);
+[~, all_rays] = runRayTracing(walls, 0, TX_pos, RX_pos, params);
 fprintf('\nPerforming LOS analysis for d = %.1fm \n', d_fixed);
 
-if ~isempty(LOS_rays_data)
-    LOS_ray = LOS_rays_data{1};
+if ~isempty(all_rays)
+    LOS_ray = all_rays{1};
     LOS_delay = LOS_ray.distance_total / params.c;
     h_nb_LOS = LOS_ray.alpha_n;
     
@@ -58,7 +60,7 @@ if ~isempty(LOS_rays_data)
     
     fprintf('   - For d = %.1fm:\n', d_fixed);
     fprintf('      * tau_LOS = %.3es\n', LOS_delay);
-    fprintf('      * Narrowband Gain |h_NB_LOS| = %.3e, Angle = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
+    fprintf('      * Narrowband Gain |h_NB_LOS| = %.3e, arg(h_NB_LOS) = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
     fprintf('      * PRX_LOS: %.2fdBm\n', PRX_LOS_dBm);
 else
     fprintf('   - No LOS path found for d = %.1fm.\n', d_fixed);
@@ -224,7 +226,7 @@ plotPRXvsPTX(PTX_dBm_domain, PRX_total_dBm_domain, PRX_LOS_dBm_domain);
 fprintf('\nFitting Path Loss Model\n');
 
 % Define simulation parameters for path loss analysis
-d_samp = 0.01;      % Sampling interval for averaging
+d_samp = 0.01;   % Sampling interval
 d_local = 5.0;   % Must be greater than d_samp
 d0 = 1;          % Reference distance for the model
 

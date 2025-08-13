@@ -24,3 +24,4 @@
 \contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{26}{section.3.6}%
 \contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{26}{section.3.7}%
 \contentsline {section}{\numberline {3.8}Interpretation of Results}{26}{section.3.8}%
+\contentsline {section}{\numberline {3.9}LOS Channel - Wideband analysis}{27}{section.3.9}%

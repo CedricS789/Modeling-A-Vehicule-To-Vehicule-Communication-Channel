@@ -1,4 +1,4 @@
-%% V2V NARROWBAND CHANNEL SIMULATION - Parrallelism application for speed
+%% V2V NARROWBAND CHANNEL SIMULATION
 clear; close all; clc;
 addpath('Functions');
 addpath('Functions/Plotting Functions');
@@ -29,7 +29,7 @@ PTX = params.PTX;
 sens_dBm = params.PRX_sens_dBm;
 lambda = params.lambda;
 
-M = 1;                     % Maximum number of reflections to consider
+M = 1;                      % Maximum number of reflections to consider
 w = 20;
 L = 10000e3;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
@@ -38,10 +38,11 @@ TX_pos = [0, 0];
 walls(1).coordinates = [[0, w/2];  [L, w/2]];  walls(1).eps_r = eps_r;
 walls(2).coordinates = [[0, -w/2]; [L, -w/2]];  walls(2).eps_r = eps_r;
 
+d_fixed = 100;
+RX_pos = [d_fixed, 0];
+
 
 %% NARROWBAND LOS ANALYSIS
-d_fixed = 120;
-RX_pos = [d_fixed, 0];
 
 % Run ray tracing for LOS path : M = 0
 [~, LOS_rays_data] = runRayTracing(walls, 0, TX_pos, RX_pos, params);
@@ -58,7 +59,7 @@ if ~isempty(LOS_rays_data)
     
     fprintf('   - For d = %.1fm:\n', d_fixed);
     fprintf('      * tau_LOS = %.3es\n', LOS_delay);
-    fprintf('      * Narrowband Gain |h_NB_LOS| = %.3e, Angle = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
+    fprintf('      * Narrowband Gain |h_NB_LOS| = %.3e, arg(h_NB_LOS) = %.2f°\n', abs(h_nb_LOS), rad2deg(angle(h_nb_LOS)));
     fprintf('      * PRX_LOS: %.2fdBm\n', PRX_LOS_dBm);
 else
     fprintf('   - No LOS path found for d = %.1fm.\n', d_fixed);
@@ -71,15 +72,15 @@ fprintf('\nPerforming full multipath channel analysis\n');
 
 % Analyze MPCs for one distance
 fprintf('   - Analyzing MPCs for d = %.1fm\n', d_fixed);
-[all_alphas, all_rays] = runRayTracing(walls, M, TX_pos, RX_pos, params);
+[all_alphas, all_rays_local] = runRayTracing(walls, M, TX_pos, RX_pos, params);
 
 % Plot the ray paths for the distance
 fprintf('   - Plotting ray-tracing visualization\n');
-plotRays(walls, TX_pos, RX_pos, all_rays, M);
+plotRays(walls, TX_pos, RX_pos, all_rays_local, M);
 
 % Display properties of each found ray
-for i = 1:length(all_rays)
-    ray = all_rays{i};
+for i = 1:length(all_rays_local)
+    ray = all_rays_local{i};
     fprintf('      * Ray %2d: Type = %-7s          d_%d = %7.2fm          |alpha_%d| = %.4e         arg(alpha_%2d) = %7.2f° \n', ... 
         i, ray.type, i, ray.distance_total, i, abs(ray.alpha_n), i, rad2deg(angle(ray.alpha_n)));
 end
@@ -108,7 +109,7 @@ parfor i = 1:length(distance_domain)
     d_i = distance_domain(i);
     current_tx_pos = [0, 0];
     current_RX_pos = [d_i, 0];
-    [all_alphas, all_rays] = runRayTracing(walls, M, current_tx_pos, current_RX_pos, params);
+    [all_alphas, all_rays_local] = runRayTracing(walls, M, current_tx_pos, current_RX_pos, params);
     if isempty(all_alphas)
         PRX_total_dBm_domain(i) = -Inf;
         PRX_LOS_dBm_domain(i) = -Inf;
@@ -123,7 +124,7 @@ parfor i = 1:length(distance_domain)
     PRX_total_dBm_domain(i) = 10 * log10(PRX_total * 1000);
     
     % Use logical indexing to separate LOS and NLOS components
-    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays);
+    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays_local);
  
     alpha_LOS = all_alphas(isLOS);
 
@@ -170,13 +171,13 @@ RX_pos = [d_fixed, 0];
 fprintf('   - Simulating for a fixed distance d = %.1fm\n', d_fixed);
 
 % Calculate the channel transfer function just once for this fixed geometry.
-[all_alphas, all_rays] = runRayTracing(walls, M, TX_pos, RX_pos, params);
+[all_alphas, all_rays_local] = runRayTracing(walls, M, TX_pos, RX_pos, params);
 
 % Calculate the total channel transfer function from all paths
 h_nb_total = sum(all_alphas);
 
 % Find the LOS-only channel transfer function using logical indexing
-isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays);
+isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays_local);
 alpha_LOS = all_alphas(isLOS);
 if isempty(alpha_LOS)
     alpha_LOS = 0; % Handle case where no LOS path is found
@@ -224,12 +225,12 @@ plotPRXvsPTX(PTX_dBm_domain, PRX_total_dBm_domain, PRX_LOS_dBm_domain);
 fprintf('\nFitting Path Loss Model\n');
 
 % Define simulation parameters for path loss analysis
-d_samp = 0.01;      % Sampling interval for averaging
+d_samp = 0.01;   % Sampling interval
 d_local = 5.0;   % Must be greater than d_samp
 d0 = 1;          % Reference distance for the model
 
 % Define the distance range for the final path loss model
-x_start_model = TX_pos(1) + 50;
+x_start_model = TX_pos(1) + 2 * d_local;
 x_end_model   = 10000;
 
 % Create a padded domain for simulation to ensure correct convolution at edges
@@ -256,17 +257,18 @@ parfor i = 1:length(distance_domain_padded)
     RX_pos_local = [d_i, 0];
     
     % Run ray tracing for this sample point
-    [all_alphas_local, all_rays] = runRayTracing(walls, M, [0,0], RX_pos_local, params);
+    [all_alphas_local, all_rays_local] = runRayTracing(walls, M, [0,0], RX_pos_local, params);
     
-    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays);
+    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays_local);
  
     alpha_LOS = all_alphas_local(isLOS);
 
-    if isempty(alpha_LOS)
-        alpha_LOS = 0; 
-    end % Ensure alpha_LOS is not empty if no LOS path exists
-    
-    PRX_Friis(i) = PTX * sum(abs(alpha_LOS).^2); 
+    if ~isempty(alpha_LOS)
+        PRX_Friis(i) = PTX * sum(abs(alpha_LOS).^2);
+    else
+        PRX_Friis(i) = 0; 
+    end
+     
 
     if ~isempty(all_alphas_local)
         h_nb_local = sum(all_alphas_local);
@@ -296,13 +298,16 @@ fprintf('      * Convolution took %.2f seconds.\n', toc);
 % Select only the valid, non-padded data for the model
 valid_indices = find(distance_domain_padded >= x_start_model & distance_domain_padded <= x_end_model);
 distance_domain_model = distance_domain_padded(valid_indices);
+
 PRX_avg_model = PRX_avg(valid_indices);
+PRX_Friis_model = PRX_Friis(valid_indices);
 
 PRX_dBm = 10 * log10(PRX * 1000);
+PRX_Friis_model_dBm = 10 * log10(PRX_Friis_model * 1000);
 PRX_avg_model_dBm = 10 * log10(PRX_avg_model * 1000);
 
 % Call the dedicated function with the CORRECT data
-[n, L0_d0, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, distance_domain_model, PRX_avg_model_dBm, params, d0);
+[n, L0_d0, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, distance_domain_model, PRX_Friis_model_dBm, PRX_avg_model_dBm, params, d0);
 
 
 
@@ -311,12 +316,12 @@ fprintf('\nGenerating 2D coverage heatmap and local averages\n');
 TX_pos     = [10, 0];
 
 x_start_model    = -20;
-x_end_model      = 500;
+x_end_model      = 400;
 
 y_start    = -w/2-30;
 y_end      = w/2+30;
 
-d_samp     = 0.5;
+d_samp     = 0.05;
 d_local    = 5.0;  % Cannot be smaller than d_samp
 
 fprintf('   - Generating %.1fm x %.1fm grid with %.1fm sampling interval\n', ...
@@ -332,11 +337,11 @@ PRX_dBm = zeros(num_y_points, num_x_points);
 fprintf('      * Generating Heatmap and Averaged Power Data \n');
 
 % Progress bar setup
-queue_2 = parallel.pool.DataQueue;
+queue_hm = parallel.pool.DataQueue;
 num_iterations = num_x_points;
-waitbar_2 = waitbar(0, '2D Heatmap');
-set(waitbar_2, 'UserData', 0);
-afterEach(queue_2, @(~) updateWaitbar(waitbar_2, num_iterations, '2D Heatmap'));
+waitbar_hm = waitbar(0, '2D Heatmap');
+set(waitbar_hm, 'UserData', 0);
+afterEach(queue_hm, @(~) updateWaitbar(waitbar_hm, num_iterations, '2D Heatmap'));
 
 tic;
 % First, calculate the instantaneous power P_RX for the entire grid
@@ -372,8 +377,8 @@ parfor i = 1:num_x_points
     PRX_dBm(:, i) = temp_PRX_dBm_col;
 
     % Send a message to the queue to update the progress bar
-    if ~isempty(queue_2)
-        send(queue_2, 1);
+    if ~isempty(queue_hm)
+        send(queue_hm, 1);
     end
 end
 
@@ -393,8 +398,8 @@ PRX_avg_dBm(PRX_avg_model == 0) = -Inf;
 fprintf('      * Data generation took %.2f seconds.\n', toc);
 
 % Cleanup waitbar
-if exist('waitbar_2', 'var') && ishandle(waitbar_2)
-    close(waitbar_2);
+if exist('waitbar_hm', 'var') && ishandle(waitbar_hm)
+    close(waitbar_hm);
 end
 
 % Plotting Results
