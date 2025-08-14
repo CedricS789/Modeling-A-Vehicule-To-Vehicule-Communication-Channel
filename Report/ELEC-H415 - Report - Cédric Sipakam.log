@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  14 AUG 2025 19:15
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  14 AUG 2025 19:37
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -2199,14 +2199,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [27<./content/4-images/Instantaneous vs average M=10.png>]
 
 [28]
-Overfull \hbox (34.07707pt too wide) in paragraph at lines 478--480
-\T1/lmr/m/n/10.95 Us-ing the path loss ex-po-nent $\OML/lmm/m/it/10.95 n \OT1/l
-mr/m/n/10.95 = 1\OML/lmm/m/it/10.95 :\OT1/lmr/m/n/10.95 56$\T1/lmr/m/n/10.95 , 
-the shad-ow-ing stan-dard de-vi-a-tion $\OML/lmm/m/it/10.95 [] \OT1/lmr/m/n/10
-.95 = []$\T1/lmr/m/n/10.95 ,
- []
-
-
 
 [29]) (./content/1-project/4-los-wide.tex
 
@@ -2251,7 +2243,7 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 58155 strings out of 475664
+ 58153 strings out of 475664
  125165,2848258 words of node,token memory allocated
  2629 words of node memory still in use:
    32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 476 attribute, 72 glue_s
@@ -2259,8 +2251,8 @@ pec, 276 attribute_list, 3 write, 24 pdf_literal, 7 pdf_action, 24 pdf_colorstac
 k nodes
    avail lists: 1:5,2:2045,3:962,4:176,5:694,6:73,7:5193,8:95,9:1591,10:11,11:37
 8
- 79354 multiletter control sequences out of 65536+600000
- 98 fonts using 6305647 bytes
+ 79352 multiletter control sequences out of 65536+600000
+ 96 fonts using 6142847 bytes
  99i,16n,108p,1214b,1924s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/U
 sers/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users
@@ -2288,7 +2280,7 @@ s/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (32 pages, 2529274 by
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (32 pages, 2528944 by
 tes).
 
 PDF statistics: 640 PDF objects out of 1000 (max. 8388607)

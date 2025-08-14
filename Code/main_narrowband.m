@@ -32,7 +32,7 @@ lambda = params.lambda;
 
 M = 10;                      % Maximum number of reflections to consider
 w = 20;
-L = 10;                % Length of wall in meters
+L = 100;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
 
 TX_pos = [0, 0];

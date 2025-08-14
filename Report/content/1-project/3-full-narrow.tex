@@ -425,21 +425,19 @@ The shadowing standard deviation $\sigma_L$, quantifies the variation of the act
 	\implies \boxed{\sigma_L = 3.01 \mathrm{dB}} \quad \text{(for $M = 10$ reflections)}
 \end{equation}
 
-for $M = 10 $reflections : 
-
 
 \section{Fade Margin and Cell Range}
 The path loss model provides the large-scale averaged received power, $\ll P_{RX} \gg$. However, the local-area average power, $<P_{RX}>$, still fluctuates around this value due to shadowing. This phenomenon is modeled by considering $<P_{RX}>$ in dBm as a random variable following a normal distribution around $\ll P_{RX} \gg$ in dBm. The shadowing loss, $L_{\sigma_L}$, is therefore a zero-mean Gaussian random variable with a standard deviation of $\sigma_L$ dB. To ensure reliable communication, a margin must be designed to counteract these random power drops.
 
-The reliability of the system is the probability that the local-area average received power, $<P_{RX}>$, exceeds the receiver's sensitivity, which is the minimum required power threshold, $P_{RX_{sens}} = -70$dBm.
+The reliability of the system is the probability that the local-area average received power, $<P_{RX}>$, exceeds the receiver's sensitivity, which is the minimum required power threshold, $P_{RX,{sens}} = -70$dBm.
 \begin{equation}
-	\text{Reliability} = \Pr(<P_{RX}> \hspace{0.2em} \text{greater than} \hspace{0.2em} P_{RX_{sens}})
+	\text{Reliability} = \Pr(<P_{RX}> \hspace{0.2em} \text{greater than} \hspace{0.2em} P_{RX,{sens}})
 \end{equation}
 This condition can be expressed in terms of path loss. The total path loss experienced is the sum of the deterministic path loss from the model, $L(d)$, and the random shadowing loss, $L_{\sigma_L}$. For a successful connection, this sum must be less than the maximum allowed path loss, $L_{max}$, determined by the transmitter power and receiver sensitivity.
 \begin{equation}
-	L(d) + L_{\sigma_L} < L_{max} \quad \text{where} \quad L_{max} = P_{TX}[\text{dBm}] - P_{RX_{sens}}[\text{dBm}]
+	L(d) + L_{\sigma_L} < L_{max} \quad \text{where} \quad L_{max} = P_{TX}[\text{dBm}] - P_{RX,{sens}}[\text{dBm}]
 \end{equation}
-To guarantee a specific reliability at the cell edge (range $R$), a \textbf{fade margin}, $M$, is introduced. This margin dictates that the deterministic path loss at the cell edge must be less than the maximum allowed path loss.
+To guarantee a specific reliability at the cell edge (range $R$), a {fade margin}, $M$, is introduced. This margin dictates that the deterministic path loss at the cell edge must be less than the maximum allowed path loss.
 \begin{equation}
 	L(R) = L_{max} - M
 \end{equation}
@@ -458,7 +456,7 @@ The reliability is $1 - \text{Outage Probability}$. The required fade margin $M$
 \end{equation}
 Once $M$ is determined, the maximum allowable antenna-independent path loss, $L_{0,max}$, can be calculated by removing the antenna gains from the total maximum path loss:
 \begin{align}
-	L_{0,max} &= (P_{TX}[\text{dBm}] - P_{RX_{sens}}[\text{dBm}] - M) + 10 \log_{10} G_{TX} + 10 \log_{10} G_{RX} \\
+	L_{0,max} &= (P_{TX}[\text{dBm}] - P_{RX,{sens}}[\text{dBm}] - M) + 10 \log_{10} G_{TX} + 10 \log_{10} G_{RX} \\
 	&= (20 \text{ dBm} - (-70 \text{ dBm}) - M) + 2.15 \text{ dBi} + 2.15 \text{ dBi} \\
 	&= (90 - M) \text{ dB} + 4.3 \text{ dB} \\
 \end{align}
@@ -474,21 +472,23 @@ Finally, the cell range $R$ is found by setting the fitted canonical path loss m
 Solving for the cell range $R$ gives:
 \begin{equation}
 	\label{eq:cell_range_R}
-	R = d_0 \cdot 10^{\frac{L_{0,max} - L_0(d_0)}{10n}}
+	R = d_0 \cdot 10^{\frac{90.3 - M - L_0(d_0)}{10n}}
 \end{equation}
-Using the path loss exponent $n = 1.56$, the shadowing standard deviation $\sigma_L = \texttt{[calculated\_sigma\_L]}$, and the other system parameters, the fade margins and corresponding cell ranges are calculated for target reliabilities of 50\%, 95\%, and 99\%.
+Using the path loss exponent $n = 1.56$, the shadowing standard deviation $\sigma_L = 1.56\,\mathrm{dB}$, and the other system parameters, the fade margins and corresponding cell ranges are calculated for target reliabilities of 50\%, 95\%, and 99\%.
 
 \begin{table}[h!]
 	\centering
 	\caption{Fade margin and cell range for target reliabilities (M=10 reflections).}
 	\label{tab:fade_margin_range}
 	\vspace{0.3em}
-	\begin{tabular}{lcc}
+	\begin{tabular}{|c|c|c|}
 		\hline
-		\textbf{Reliability} & \textbf{Fade Margin $M$ [dB]} & \textbf{Cell Range $R$ [m]} \\
+		{Reliability} & {Fade Margin $M$ [dB]} & {Cell Range $R$ [m]} \\
 		\hline
 		50\% & 0.00 & \texttt{[R\_50]} \\
+		\hline
 		95\% & \texttt{[M\_95]} & \texttt{[R\_95]} \\
+		\hline
 		99\% & \texttt{[M\_99]} & \texttt{[R\_99]} \\
 		\hline
 	\end{tabular}
@@ -499,9 +499,9 @@ Using the path loss exponent $n = 1.56$, the shadowing standard deviation $\sigm
 \section{Interpretation of Results}
 The introduction of reflections from buildings fundamentally changes the channel behavior compared to the simple LOS case.
 \begin{itemize}
-	\item \textbf{Multiray Fading:} The total received power is no longer a monotonic function of distance. The vector sum of the MPCs creates an interference pattern, causing rapid and deep fluctuations in signal strength (fading) as the distance $d$ changes. This is a critical feature of real-world urban channels.
+	\item \textbf{Multiray Fading:} The total received power is no longer a monotonic function of distance. The vector sum of the MPCs creates an interference pattern, causing rapid and deep fluctuations in signal strength, a.k.a fading as the distance $d$ changes. 
 	\item \textbf{Rician K-factor:} The K-factor provides a quantitative measure of the channel's nature. For short distances $d$, the LOS ray is much stronger than the reflected rays, resulting in a high K-factor and a Rician-like distribution with moderate fading. As $d$ increases, the LOS power decreases, and the reflected rays become relatively more significant, lowering the K-factor and making the channel behave more like a Rayleigh fading channel.
-	\item \textbf{path loss Exponent:} The path loss exponent $n$ derived from the averaged power will likely be greater than 2 (the free-space value). This is because the multiray environment tends to confine the energy, creating a "waveguide" effect that can alter the rate of power decay with distance.
+	
 	\item \textbf{Fade Margin and Reliability:} The variability $\sigma_L$ necessitates a fade margin to ensure reliable communication. A higher desired reliability (e.g., 99\% vs. 95\%) requires a larger fade margin, which in turn reduces the maximum communication range for the system. This highlights the trade-off between reliability and coverage in a fading channel.
 \end{itemize}
 
