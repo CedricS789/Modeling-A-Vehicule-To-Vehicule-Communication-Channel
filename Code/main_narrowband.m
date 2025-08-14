@@ -17,12 +17,12 @@ end
 fprintf('Defining simulation parameters\n');
 params.fc = 5.9e9;
 params.c = 3e8;
-params.Z_0 = 377;
-params.R_a = 73.1;
+params.Z0 = 377;
+params.Ra = 73.1;
 params.PTX = 0.1; 
 params.PRX_sens_dBm = -1000;
 params.PTX_dBm = 10 * log10(params.PTX * 1000);
-params.Gain = params.Z_0 / (pi * params.R_a);
+params.Gain = params.Z0 / (pi * params.Ra);
 params.G_dBi = 10 * log10(params.Gain);
 params.lambda = params.c / params.fc;
 
