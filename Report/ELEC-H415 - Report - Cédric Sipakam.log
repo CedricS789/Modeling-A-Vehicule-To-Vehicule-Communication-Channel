@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  13 AUG 2025 22:23
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  14 AUG 2025 19:15
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -1968,7 +1968,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 ]
 Chapter 1.
-<content/4-images/ant-recep.png, id=226, 1251.92719pt x 503.63156pt>
+<content/4-images/ant-recep.png, id=225, 1251.92719pt x 503.63156pt>
 File: content/4-images/ant-recep.png Graphic file (type png)
 <use content/4-images/ant-recep.png>
 Package luatex.def Info: content/4-images/ant-recep.png  used on input line 9.
@@ -1979,7 +1979,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 10.
-<content/4-images/ant-trans.png, id=227, 1050.92625pt x 493.0922pt>
+<content/4-images/ant-trans.png, id=226, 1050.92625pt x 493.0922pt>
 File: content/4-images/ant-trans.png Graphic file (type png)
 <use content/4-images/ant-trans.png>
 Package luatex.def Info: content/4-images/ant-trans.png  used on input line 15.
@@ -1995,7 +1995,7 @@ Underfull \hbox (badness 3657) in paragraph at lines 16--16
 [4
 
 <./content/4-images/ant-recep.png><./content/4-images/ant-trans.png>]
-<content/4-images/axes.png, id=242, 789.70032pt x 664.73344pt>
+<content/4-images/axes.png, id=241, 789.70032pt x 664.73344pt>
 File: content/4-images/axes.png Graphic file (type png)
 <use content/4-images/axes.png>
 Package luatex.def Info: content/4-images/axes.png  used on input line 40.
@@ -2010,7 +2010,7 @@ Package luatex.def Info: content/4-images/axes.png  used on input line 40.
 
 [8]
 Chapter 2.
-<content/4-images/taps.png, id=309, 947.79094pt x 417.05812pt>
+<content/4-images/taps.png, id=308, 947.79094pt x 417.05812pt>
 File: content/4-images/taps.png Graphic file (type png)
 <use content/4-images/taps.png>
 Package luatex.def Info: content/4-images/taps.png  used on input line 15.
@@ -2086,7 +2086,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [15]
 Chapter 3.
-<content/4-images/image-method.png, id=410, 2647.8925pt x 1614.03pt>
+<content/4-images/image-method.png, id=409, 2647.8925pt x 1614.03pt>
 File: content/4-images/image-method.png Graphic file (type png)
 <use content/4-images/image-method.png>
 Package luatex.def Info: content/4-images/image-method.png  used on input line 
@@ -2111,7 +2111,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 72--73
 [18]
 
 [19]
-<content/4-images/ray-tracing-10-reflections.png, id=448, 1046.4696pt x 583.941
+<content/4-images/ray-tracing-10-reflections.png, id=447, 1046.4696pt x 583.941
 6pt>
 File: content/4-images/ray-tracing-10-reflections.png Graphic file (type png)
 <use content/4-images/ray-tracing-10-reflections.png>
@@ -2131,7 +2131,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 [21<./content/4-images/ray-tracing-10-reflections.png>]
-<content/4-images/PRX-vs-PTX.png, id=471, 1051.2876pt x 585.8688pt>
+<content/4-images/PRX-vs-PTX.png, id=470, 1051.2876pt x 585.8688pt>
 File: content/4-images/PRX-vs-PTX.png Graphic file (type png)
 <use content/4-images/PRX-vs-PTX.png>
 Package luatex.def Info: content/4-images/PRX-vs-PTX.png  used on input line 27
@@ -2140,7 +2140,7 @@ Package luatex.def Info: content/4-images/PRX-vs-PTX.png  used on input line 27
 
 
 [22<./content/4-images/PRX-vs-PTX.png>]
-<content/4-images/PRX-vs-Friis.png, id=478, 1053.6966pt x 589.2414pt>
+<content/4-images/PRX-vs-Friis.png, id=477, 1053.6966pt x 589.2414pt>
 File: content/4-images/PRX-vs-Friis.png Graphic file (type png)
 <use content/4-images/PRX-vs-Friis.png>
 Package luatex.def Info: content/4-images/PRX-vs-Friis.png  used on input line 
@@ -2149,7 +2149,7 @@ Package luatex.def Info: content/4-images/PRX-vs-Friis.png  used on input line
 
 
 [23<./content/4-images/PRX-vs-Friis.png>]
-<content/4-images/k-factor.png, id=485, 1038.7608pt x 657.657pt>
+<content/4-images/k-factor.png, id=484, 1038.7608pt x 657.657pt>
 File: content/4-images/k-factor.png Graphic file (type png)
 <use content/4-images/k-factor.png>
 Package luatex.def Info: content/4-images/k-factor.png  used on input line 325.
@@ -2160,21 +2160,21 @@ Package luatex.def Info: content/4-images/k-factor.png  used on input line 325.
 [24]
 
 [25<./content/4-images/k-factor.png>]
-<content/4-images/Path Loss Model Fit M=10.png, id=508, 1047.915pt x 586.8324pt
+<content/4-images/Path Loss Model Fit M=10.png, id=507, 1047.915pt x 586.8324pt
 >
 File: content/4-images/Path Loss Model Fit M=10.png Graphic file (type png)
 <use content/4-images/Path Loss Model Fit M=10.png>
 Package luatex.def Info: content/4-images/Path Loss Model Fit M=10.png  used on
  input line 397.
 (luatex.def)             Requested size: 455.24411pt x 254.92976pt.
-<content/4-images/Instantaneous vs average M=10.png, id=509, 1051.2876pt x 586.
-8324pt>
+<content/4-images/Instantaneous vs average M=10.png, id=508, 1050.324pt x 586.8
+324pt>
 File: content/4-images/Instantaneous vs average M=10.png Graphic file (type png
 )
 <use content/4-images/Instantaneous vs average M=10.png>
 Package luatex.def Info: content/4-images/Instantaneous vs average M=10.png  us
 ed on input line 405.
-(luatex.def)             Requested size: 455.24411pt x 254.11491pt.
+(luatex.def)             Requested size: 455.24411pt x 254.34773pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2198,13 +2198,23 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [27<./content/4-images/Instantaneous vs average M=10.png>]
 
-[28]) (./content/1-project/4-los-wide.tex
+[28]
+Overfull \hbox (34.07707pt too wide) in paragraph at lines 478--480
+\T1/lmr/m/n/10.95 Us-ing the path loss ex-po-nent $\OML/lmm/m/it/10.95 n \OT1/l
+mr/m/n/10.95 = 1\OML/lmm/m/it/10.95 :\OT1/lmr/m/n/10.95 56$\T1/lmr/m/n/10.95 , 
+the shad-ow-ing stan-dard de-vi-a-tion $\OML/lmm/m/it/10.95 [] \OT1/lmr/m/n/10
+.95 = []$\T1/lmr/m/n/10.95 ,
+ []
 
-LaTeX Warning: Reference `los_impulse_response_derived_detailed' on page 29 und
+
+
+[29]) (./content/1-project/4-los-wide.tex
+
+LaTeX Warning: Reference `los_impulse_response_derived_detailed' on page 30 und
 efined on input line 2.
 
 
-LaTeX Warning: Reference `los_transfer_function_detailed' on page 29 undefined 
+LaTeX Warning: Reference `los_transfer_function_detailed' on page 30 undefined 
 on input line 2.
 
 ) (./content/1-project/5-full-wide.tex) (./content/1-project/6-further.tex)
@@ -2217,7 +2227,7 @@ LaTeX Warning: Empty bibliography on input line 41.
 
 
 
-[29] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
+[30] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
@@ -2241,16 +2251,16 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 58141 strings out of 475664
+ 58155 strings out of 475664
  125165,2848258 words of node,token memory allocated
- 2593 words of node memory still in use:
-   32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 462 attribute, 72 glue_s
-pec, 269 attribute_list, 3 write, 24 pdf_literal, 8 pdf_action, 24 pdf_colorstac
+ 2629 words of node memory still in use:
+   32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 476 attribute, 72 glue_s
+pec, 276 attribute_list, 3 write, 24 pdf_literal, 7 pdf_action, 24 pdf_colorstac
 k nodes
-   avail lists: 1:5,2:2069,3:962,4:176,5:694,6:72,7:5193,8:95,9:1591,10:11,11:37
+   avail lists: 1:5,2:2045,3:962,4:176,5:694,6:73,7:5193,8:95,9:1591,10:11,11:37
 8
- 79349 multiletter control sequences out of 65536+600000
- 96 fonts using 6142847 bytes
+ 79354 multiletter control sequences out of 65536+600000
+ 98 fonts using 6305647 bytes
  99i,16n,108p,1214b,1924s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/U
 sers/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users
@@ -2278,10 +2288,10 @@ s/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (31 pages, 2546794 by
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (32 pages, 2529274 by
 tes).
 
-PDF statistics: 627 PDF objects out of 1000 (max. 8388607)
- 194 named destinations out of 1000 (max. 131072)
+PDF statistics: 640 PDF objects out of 1000 (max. 8388607)
+ 203 named destinations out of 1000 (max. 131072)
  442 words of extra memory for PDF output out of 10000 (max. 100000000)
 

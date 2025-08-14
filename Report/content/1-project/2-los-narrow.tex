@@ -45,7 +45,7 @@ The physical limitation of the finite bandwidth of the system leads to the Tappe
 \end{equation}
 
 
-The condition for a narrowband channel is that the signal bandwidth $B$ is much smaller than the channel's coherence bandwidth $\Delta f_c$. The coherence bandwidth is inversely proportional to the channel's delay spread, $\sigma_\tau = max|\tau_i - \tau_j|$. The narrowband condition is thus expressed as:
+The condition for a narrowband channel is that the signal bandwidth $B$ is much smaller than the channel's coherence bandwidth $\Delta f_c$. The coherence bandwidth is inversely proportional to the channel's delay spread, $\sigma_\tau = max|\tau_i - \tau_j|$, which is the maximum delay that exist between two consecutive rays. The narrowband condition is thus expressed as:
 \begin{equation}
 	B \ll \Delta f_c \approx \frac{1}{\sigma_\tau} \implies \Delta\tau \gg \sigma_\tau
 \end{equation}
@@ -64,7 +64,7 @@ where the tap gain $h_0(t)$ is the sum of all individual ray gains:
 
 
 \section{Antenna Gain}
-The gain of an antenna, $G(\theta, \phi)$, quantifies its ability to concentrate radiated power in a specific direction. It is defined by the general formula:
+The gain of an antenna, $G(\theta, \phi)$, quantifies its ability to concentrate radiated power in a specific direction. It is defined as:
 \begin{equation}
 	G(\theta,\phi) = \frac{\pi Z_0}{R_a} \frac{|\vec{h}_{e\perp}(\theta,\phi)|^2}{\lambda^2}
 	\label{eq:gain_general}

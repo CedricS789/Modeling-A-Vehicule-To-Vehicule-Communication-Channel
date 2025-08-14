@@ -23,5 +23,5 @@
 \contentsline {section}{\numberline {3.5}Path Loss Model}{24}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{27}{section.3.6}%
 \contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{27}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Interpretation of Results}{28}{section.3.8}%
-\contentsline {section}{\numberline {3.9}LOS Channel - Wideband analysis}{29}{section.3.9}%
+\contentsline {section}{\numberline {3.8}Interpretation of Results}{29}{section.3.8}%
+\contentsline {section}{\numberline {3.9}LOS Channel - Wideband analysis}{30}{section.3.9}%

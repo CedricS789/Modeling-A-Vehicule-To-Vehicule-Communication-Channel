@@ -391,11 +391,11 @@ Where $d_0$ is a reference distance, and $n$ is the path loss exponent. This exp
 
 $n$ and $L_0(d_0)$ can be found by performing a linear regression. When $L_0(d)$ is found, it is simply replace in Equation \ref{eq:loss-3} to find $L(d)$
 
-It is found as shown in Figure \ref{fig:path-loss-model-fit-m10} for M = 10 reflections that $n = 1.68$, and $L_0(d_0) = !!!!!!!!!!!!!!!!!!!!!!!$
+It is found as shown in Figure \ref{fig:path-loss-model-fit-m10} for M = 10 reflections that $n = 1.56$, and $L_0(d_0) = 50.59 \mathrm{dB}$
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{"content/4-images/Path Loss Model Fit M=10"}
-	\caption{Path Loss Model Fitted, $M = 10$ reflections, $d_0 = 1$ m}
+	\caption{Path Loss Model Fitted, $M = 10$ reflections, $d_0 = 1$m}
 	\label{fig:path-loss-model-fit-m10}
 \end{figure}
 
@@ -403,7 +403,7 @@ It is found as shown in Figure \ref{fig:path-loss-model-fit-m10} for M = 10 refl
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{"content/4-images/Instantaneous vs average M=10"}
-	\caption{Power models, $M = 10$ reflections, $d_0 = 1$ m}
+	\caption{Power models, $M = 10$ reflections, $d_0 = 1$m}
 	\label{fig:instantaneous-vs-average-m10}
 \end{figure}
 
@@ -422,57 +422,78 @@ The shadowing standard deviation $\sigma_L$, quantifies the variation of the act
 \end{equation}
 
 \begin{equation}
-	\implies \boxed{\sigma_L = ....} \quad \text{(for $M = 10$ reflections)}
+	\implies \boxed{\sigma_L = 3.01 \mathrm{dB}} \quad \text{(for $M = 10$ reflections)}
 \end{equation}
 
 for $M = 10 $reflections : 
 
 
 \section{Fade Margin and Cell Range}
-Assuming the power variations around the path loss model are log-normally distributed, the fade margin $M$ required to reach a target reliability is determined. The reliability is the probability that the received power is above the receiver sensitivity ($P_{sens} = -70$ dBm):
+The path loss model provides the large-scale averaged received power, $\ll P_{RX} \gg$. However, the local-area average power, $<P_{RX}>$, still fluctuates around this value due to shadowing. This phenomenon is modeled by considering $<P_{RX}>$ in dBm as a random variable following a normal distribution around $\ll P_{RX} \gg$ in dBm. The shadowing loss, $L_{\sigma_L}$, is therefore a zero-mean Gaussian random variable with a standard deviation of $\sigma_L$ dB. To ensure reliable communication, a margin must be designed to counteract these random power drops.
+
+The reliability of the system is the probability that the local-area average received power, $<P_{RX}>$, exceeds the receiver's sensitivity, which is the minimum required power threshold, $P_{RX_{sens}} = -70$dBm.
 \begin{equation}
-	\Pr\!\big(P_{RX} > P_{sens}\big) = \text{Reliability}.
+	\text{Reliability} = \Pr(<P_{RX}> \hspace{0.2em} \text{greater than} \hspace{0.2em} P_{RX_{sens}})
+\end{equation}
+This condition can be expressed in terms of path loss. The total path loss experienced is the sum of the deterministic path loss from the model, $L(d)$, and the random shadowing loss, $L_{\sigma_L}$. For a successful connection, this sum must be less than the maximum allowed path loss, $L_{max}$, determined by the transmitter power and receiver sensitivity.
+\begin{equation}
+	L(d) + L_{\sigma_L} < L_{max} \quad \text{where} \quad L_{max} = P_{TX}[\text{dBm}] - P_{RX_{sens}}[\text{dBm}]
+\end{equation}
+To guarantee a specific reliability at the cell edge (range $R$), a \textbf{fade margin}, $M$, is introduced. This margin dictates that the deterministic path loss at the cell edge must be less than the maximum allowed path loss.
+\begin{equation}
+	L(R) = L_{max} - M
+\end{equation}
+Substituting this into the reliability condition reveals that for a successful connection at the cell edge, the random shadowing loss must be smaller than the fade margin.
+\begin{equation}
+	(L_{max} - M) + L_{\sigma_L} < L_{max} \implies L_{\sigma_L} < M
+\end{equation}
+The probability of an outage is the probability that the shadowing loss exceeds this margin. For a zero-mean Gaussian variable, this is given by the complementary error function (erfc), as shown in your course notes:
+\begin{equation}
+	\text{Outage Probability} = \Pr(L_{\sigma_L} > M) = \frac{1}{2} \text{erfc}\left(\frac{M}{\sigma_L\sqrt{2}}\right)
+\end{equation}
+The reliability is $1 - \text{Outage Probability}$. The required fade margin $M$ for a target reliability is found by inverting this expression:
+\begin{equation}
+	\label{eq:fade_margin_calc}
+	M = \sigma_L \sqrt{2} \cdot \text{erfc}^{-1}\big(2(1 - \text{Reliability})\big)
+\end{equation}
+Once $M$ is determined, the maximum allowable antenna-independent path loss, $L_{0,max}$, can be calculated by removing the antenna gains from the total maximum path loss:
+\begin{align}
+	L_{0,max} &= (P_{TX}[\text{dBm}] - P_{RX_{sens}}[\text{dBm}] - M) + 10 \log_{10} G_{TX} + 10 \log_{10} G_{RX} \\
+	&= (20 \text{ dBm} - (-70 \text{ dBm}) - M) + 2.15 \text{ dBi} + 2.15 \text{ dBi} \\
+	&= (90 - M) \text{ dB} + 4.3 \text{ dB} \\
+\end{align}
+
+\begin{equation}
+	\implies \boxed{L_{0,max} = 94.3 - M} \quad [\text{dB}]
 \end{equation}
 
-% Shadowing is modeled as log-normal in dB; the course states to introduce a margin M at the cell edge. :contentReference[oaicite:0]{index=0}
-
-At the cell edge, a margin $M$ is introduced to account for shadowing. The maximum allowable path loss for a given reliability is
+Finally, the cell range $R$ is found by setting the fitted canonical path loss model from Equation \eqref{eq:lin-reg} equal to this maximum value:
 \begin{equation}
-	L_{max} = P_{TX}[\text{dBm}] - P_{sens}[\text{dBm}] - M.
+	L_{0,max} = L_0(d_0) + 10n \log_{10}\left(\frac{R}{d_0}\right)
 \end{equation}
-
-% Canonical antenna-independent path-loss model used in the notes: L_0(d)=L_0(d_0)+10n\log_{10}(d/d_0). :contentReference[oaicite:1]{index=1}
-
-Using the canonical path loss model,
+Solving for the cell range $R$ gives:
 \begin{equation}
-	L_0(d) = L_0(d_0) + 10\,n\,\log_{10}\!\left(\frac{d}{d_0}\right),
+	\label{eq:cell_range_R}
+	R = d_0 \cdot 10^{\frac{L_{0,max} - L_0(d_0)}{10n}}
 \end{equation}
-the cell edge $R_p$ (for the chosen reliability) is defined by the equality
-\begin{equation}
-	L_0(R_p) = L_{max},
-\end{equation}
-which yields
-\begin{equation}
-	R_p = d_0 \cdot 10^{\frac{L_{max} - L_0(d_0)}{10\,n}}.
-\end{equation}
+Using the path loss exponent $n = 1.56$, the shadowing standard deviation $\sigma_L = \texttt{[calculated\_sigma\_L]}$, and the other system parameters, the fade margins and corresponding cell ranges are calculated for target reliabilities of 50\%, 95\%, and 99\%.
 
-% The slides explicitly say: choose a smaller radius R by introducing a margin M on the received power; solve with the canonical model. :contentReference[oaicite:2]{index=2}
-
-\noindent Using the fitted $n$, $L_0(d_0)$, and the selected $M$ for each target reliability, the margins and ranges are:
-\begin{table}[h]
+\begin{table}[h!]
 	\centering
-	\caption{Fade margin and cell range for target reliabilities (values to be filled from fitted results).}
+	\caption{Fade margin and cell range for target reliabilities (M=10 reflections).}
+	\label{tab:fade_margin_range}
 	\vspace{0.3em}
 	\begin{tabular}{lcc}
 		\hline
-		Reliability & $M$ [dB] & $R_p$ [m] \\
+		\textbf{Reliability} & \textbf{Fade Margin $M$ [dB]} & \textbf{Cell Range $R$ [m]} \\
 		\hline
-		50\% & \texttt{[M\_50]} & \texttt{[R\_50]} \\
+		50\% & 0.00 & \texttt{[R\_50]} \\
 		95\% & \texttt{[M\_95]} & \texttt{[R\_95]} \\
 		99\% & \texttt{[M\_99]} & \texttt{[R\_99]} \\
 		\hline
 	\end{tabular}
 \end{table}
+
 
 
 \section{Interpretation of Results}

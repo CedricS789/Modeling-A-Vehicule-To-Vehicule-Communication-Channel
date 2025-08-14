@@ -32,7 +32,7 @@ lambda = params.lambda;
 
 M = 10;                      % Maximum number of reflections to consider
 w = 20;
-L = 1e6;                % Length of wall in meters
+L = 10;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
 
 TX_pos = [0, 0];
@@ -73,15 +73,15 @@ fprintf('\nPerforming full multipath channel analysis\n');
 
 % Analyze MPCs for one distance
 fprintf('   - Analyzing MPCs for d = %.1f m, M = %.0f reflections\n', d_fixed, M);
-[all_alphas, all_rays_local] = runRayTracing(walls, M, TX_pos, RX_pos, params);
+[all_alphas, all_rays] = runRayTracing(walls, M, TX_pos, RX_pos, params);
 
 % Plot the ray paths for the distance
 fprintf('   - Plotting ray-tracing visualization\n');
-plotRays(walls, TX_pos, RX_pos, all_rays_local, M);
+plotRays(walls, TX_pos, RX_pos, all_rays, M);
 
 % Display properties of each found ray
-for i = 1:length(all_rays_local)
-    ray = all_rays_local{i};
+for i = 1:length(all_rays)
+    ray = all_rays{i};
     fprintf('      * Ray %2d: Type = %-7s          d_%.2d = %1.2f m          tau_%.2d = %5.2f ns          theta_%.2d = %5.2f°          gamma_tot_%.2d = %9.2e          |alpha_%.2d| = %8.4e         arg(alpha_%.2d) = %8.2f° \n', ... 
         i, ray.type, i, ray.distance_total, i, ray.tau_n*1e9, i, ray.theta_n, i, ray.gamma_tot_n, i, abs(ray.alpha_n), i, rad2deg(angle(ray.alpha_n)));
 end
@@ -113,7 +113,7 @@ parfor i = 1:length(distance_domain)
     d_i = distance_domain(i);
     current_tx_pos = [0, 0];
     current_RX_pos = [d_i, 0];
-    [all_alphas, all_rays_local] = runRayTracing(walls, M, current_tx_pos, current_RX_pos, params);
+    [all_alphas, all_rays] = runRayTracing(walls, M, current_tx_pos, current_RX_pos, params);
     if isempty(all_alphas)
         PRX_total_dBm_domain(i) = -Inf;
         PRX_LOS_dBm_domain(i) = -Inf;
@@ -128,7 +128,7 @@ parfor i = 1:length(distance_domain)
     PRX_total_dBm_domain(i) = 10 * log10(PRX_total * 1000);
     
     % Use logical indexing to separate LOS and NLOS components
-    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays_local);
+    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays);
  
     alpha_LOS = all_alphas(isLOS);
 
@@ -175,13 +175,13 @@ RX_pos = [d_fixed, 0];
 fprintf('   - Simulating for a fixed distance d = %.1fm\n', d_fixed);
 
 % Calculate the channel transfer function just once for this fixed geometry.
-[all_alphas, all_rays_local] = runRayTracing(walls, M, TX_pos, RX_pos, params);
+[all_alphas, all_rays] = runRayTracing(walls, M, TX_pos, RX_pos, params);
 
 % Calculate the total channel transfer function from all paths
 h_nb_total = sum(all_alphas);
 
 % Find the LOS-only channel transfer function using logical indexing
-isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays_local);
+isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays);
 alpha_LOS = all_alphas(isLOS);
 if isempty(alpha_LOS)
     alpha_LOS = 0; % Handle case where no LOS path is found
@@ -229,13 +229,13 @@ plotPRXvsPTX(PTX_dBm_domain, PRX_total_dBm_domain, PRX_LOS_dBm_domain);
 fprintf('\nFitting Path Loss Model\n');
 
 % Define simulation parameters for path loss analysis
-d_samp = 1;   % Sampling interval
+d_samp = 0.01;   % Sampling interval
 d_local = 5.0;   % Must be greater than d_samp
 d0 = 1;          % Reference distance for the model
 
 % Define the distance range for the final path loss model
 x_start_model = TX_pos(1) + 2 * d_local;
-x_end_model   = 10000;
+x_end_model   = L;
 
 % Create a padded domain for simulation to ensure correct convolution at edges
 x_start_padded = x_start_model - d_local;
@@ -261,9 +261,9 @@ parfor i = 1:length(distance_domain_padded)
     RX_pos_local = [d_i, 0];
     
     % Run ray tracing for this sample point
-    [all_alphas_local, all_rays_local] = runRayTracing(walls, M, [0,0], RX_pos_local, params);
+    [all_alphas_local, all_rays] = runRayTracing(walls, M, [0,0], RX_pos_local, params);
     
-    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays_local);
+    isLOS = cellfun(@(r) strcmp(r.type, 'LOS'), all_rays);
  
     alpha_LOS = all_alphas_local(isLOS);
 
