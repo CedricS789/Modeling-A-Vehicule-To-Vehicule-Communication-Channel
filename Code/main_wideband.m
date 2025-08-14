@@ -33,7 +33,7 @@ PTX = params.PTX;
 sens_dBm = params.PRX_sens_dBm;
 lambda = params.lambda;
 
-M = 3;                      % Maximum number of reflections to consider
+M = 10;                      % Maximum number of reflections to consider
 w = 20;
 L = 1000;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
@@ -69,6 +69,7 @@ else
     fprintf('   - No LOS path found for d = %.1fm.\n', d_fixed);
 end
 
+plotLOSChannel(LOS_ray, params)
 
 %% Full Channel - NARROWBAND
 fprintf('\nPerforming full multipath channel analysis\n');

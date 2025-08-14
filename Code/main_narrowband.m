@@ -20,19 +20,19 @@ params.c = 3e8;
 params.Z0 = 377;
 params.Ra = 73.1;
 params.PTX = 0.1; 
-params.PRX_sens_dBm = -1000;
+params.PRX_sens_dBm = -70;
 params.PTX_dBm = 10 * log10(params.PTX * 1000);
 params.Gain = params.Z0 / (pi * params.Ra);
 params.G_dBi = 10 * log10(params.Gain);
 params.lambda = params.c / params.fc;
 
 PTX = params.PTX;
-sens_dBm = params.PRX_sens_dBm;
+PRX_sens_dBm = params.PRX_sens_dBm;
 lambda = params.lambda;
 
 M = 10;                      % Maximum number of reflections to consider
 w = 20;
-L = 100;                % Length of wall in meters
+L = 1000;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
 
 TX_pos = [0, 0];
@@ -231,7 +231,7 @@ fprintf('\nFitting Path Loss Model\n');
 % Define simulation parameters for path loss analysis
 d_samp = 0.01;   % Sampling interval
 d_local = 5.0;   % Must be greater than d_samp
-d0 = 1;          % Reference distance for the model
+d0 = 100;          % Reference distance for the model
 
 % Define the distance range for the final path loss model
 x_start_model = TX_pos(1) + 2 * d_local;
@@ -410,7 +410,7 @@ end
 fprintf('   - Plotting heatmaps\n');
 % Plot Instantaneous Power
 figure('Name', 'Instantaneous Power Heatmap', 'NumberTitle', 'off');
-plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_dBm, TX_pos, walls, sens_dBm);
+plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_dBm, TX_pos, walls, PRX_sens_dBm);
 title('Instantaneous Power $P_{RX}$', 'Interpreter', 'latex');
 
 % Plot Averaged Power
@@ -419,7 +419,7 @@ walls(1).coordinates = walls(1).coordinates + d_local/2 * [[1  1]; [1  1]];
 walls(2).coordinates = walls(2).coordinates + d_local/2 * [[1 -1]; [1 -1]];
 
 figure('Name', 'Averaged Power Heatmap', 'NumberTitle', 'off');
-plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_avg_dBm, TX_pos, walls, sens_dBm);
+plotHeatmap(gca, RX_x_coordinates, RX_y_coordinates, PRX_avg_dBm, TX_pos, walls, PRX_sens_dBm);
 title('Averaged Power $\langle P_{RX} \rangle$', 'Interpreter', 'latex');
 
 

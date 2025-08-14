@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  14 AUG 2025 19:37
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  14 AUG 2025 21:11
  restricted system commands enabled.
 **"ELEC-H415 - Report - Cédric Sipakam.tex"
 ("./ELEC-H415 - Report - Cédric Sipakam.tex"
@@ -1856,7 +1856,7 @@ nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `english'. on input line 16.
-<Pictures/logos.jpg, id=130, 816.04875pt x 118.19156pt>
+<Pictures/logos.jpg, id=162, 816.04875pt x 118.19156pt>
 File: Pictures/logos.jpg Graphic file (type jpg)
 <use Pictures/logos.jpg>
 Package luatex.def Info: Pictures/logos.jpg  used on input line 25.
@@ -1920,7 +1920,7 @@ LaTeX Font Info:    Trying to load font information for U+esint on input line 2
 File: uesint.fd 
 )
 
-<Pictures/sceauULB.jpg, id=131, 1250.6725pt x 1250.6725pt>
+<Pictures/sceauULB.jpg, id=163, 1250.6725pt x 1250.6725pt>
 File: Pictures/sceauULB.jpg Graphic file (type jpg)
 <use Pictures/sceauULB.jpg>
 Package luatex.def Info: Pictures/sceauULB.jpg  used on input line 25.
@@ -1945,30 +1945,32 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-))
+)
+
+[1
+
+])
 \tf@lof=\write7
 
 \openout7 = ELEC-H415 - Report - Cédric Sipakam.lof
 
 
-[1
-
-] ("./ELEC-H415 - Report - Cédric Sipakam.lot")
+[2] ("./ELEC-H415 - Report - Cédric Sipakam.lot")
 \tf@lot=\write8
 
 \openout8 = ELEC-H415 - Report - Cédric Sipakam.lot
 
 (./content/1-project/0-intro.tex
 
-[2
+[3
 
 ]) (./content/1-project/1-prelim.tex
 
-[3
+[4
 
 ]
 Chapter 1.
-<content/4-images/ant-recep.png, id=225, 1251.92719pt x 503.63156pt>
+<content/4-images/ant-recep.png, id=298, 1251.92719pt x 503.63156pt>
 File: content/4-images/ant-recep.png Graphic file (type png)
 <use content/4-images/ant-recep.png>
 Package luatex.def Info: content/4-images/ant-recep.png  used on input line 9.
@@ -1979,7 +1981,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 10.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 10.
-<content/4-images/ant-trans.png, id=226, 1050.92625pt x 493.0922pt>
+<content/4-images/ant-trans.png, id=299, 1050.92625pt x 493.0922pt>
 File: content/4-images/ant-trans.png Graphic file (type png)
 <use content/4-images/ant-trans.png>
 Package luatex.def Info: content/4-images/ant-trans.png  used on input line 15.
@@ -1992,25 +1994,25 @@ Underfull \hbox (badness 3657) in paragraph at lines 16--16
 
 
 
-[4
+[5
 
 <./content/4-images/ant-recep.png><./content/4-images/ant-trans.png>]
-<content/4-images/axes.png, id=241, 789.70032pt x 664.73344pt>
+<content/4-images/axes.png, id=314, 789.70032pt x 664.73344pt>
 File: content/4-images/axes.png Graphic file (type png)
 <use content/4-images/axes.png>
 Package luatex.def Info: content/4-images/axes.png  used on input line 40.
 (luatex.def)             Requested size: 227.62206pt x 191.60132pt.
 
 
-[5<./content/4-images/axes.png>]
+[6<./content/4-images/axes.png>]
 
-[6]
+[7]
 
-[7]) (./content/1-project/2-los-narrow.tex
+[8]) (./content/1-project/2-los-narrow.tex
 
-[8]
+[9]
 Chapter 2.
-<content/4-images/taps.png, id=308, 947.79094pt x 417.05812pt>
+<content/4-images/taps.png, id=380, 947.79094pt x 417.05812pt>
 File: content/4-images/taps.png Graphic file (type png)
 <use content/4-images/taps.png>
 Package luatex.def Info: content/4-images/taps.png  used on input line 15.
@@ -2019,11 +2021,11 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 19.
 
 
-[9
+[10
 
 <./content/4-images/taps.png>]
 
-[10]
+[11]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <14.4> on input line 94.
 
@@ -2041,18 +2043,18 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[11]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 143.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 143.
-
-
-
 [12]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 143.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 143.
+
+
+
+[13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 160.
@@ -2067,7 +2069,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[13]
+[14]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 180.
@@ -2082,11 +2084,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[14]) (./content/1-project/3-full-narrow.tex
+[15]) (./content/1-project/3-full-narrow.tex
 
-[15]
+[16]
 Chapter 3.
-<content/4-images/image-method.png, id=409, 2647.8925pt x 1614.03pt>
+<content/4-images/image-method.png, id=480, 2647.8925pt x 1614.03pt>
 File: content/4-images/image-method.png Graphic file (type png)
 <use content/4-images/image-method.png>
 Package luatex.def Info: content/4-images/image-method.png  used on input line 
@@ -2097,21 +2099,21 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
-[16
+[17
 
 ]
 
-[17<./content/4-images/image-method.png>]
+[18<./content/4-images/image-method.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
 
 
-[18]
-
 [19]
-<content/4-images/ray-tracing-10-reflections.png, id=447, 1046.4696pt x 583.941
+
+[20]
+<content/4-images/ray-tracing-10-reflections.png, id=518, 1046.4696pt x 583.941
 6pt>
 File: content/4-images/ray-tracing-10-reflections.png Graphic file (type png)
 <use content/4-images/ray-tracing-10-reflections.png>
@@ -2120,7 +2122,7 @@ on input line 201.
 (luatex.def)             Requested size: 455.24411pt x 254.03036pt.
 
 
-[20]
+[21]
 Overfull \hbox (26.14398pt too wide) in paragraph at lines 233--252
  [][] 
  []
@@ -2130,8 +2132,8 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
-[21<./content/4-images/ray-tracing-10-reflections.png>]
-<content/4-images/PRX-vs-PTX.png, id=470, 1051.2876pt x 585.8688pt>
+[22<./content/4-images/ray-tracing-10-reflections.png>]
+<content/4-images/PRX-vs-PTX.png, id=541, 1051.2876pt x 585.8688pt>
 File: content/4-images/PRX-vs-PTX.png Graphic file (type png)
 <use content/4-images/PRX-vs-PTX.png>
 Package luatex.def Info: content/4-images/PRX-vs-PTX.png  used on input line 27
@@ -2139,8 +2141,8 @@ Package luatex.def Info: content/4-images/PRX-vs-PTX.png  used on input line 27
 (luatex.def)             Requested size: 455.24411pt x 253.69766pt.
 
 
-[22<./content/4-images/PRX-vs-PTX.png>]
-<content/4-images/PRX-vs-Friis.png, id=477, 1053.6966pt x 589.2414pt>
+[23<./content/4-images/PRX-vs-PTX.png>]
+<content/4-images/PRX-vs-Friis.png, id=548, 1053.6966pt x 589.2414pt>
 File: content/4-images/PRX-vs-Friis.png Graphic file (type png)
 <use content/4-images/PRX-vs-Friis.png>
 Package luatex.def Info: content/4-images/PRX-vs-Friis.png  used on input line 
@@ -2148,8 +2150,8 @@ Package luatex.def Info: content/4-images/PRX-vs-Friis.png  used on input line
 (luatex.def)             Requested size: 455.24411pt x 254.57365pt.
 
 
-[23<./content/4-images/PRX-vs-Friis.png>]
-<content/4-images/k-factor.png, id=484, 1038.7608pt x 657.657pt>
+[24<./content/4-images/PRX-vs-Friis.png>]
+<content/4-images/k-factor.png, id=555, 1038.7608pt x 657.657pt>
 File: content/4-images/k-factor.png Graphic file (type png)
 <use content/4-images/k-factor.png>
 Package luatex.def Info: content/4-images/k-factor.png  used on input line 325.
@@ -2157,24 +2159,24 @@ Package luatex.def Info: content/4-images/k-factor.png  used on input line 325.
 (luatex.def)             Requested size: 455.24411pt x 288.21594pt.
 
 
-[24]
+[25]
 
-[25<./content/4-images/k-factor.png>]
-<content/4-images/Path Loss Model Fit M=10.png, id=507, 1047.915pt x 586.8324pt
+[26<./content/4-images/k-factor.png>]
+<content/4-images/Path Loss Model Fit M=10.png, id=578, 1047.915pt x 586.3506pt
 >
 File: content/4-images/Path Loss Model Fit M=10.png Graphic file (type png)
 <use content/4-images/Path Loss Model Fit M=10.png>
 Package luatex.def Info: content/4-images/Path Loss Model Fit M=10.png  used on
  input line 397.
-(luatex.def)             Requested size: 455.24411pt x 254.92976pt.
-<content/4-images/Instantaneous vs average M=10.png, id=508, 1050.324pt x 586.8
-324pt>
+(luatex.def)             Requested size: 455.24411pt x 254.72046pt.
+<content/4-images/Instantaneous vs average M=10.png, id=579, 1050.324pt x 585.8
+688pt>
 File: content/4-images/Instantaneous vs average M=10.png Graphic file (type png
 )
 <use content/4-images/Instantaneous vs average M=10.png>
 Package luatex.def Info: content/4-images/Instantaneous vs average M=10.png  us
 ed on input line 405.
-(luatex.def)             Requested size: 455.24411pt x 254.34773pt.
+(luatex.def)             Requested size: 455.24411pt x 253.93008pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2194,23 +2196,147 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-[26<./content/4-images/Path Loss Model Fit M=10.png>]
-
-[27<./content/4-images/Instantaneous vs average M=10.png>]
-
-[28]
-
-[29]) (./content/1-project/4-los-wide.tex
-
-LaTeX Warning: Reference `los_impulse_response_derived_detailed' on page 30 und
-efined on input line 2.
+[27<./content/4-images/Path Loss Model Fit M=10.png>]
+<content/4-images/Shadowing Error.png, id=591, 1043.5788pt x 581.5326pt>
+File: content/4-images/Shadowing Error.png Graphic file (type png)
+<use content/4-images/Shadowing Error.png>
+Package luatex.def Info: content/4-images/Shadowing Error.png  used on input li
+ne 430.
+(luatex.def)             Requested size: 455.24411pt x 253.68338pt.
 
 
-LaTeX Warning: Reference `los_transfer_function_detailed' on page 30 undefined 
-on input line 2.
+[28<./content/4-images/Instantaneous vs average M=10.png>]
 
-) (./content/1-project/5-full-wide.tex) (./content/1-project/6-further.tex)
-(./content/1-project/7-conclu.tex)
+[29<./content/4-images/Shadowing Error.png>]
+<../Code/Pictures/heatmap.png, id=608, 1074.0125pt x 595.22375pt>
+File: ../Code/Pictures/heatmap.png Graphic file (type png)
+<use ../Code/Pictures/heatmap.png>
+Package luatex.def Info: ../Code/Pictures/heatmap.png  used on input line 506.
+(luatex.def)             Requested size: 455.24411pt x 252.2992pt.
+
+
+[30]
+
+[31<../Code/Pictures/heatmap.png>]) (./content/1-project/4-los-wide.tex
+
+[32]
+Chapter 4.
+<content/4-images/h-tau-LOS.png, id=640, 1032.9792pt x 583.9416pt>
+File: content/4-images/h-tau-LOS.png Graphic file (type png)
+<use content/4-images/h-tau-LOS.png>
+Package luatex.def Info: content/4-images/h-tau-LOS.png  used on input line 22.
+
+(luatex.def)             Requested size: 455.24411pt x 257.34496pt.
+<content/4-images/Frequency Response H(f) - LOS.png, id=641, 1106.2128pt x 574.
+7874pt>
+File: content/4-images/Frequency Response H(f) - LOS.png Graphic file (type png
+)
+<use content/4-images/Frequency Response H(f) - LOS.png>
+Package luatex.def Info: content/4-images/Frequency Response H(f) - LOS.png  us
+ed on input line 28.
+(luatex.def)             Requested size: 455.24411pt x 236.54141pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 34.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 34.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\tau' on input line 34.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 34.
+
+
+
+[33
+
+]
+
+[34<./content/4-images/h-tau-LOS.png><./content/4-images/Frequency Response H(f)
+ - LOS.png>]
+<content/4-images/Tapped Delay Line Model - LOS Channel.png, id=655, 1034.9064p
+t x 574.3056pt>
+File: content/4-images/Tapped Delay Line Model - LOS Channel.png Graphic file (
+type png)
+<use content/4-images/Tapped Delay Line Model - LOS Channel.png>
+Package luatex.def Info: content/4-images/Tapped Delay Line Model - LOS Channel
+.png  used on input line 55.
+(luatex.def)             Requested size: 455.24411pt x 252.6339pt.
+
+
+[35<./content/4-images/Tapped Delay Line Model - LOS Channel.png>])
+(./content/1-project/5-full-wide.tex
+
+[36]
+Chapter 5.
+<content/4-images/h-tau - Full Channel.png, id=669, 1028.643pt x 574.3056pt>
+File: content/4-images/h-tau - Full Channel.png Graphic file (type png)
+<use content/4-images/h-tau - Full Channel.png>
+Package luatex.def Info: content/4-images/h-tau - Full Channel.png  used on inp
+ut line 15.
+(luatex.def)             Requested size: 455.24411pt x 254.16745pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 20.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 20.
+
+
+
+[37
+
+]
+<content/4-images/Frequency Response H(f) - Full Channel.png, id=680, 1039.7244
+pt x 574.7874pt>
+File: content/4-images/Frequency Response H(f) - Full Channel.png Graphic file 
+(type png)
+<use content/4-images/Frequency Response H(f) - Full Channel.png>
+Package luatex.def Info: content/4-images/Frequency Response H(f) - Full Channe
+l.png  used on input line 32.
+(luatex.def)             Requested size: 455.24411pt x 251.6706pt.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\tau' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+
+[38<./content/4-images/h-tau - Full Channel.png><./content/4-images/Frequency Re
+sponse H(f) - Full Channel.png>]
+<content/4-images/Tapped Delay Line Model - Full Channel.png, id=687, 1034.9064
+pt x 574.3056pt>
+File: content/4-images/Tapped Delay Line Model - Full Channel.png Graphic file 
+(type png)
+<use content/4-images/Tapped Delay Line Model - Full Channel.png>
+Package luatex.def Info: content/4-images/Tapped Delay Line Model - Full Channe
+l.png  used on input line 51.
+(luatex.def)             Requested size: 455.24411pt x 252.6339pt.
+
+
+[39<./content/4-images/Tapped Delay Line Model - Full Channel.png>])
+(./content/1-project/6-further.tex) (./content/1-project/7-conclu.tex)
 
 Package biblatex Warning: Type 'article' not found on input line 41.
 
@@ -2219,7 +2345,7 @@ LaTeX Warning: Empty bibliography on input line 41.
 
 
 
-[30] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
+[40] ("./ELEC-H415 - Report - Cédric Sipakam.aux")
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
@@ -2243,17 +2369,17 @@ Package logreq Info: Writing requests to '"ELEC-H415 - Report - Cédric Sipakam
 )
 
 Here is how much of LuaTeX's memory you used:
- 58153 strings out of 475664
+ 58306 strings out of 475664
  125165,2848258 words of node,token memory allocated
- 2629 words of node memory still in use:
-   32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 476 attribute, 72 glue_s
-pec, 276 attribute_list, 3 write, 24 pdf_literal, 7 pdf_action, 24 pdf_colorstac
-k nodes
-   avail lists: 1:5,2:2045,3:962,4:176,5:694,6:73,7:5193,8:95,9:1591,10:11,11:37
-8
- 79352 multiletter control sequences out of 65536+600000
+ 2797 words of node memory still in use:
+   32 hlist, 2 vlist, 14 rule, 3 glue, 4 kern, 1 glyph, 520 attribute, 72 glue_s
+pec, 298 attribute_list, 3 write, 24 pdf_literal, 13 pdf_action, 24 pdf_colorsta
+ck nodes
+   avail lists: 1:4,2:1997,3:962,4:232,5:696,6:91,7:5193,8:95,9:1591,10:13,11:38
+0
+ 79442 multiletter control sequences out of 65536+600000
  96 fonts using 6142847 bytes
- 99i,16n,108p,1214b,1924s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,16n,108p,1214b,2627s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/U
 sers/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users
 /sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/
@@ -2280,10 +2406,10 @@ s/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/sipak/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/sipak/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (32 pages, 2528944 by
+Output written on ELEC-H415 - Report - Cédric Sipakam.pdf (42 pages, 3108827 by
 tes).
 
-PDF statistics: 640 PDF objects out of 1000 (max. 8388607)
- 203 named destinations out of 1000 (max. 131072)
- 442 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 792 PDF objects out of 1000 (max. 8388607)
+ 242 named destinations out of 1000 (max. 131072)
+ 506 words of extra memory for PDF output out of 10000 (max. 100000000)
 

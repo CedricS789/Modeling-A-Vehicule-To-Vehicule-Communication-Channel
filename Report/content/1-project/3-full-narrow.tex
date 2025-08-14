@@ -391,11 +391,11 @@ Where $d_0$ is a reference distance, and $n$ is the path loss exponent. This exp
 
 $n$ and $L_0(d_0)$ can be found by performing a linear regression. When $L_0(d)$ is found, it is simply replace in Equation \ref{eq:loss-3} to find $L(d)$
 
-It is found as shown in Figure \ref{fig:path-loss-model-fit-m10} for M = 10 reflections that $n = 1.56$, and $L_0(d_0) = 50.59 \mathrm{dB}$
+It is found as shown in Figure \ref{fig:path-loss-model-fit-m10} for M = 10 reflections that $n = 1.56$, and $L_0(d_0) = 81.73 \mathrm{dB}$
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\linewidth]{"content/4-images/Path Loss Model Fit M=10"}
-	\caption{Path Loss Model Fitted, $M = 10$ reflections, $d_0 = 1$m}
+	\caption{Path Loss Model Fitted, $M = 10$ reflections, $d_0 = 100$ m}
 	\label{fig:path-loss-model-fit-m10}
 \end{figure}
 
@@ -403,7 +403,7 @@ It is found as shown in Figure \ref{fig:path-loss-model-fit-m10} for M = 10 refl
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{"content/4-images/Instantaneous vs average M=10"}
-	\caption{Power models, $M = 10$ reflections, $d_0 = 1$m}
+	\caption{Power models, $M = 10$ reflections, $d_0 = 100$ m}
 	\label{fig:instantaneous-vs-average-m10}
 \end{figure}
 
@@ -425,6 +425,12 @@ The shadowing standard deviation $\sigma_L$, quantifies the variation of the act
 	\implies \boxed{\sigma_L = 3.01 \mathrm{dB}} \quad \text{(for $M = 10$ reflections)}
 \end{equation}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{"content/4-images/Shadowing Error"}
+	\caption{Shadowing Error, $M = 10$ reflections, $d_0 = 100$ m}
+	\label{fig:shadowing-error}
+\end{figure}
 
 \section{Fade Margin and Cell Range}
 The path loss model provides the large-scale averaged received power, $\ll P_{RX} \gg$. However, the local-area average power, $<P_{RX}>$, still fluctuates around this value due to shadowing. This phenomenon is modeled by considering $<P_{RX}>$ in dBm as a random variable following a normal distribution around $\ll P_{RX} \gg$ in dBm. The shadowing loss, $L_{\sigma_L}$, is therefore a zero-mean Gaussian random variable with a standard deviation of $\sigma_L$ dB. To ensure reliable communication, a margin must be designed to counteract these random power drops.
@@ -435,7 +441,7 @@ The reliability of the system is the probability that the local-area average rec
 \end{equation}
 This condition can be expressed in terms of path loss. The total path loss experienced is the sum of the deterministic path loss from the model, $L(d)$, and the random shadowing loss, $L_{\sigma_L}$. For a successful connection, this sum must be less than the maximum allowed path loss, $L_{max}$, determined by the transmitter power and receiver sensitivity.
 \begin{equation}
-	L(d) + L_{\sigma_L} < L_{max} \quad \text{where} \quad L_{max} = P_{TX}[\text{dBm}] - P_{RX,{sens}}[\text{dBm}]
+	L(d) + L_{\sigma_L} < L_{max} \quad \text{where} \quad L_{max} = P_{TX}[\text{dBm}] - P_{RX,{sens}}[\text{dBm}] = 90 \, \mathrm{dB}
 \end{equation}
 To guarantee a specific reliability at the cell edge (range $R$), a {fade margin}, $M$, is introduced. This margin dictates that the deterministic path loss at the cell edge must be less than the maximum allowed path loss.
 \begin{equation}
@@ -478,31 +484,43 @@ Using the path loss exponent $n = 1.56$, the shadowing standard deviation $\sigm
 
 \begin{table}[h!]
 	\centering
-	\caption{Fade margin and cell range for target reliabilities (M=10 reflections).}
-	\label{tab:fade_margin_range}
+
 	\vspace{0.3em}
 	\begin{tabular}{|c|c|c|}
 		\hline
 		{Reliability} & {Fade Margin $M$ [dB]} & {Cell Range $R$ [m]} \\
 		\hline
-		50\% & 0.00 & \texttt{[R\_50]} \\
+		50\% & 0.00 & \texttt{$642.90$} \\
 		\hline
-		95\% & \texttt{[M\_95]} & \texttt{[R\_95]} \\
+		95\% & \texttt{$4.94$} & \texttt{$309.40$} \\
 		\hline
-		99\% & \texttt{[M\_99]} & \texttt{[R\_99]} \\
+		99\% & \texttt{$6.99$} & \texttt{$228.52$} \\
 		\hline
 	\end{tabular}
+	\caption{Fade margin and cell range for target reliabilities (M=10 reflections).}
+	\label{tab:fade_margin_range}
 \end{table}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{../Code/Pictures/heatmap}
+	\caption{heatmap of the received power}
+	\label{fig:heatmap}
+\end{figure}
 
 
-\section{Interpretation of Results}
-The introduction of reflections from buildings fundamentally changes the channel behavior compared to the simple LOS case.
+\section{Interpretation of Results}includegraphics
+The simulation of the full multiray channel provides several key insights into the behavior of the V2V communication link in an urban canyon.
+
 \begin{itemize}
-	\item \textbf{Multiray Fading:} The total received power is no longer a monotonic function of distance. The vector sum of the MPCs creates an interference pattern, causing rapid and deep fluctuations in signal strength, a.k.a fading as the distance $d$ changes. 
-	\item \textbf{Rician K-factor:} The K-factor provides a quantitative measure of the channel's nature. For short distances $d$, the LOS ray is much stronger than the reflected rays, resulting in a high K-factor and a Rician-like distribution with moderate fading. As $d$ increases, the LOS power decreases, and the reflected rays become relatively more significant, lowering the K-factor and making the channel behave more like a Rayleigh fading channel.
+	\item \textbf{Waveguide Effect and Path Loss:} The fitted path loss exponent was found to be $n=1.56$. This value is notably less than the free-space exponent of $n=2$. This indicates a {waveguide effect}, where the parallel building walls confine the electromagnetic waves, guiding them along the street. This prevents the signal from spreading freely in all directions, resulting in a slower decay of power with distance compared to the Friis model. This is clearly visible in Figure \ref{fig:instantaneous-vs-average-m10}, where the large-scale average power $\ll P_{RX} \gg$ decays more slowly than the Friis prediction.
 	
-	\item \textbf{Fade Margin and Reliability:} The variability $\sigma_L$ necessitates a fade margin to ensure reliable communication. A higher desired reliability (e.g., 99\% vs. 95\%) requires a larger fade margin, which in turn reduces the maximum communication range for the system. This highlights the trade-off between reliability and coverage in a fading channel.
+	\item \textbf{Dominance of the LOS Path:} The Rician K-factor, plotted in Figure \ref{fig:k-factor}, is high for shorter distances and decreases as the distance $d$ increases. This confirms that at closer ranges, the channel is dominated by the strong, stable LOS component, leading to less severe fading. As the distance grows, the power of the reflected NLOS components becomes more comparable to the attenuated LOS component, causing the K-factor to drop and the fading to become more pronounced.
+	
+	\item \textbf{Multiray Fading:} The plot of instantaneous received power in Figure \ref{fig:instantaneous-vs-average-m10} shows the characteristic rapid fluctuations of multiray fading. The coherent sum of the 21 MPCs creates a complex interference pattern, with deep nulls where destructive interference occurs. Averaging this power over a 5-meter local area ($\langle P_{RX} \rangle$ ) smooths these fast fades to reveal the slower variations caused by shadowing.
+	
+	\item \textbf{Shadowing and Reliability Trade-off:} The shadowing standard deviation was calculated to be $\sigma_L = 3.01$ dB. While relatively low, this variability still has a significant impact on system reliability. As shown in Table \ref{tab:fade_margin_range}, ensuring a 99\% reliability requires a fade margin of nearly 7 dB. This margin directly reduces the maximum allowable path loss, shrinking the effective cell range from over 640 meters at 50\% reliability to just 228 meters. This demonstrates the critical engineering trade-off between guaranteeing a stable connection and achieving maximum coverage.
 \end{itemize}
+
 
 
