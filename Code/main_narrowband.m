@@ -1,4 +1,4 @@
-    %% V2V NARROWBAND CHANNEL SIMULATION - Parallelism Implementation
+%% V2V NARROWBAND CHANNEL SIMULATION - Parallelism Implementation
 % Parallel Processing toolbox required
 clear; close all; clc;
 addpath('Functions');
@@ -30,7 +30,7 @@ PTX = params.PTX;
 sens_dBm = params.PRX_sens_dBm;
 lambda = params.lambda;
 
-M = 3;                      % Maximum number of reflections to consider
+M = 10;                      % Maximum number of reflections to consider
 w = 20;
 L = 1e6;                % Length of wall in meters
 eps_r = 4;                  % Relative permittivity building walls
@@ -229,7 +229,7 @@ plotPRXvsPTX(PTX_dBm_domain, PRX_total_dBm_domain, PRX_LOS_dBm_domain);
 fprintf('\nFitting Path Loss Model\n');
 
 % Define simulation parameters for path loss analysis
-d_samp = 0.01;   % Sampling interval
+d_samp = 1;   % Sampling interval
 d_local = 5.0;   % Must be greater than d_samp
 d0 = 1;          % Reference distance for the model
 

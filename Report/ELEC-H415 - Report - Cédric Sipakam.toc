@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {3.3}Received Power and Comparison with Friis Formula}{21}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Rician factor}{23}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Path Loss Model}{24}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{26}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{26}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Interpretation of Results}{27}{section.3.8}%
-\contentsline {section}{\numberline {3.9}LOS Channel - Wideband analysis}{27}{section.3.9}%
+\contentsline {section}{\numberline {3.6}Variability $\sigma _L$}{27}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Fade Margin and Cell Range}{27}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Interpretation of Results}{28}{section.3.8}%
+\contentsline {section}{\numberline {3.9}LOS Channel - Wideband analysis}{29}{section.3.9}%
