@@ -1,15 +1,4 @@
 function plotHeatmap(ax, RX_x_coordinates, RX_y_coordinates, PRX_dBm_domain, tx_pos, walls, sens_dBm)
-% Generates a 2D heatmap of the received power on a given axes.
-%
-% INPUTS:
-%   ax              - Axes handle to plot on. If empty, a new figure is created.
-%   RX_x_coordinates- Vector of x-coordinates for the heatmap grid.
-%   RX_y_coordinates- Vector of y-coordinates for the heatmap grid.
-%   PRX_heatmap_dBm - Matrix of received power values in dBm.
-%   tx_pos          - 1x2 position of the transmitter.
-%   walls           - Struct array defining wall geometry.
-%   sens_dBm        - Receiver sensitivity in dBm. Points below this will not be shown.
-
     if isempty(ax)
         figure('Name', 'Received Power Heatmap', 'NumberTitle', 'off');
         ax = gca;

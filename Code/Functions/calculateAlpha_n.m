@@ -1,10 +1,5 @@
 function alpha_n = calculateAlpha_n(ray_data, params)
-% INPUTS:
-%   ray_data    - A struct containing the ray's properties: dist, gamma_tot_n.
-%   params      - A struct with simulation parameters: fc, c, Z0, Ra.
-%
-% OUTPUTS:
-%   alpha_n     - The complex channel gain coefficient for the ray.
+% Calculates the complex channel gain coefficient for a ray.
 
     d_n = ray_data.distance_total;
     gamma_tot_n = ray_data.gamma_tot_n;

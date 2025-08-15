@@ -1,10 +1,8 @@
 function plotWidebandChannel(all_rays, params)
-    % Parameters
-    B   = params.BRF;         % Hz
-    dT  = params.resolution;  % Tap spacing (s)
-    L   = params.Ltaps;       % Number of taps
+    B   = params.BRF;
+    dT  = params.resolution;
+    L   = params.Ltaps;
 
-    % Extract path delays and gains
     N = length(all_rays);
     all_tau_n   = zeros(1,N);
     all_alpha_n = zeros(1,N);
@@ -13,7 +11,6 @@ function plotWidebandChannel(all_rays, params)
         all_alpha_n(n) = all_rays{n}.alpha_n;
     end
 
-    % Plot 1: Physical Impulse Response h(tau)
     figure('Name','Physical Impulse Response h(\tau) - Full Channel','NumberTitle','off');
     stem(all_tau_n*1e9, abs(all_alpha_n), 'filled', 'LineWidth', 2, ...
          'Marker','o','MarkerSize',5, 'DisplayName', '$h(\tau)$');
@@ -25,8 +22,7 @@ function plotWidebandChannel(all_rays, params)
     set(lg1,'Interpreter','latex');
     axis tight;
 
-    % Plot 2: Frequency Response H(f)
-    N_fft = 4096; % Number of points for the frequency response
+    N_fft = 4096;
     f = linspace(-B/2, B/2, N_fft);
     Hf = zeros(1, N_fft);
     for n = 1:N
@@ -43,7 +39,6 @@ function plotWidebandChannel(all_rays, params)
     set(lg2,'Interpreter','latex');
     axis tight;
 
-    % Plot 3: Tapped Delay Line Model h_TDL(tau)
     l = 0:L;
     tau_dom = l * dT;
     h_TDL = zeros(1, L+1);

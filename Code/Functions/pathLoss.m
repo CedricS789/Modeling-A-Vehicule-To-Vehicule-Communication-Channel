@@ -1,16 +1,4 @@
 function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, distance_domain_model, PRX_Friis_model_dBm, PRX_avg_model_dBm, params, d0)
-% INPUTS:
-%   distance_domain_padded  - Vector of distances for the full simulation (m).
-%   PRX_dBm                 - Vector of instantaneous received power (dBm).
-%   distance_domain_model   - Vector of distances for the model fit (m).
-%   PRX_avg_model_dBm       - Vector of spatially averaged received power (dBm).
-%   params                  - Struct with simulation parameters.
-%   d0                      - Reference distance for the model (m).
-%
-% OUTPUTS:
-%   n        - The calculated path loss exponent.
-%   L0_d0_dB - The calculated reference path loss at d0 (dB).
-%   sigma_L  - The calculated shadowing standard deviation (dB).
 
     fprintf('   - Fitting model to data\n');
     
@@ -43,11 +31,9 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     
     L_d_dB_fitted_total = L0_d_dB_fitted - 2 * G_dBi;
     
-    semilogx(distance_domain_model, L_d_dB_data, 'b-', 'LineWidth', 1.2, ...
-        'DisplayName', '$L_{\mathrm{data}}(d)$');
+    semilogx(distance_domain_model, L_d_dB_data, 'b-', 'LineWidth', 1.2, 'DisplayName', '$L_{\mathrm{data}}(d)$');
     hold on;
-    semilogx(distance_domain_model, L_d_dB_fitted_total, 'r-', 'LineWidth', 2, ...
-        'DisplayName', sprintf('$L_{\\mathrm{fitted}}(d), n=%.2f$', n));
+    semilogx(distance_domain_model, L_d_dB_fitted_total, 'r-', 'LineWidth', 2, 'DisplayName', sprintf('$L_{\\mathrm{fitted}}(d), n=%.2f$', n));
     
     grid on; grid minor;
     title('Path Loss Model Fit for V2V Urban Canyon', 'FontSize', 20, 'Interpreter', 'latex');
@@ -62,17 +48,11 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     
     PRX_avg_dBm_fit = PTX_dBm - L_d_dB_fitted_total;
     
-    semilogx(distance_domain_padded, PRX_dBm, ...
-        'DisplayName', '$P_{\mathrm{RX}}$');
+    semilogx(distance_domain_padded, PRX_dBm, 'DisplayName', '$P_{\mathrm{RX}}$');
     hold on;
-    
-    semilogx(distance_domain_model, PRX_avg_model_dBm, 'b-', 'LineWidth', 1.2, ...
-        'DisplayName', '$\langle P_{\mathrm{RX}} \rangle$');
-    
-    semilogx(distance_domain_model, PRX_Friis_model_dBm, '--', 'LineWidth', 1.2, ...
-        'DisplayName', '$P_{\mathrm{RX,\ Friis}}$');
-    semilogx(distance_domain_model, PRX_avg_dBm_fit, 'r-', 'LineWidth', 2, ...
-        'DisplayName', '$\ll P_{\mathrm{RX}} \gg$');
+    semilogx(distance_domain_model, PRX_avg_model_dBm, 'b-', 'LineWidth', 1.2, 'DisplayName', '$\langle P_{\mathrm{RX}} \rangle$');
+    semilogx(distance_domain_model, PRX_Friis_model_dBm, '--', 'LineWidth', 1.2, 'DisplayName', '$P_{\mathrm{RX,\ Friis}}$');
+    semilogx(distance_domain_model, PRX_avg_dBm_fit, 'r-', 'LineWidth', 2, 'DisplayName', '$\ll P_{\mathrm{RX}} \gg$');
     
     grid on; grid minor;
     title('Power vs. Distance', 'FontSize', 20, 'Interpreter', 'latex');
@@ -85,8 +65,7 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     fprintf('   - Plotting shadowing error\n');
     figure('Name', 'Shadowing Error', 'NumberTitle', 'off');
     
-    semilogx(distance_domain_model, shadowing_error, 'Color', 'black', 'LineWidth', 1.2, ...
-        'DisplayName', '$L_{0,\mathrm{data}}-L_{0,\mathrm{fitted}}$'); 
+    semilogx(distance_domain_model, shadowing_error, 'Color', 'black', 'LineWidth', 1.2, 'DisplayName', '$L_{0,\mathrm{data}}-L_{0,\mathrm{fitted}}$'); 
     hold on;
 
     if exist('yline','file')
@@ -106,9 +85,7 @@ function [n, L0_d0_dB, sigma_L] = pathLoss(distance_domain_padded, PRX_dBm, dist
     x_min = min(distance_domain_model(:));
     x_max = max(distance_domain_model(:));
     x_text = 10^( log10(x_min) + 0.1*(log10(x_max) - log10(x_min)) ); 
-    text(x_text, sigma_L, sprintf('$\\sigma_L=%.2f \\mathrm{dB}$', sigma_L), ...
-        'Interpreter','latex','Color','r','FontWeight','bold', ...
-        'HorizontalAlignment','left','VerticalAlignment','bottom', 'FontSize', 16);
+    text(x_text, sigma_L, sprintf('$\\sigma_L=%.2f \\mathrm{dB}$', sigma_L), 'Interpreter','latex','Color','r','FontWeight','bold', 'HorizontalAlignment','left','VerticalAlignment','bottom', 'FontSize', 16);
     
     grid on; grid minor;
     title('Shadowing Error', 'FontSize', 18, 'Interpreter', 'latex');

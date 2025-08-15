@@ -6,7 +6,6 @@ function plotLOSChannel(ray, params)
     tau_LOS   = ray.tau_n;
     alpha_LOS = ray.alpha_n;
 
-    %  Impulse Response
     figure('Name','Impulse Response h(\tau) - LOS','NumberTitle','off');
     dt_s   = max(1e-9, tau_LOS/200);
     t_s    = linspace(tau_LOS - 20*dt_s, tau_LOS + 20*dt_s, 401);
@@ -27,7 +26,6 @@ function plotLOSChannel(ray, params)
     axis tight; 
     hold off;
 
-    %  Frequency Response
     f = linspace(-B/2, B/2, 2001);
     Hf = alpha_LOS .* exp(-1j*2*pi*f*tau_LOS);
     figure('Name','Frequency Response H(f) - LOS','NumberTitle','off');
@@ -40,7 +38,6 @@ function plotLOSChannel(ray, params)
     set(lg2,'Interpreter','latex'); 
     axis tight;
 
-    %  TDL Model in ns
     l = 0:L;
     tau_l = l * d_tau;
     h_tdl = alpha_LOS .* sinc(B * (tau_LOS - tau_l));
