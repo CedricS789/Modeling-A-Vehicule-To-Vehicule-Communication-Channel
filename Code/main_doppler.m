@@ -1,4 +1,4 @@
-%% V2V DOPPLER & TIME VARIANCE ANALYSIS (SINGLE FILE SCRIPT)
+%% V2V DOPPLER & TIME VARIANCE ANALYSIS
 clear; close all; clc;
 
 %% ========================================================================
