@@ -32,7 +32,7 @@ PTX = params.PTX;
 sens_dBm = params.PRX_sens_dBm;
 lambda = params.lambda;
 
-M = 10;
+M = 3;
 w = 20;
 L = 1000;
 eps_r = 4;
