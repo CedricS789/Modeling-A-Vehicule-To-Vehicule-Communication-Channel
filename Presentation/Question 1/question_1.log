@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  19 AUG 2025 11:26
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  19 AUG 2025 11:35
  restricted system commands enabled.
 **question_1.tex
 (./question_1.tex
@@ -1346,35 +1346,20 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
 
 ]
 
-LaTeX Warning: File `"placeholder-mpc-arrival-diagram.png"' not found on input 
-line 156.
-
-
-! Package luatex.def Error: File `placeholder-mpc-arrival-diagram.png' not foun
-d: using draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.156 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (216.8533pt too high) detected at line 156
- []
-
-
-
 [7
 
 ]
+<pictures/ray-tracing-3-reflections.png, id=293, 1032.9792pt x 571.4148pt>
+File: pictures/ray-tracing-3-reflections.png Graphic file (type png)
+<use pictures/ray-tracing-3-reflections.png>
+Package luatex.def Info: pictures/ray-tracing-3-reflections.png  used on input 
+line 159.
+(luatex.def)             Requested size: 308.06374pt x 170.40562pt.
+
 
 [8
 
-]
+<./pictures/ray-tracing-3-reflections.png>]
 
 [9
 
@@ -1384,8 +1369,16 @@ Overfull \vbox (216.8533pt too high) detected at line 156
 
 ]
 
+[11
+
+]
+
+[12
+
+]
+
 LaTeX Warning: File `"placeholder-narrowband-condition.png"' not found on input
- line 207.
+ line 212.
 
 
 ! Package luatex.def Error: File `placeholder-narrowband-condition.png' not fou
@@ -1395,24 +1388,16 @@ See the luatex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.207 	\end{frame}
+l.212 	\end{frame}
                 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \vbox (231.57173pt too high) detected at line 207
+Overfull \vbox (91.75623pt too high) detected at line 212
  []
 
 
-
-[11
-
-]
-
-[12
-
-]
 
 [13
 
@@ -1421,28 +1406,6 @@ Overfull \vbox (231.57173pt too high) detected at line 207
 [14
 
 ]
-
-LaTeX Warning: File `"placeholder-wideband-condition.png"' not found on input l
-ine 244.
-
-
-! Package luatex.def Error: File `placeholder-wideband-condition.png' not found
-: using draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.244 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (229.31717pt too high) detected at line 244
- []
-
-
 
 [15
 
@@ -1456,31 +1419,31 @@ Overfull \vbox (229.31717pt too high) detected at line 244
 
 ]
 
-[18
-
-]
-
-LaTeX Warning: File `"placeholder-tdl-grouping.png"' not found on input line 28
-5.
+LaTeX Warning: File `"placeholder-wideband-condition.png"' not found on input l
+ine 252.
 
 
-! Package luatex.def Error: File `placeholder-tdl-grouping.png' not found: usin
-g draft setting.
+! Package luatex.def Error: File `placeholder-wideband-condition.png' not found
+: using draft setting.
 
 See the luatex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.285 	\end{frame}
+l.252 	\end{frame}
                 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \vbox (200.66144pt too high) detected at line 285
+Overfull \vbox (91.75623pt too high) detected at line 252
  []
 
 
+
+[18
+
+]
 
 [19
 
@@ -1498,31 +1461,31 @@ Overfull \vbox (200.66144pt too high) detected at line 285
 
 ]
 
-[23
-
-]
-
-LaTeX Warning: File `"placeholder-rayleigh-pdf.png"' not found on input line 32
-7.
+LaTeX Warning: File `"placeholder-tdl-grouping.png"' not found on input line 29
+6.
 
 
-! Package luatex.def Error: File `placeholder-rayleigh-pdf.png' not found: usin
+! Package luatex.def Error: File `placeholder-tdl-grouping.png' not found: usin
 g draft setting.
 
 See the luatex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.327 	\end{frame}
+l.296 	\end{frame}
                 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \vbox (167.26854pt too high) detected at line 327
+Overfull \vbox (125.99228pt too high) detected at line 296
  []
 
 
+
+[23
+
+]
 
 [24
 
@@ -1532,28 +1495,6 @@ Overfull \vbox (167.26854pt too high) detected at line 327
 
 ]
 
-LaTeX Warning: File `"placeholder-rician-pdf.png"' not found on input line 353.
-
-
-
-! Package luatex.def Error: File `placeholder-rician-pdf.png' not found: using 
-draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.353 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (200.71564pt too high) detected at line 353
- []
-
-
-
 [26
 
 ]
@@ -1562,31 +1503,31 @@ Overfull \vbox (200.71564pt too high) detected at line 353
 
 ]
 
-LaTeX Warning: File `"placeholder-pdp-example.png"' not found on input line 374
-.
+[28
+
+]
+
+LaTeX Warning: File `"placeholder-rayleigh-pdf.png"' not found on input line 34
+1.
 
 
-! Package luatex.def Error: File `placeholder-pdp-example.png' not found: using
- draft setting.
+! Package luatex.def Error: File `placeholder-rayleigh-pdf.png' not found: usin
+g draft setting.
 
 See the luatex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.374 	\end{frame}
+l.341 	\end{frame}
                 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \vbox (160.87668pt too high) detected at line 374
+Overfull \vbox (57.46283pt too high) detected at line 341
  []
 
 
-
-[28
-
-]
 
 [29
 
@@ -1600,7 +1541,79 @@ Overfull \vbox (160.87668pt too high) detected at line 374
 
 ]
 
+LaTeX Warning: File `"placeholder-rician-pdf.png"' not found on input line 370.
+
+
+
+! Package luatex.def Error: File `placeholder-rician-pdf.png' not found: using 
+draft setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.370 	\end{frame}
+                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \vbox (57.46283pt too high) detected at line 370
+ []
+
+
+
 [32
+
+]
+
+[33
+
+]
+
+[34
+
+]
+
+LaTeX Warning: File `"placeholder-pdp-example.png"' not found on input line 394
+.
+
+
+! Package luatex.def Error: File `placeholder-pdp-example.png' not found: using
+ draft setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.394 	\end{frame}
+                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \vbox (91.75623pt too high) detected at line 394
+ []
+
+
+
+[35
+
+]
+
+[36
+
+]
+
+[37
+
+]
+
+[38
+
+]
+
+[39
 
 ]
 \tf@nav=\write6
@@ -1622,14 +1635,14 @@ Package rerunfilecheck Info: File `question_1.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 32183 strings out of 475664
+ 32189 strings out of 475664
  100000,1144653 words of node,token memory allocated
  9029 words of node memory still in use:
    138 hlist, 12 vlist, 21 rule, 50 disc, 4 local_par, 206 glue, 32 kern, 13 pen
 alty, 396 glyph, 365 attribute, 65 glue_spec, 365 attribute_list, 4 write, 176 p
 df_literal, 28 pdf_colorstack nodes
-   avail lists: 2:894,3:586,4:274,5:247,6:59,7:1475,8:42,9:611,10:15,11:130
- 54054 multiletter control sequences out of 65536+600000
+   avail lists: 2:894,3:586,4:274,5:247,6:59,7:1466,8:42,9:611,10:15,11:130
+ 54045 multiletter control sequences out of 65536+600000
  66 fonts using 5402415 bytes
  128i,15n,116p,384b,847s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/sipak/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-
@@ -1654,9 +1667,9 @@ ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Use
 rs/sipak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on question_1.pdf (32 pages, 374068 bytes).
+Output written on question_1.pdf (39 pages, 514055 bytes).
 
-PDF statistics: 1217 PDF objects out of 1440 (max. 8388607)
- 71 named destinations out of 1000 (max. 131072)
+PDF statistics: 1414 PDF objects out of 1440 (max. 8388607)
+ 85 named destinations out of 1000 (max. 131072)
  924 words of extra memory for PDF output out of 10000 (max. 100000000)
 

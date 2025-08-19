@@ -148,16 +148,18 @@
 			y(t) = \sum_{n=1}^{N} \alpha_n(t) x(t - \tau_n)
 			\]
 		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Received Signal Formulation}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.7\linewidth]{"placeholder-mpc-arrival-diagram.png"}
-			\caption{Placeholder: Diagram of multipath components arriving at the receiver.}
+			\includegraphics[width=0.9\linewidth]{"pictures/ray-tracing-3-reflections.png"}
+			\caption{Diagram of multipath components arriving at the receiver.}
 		\end{figure}
 	\end{frame}
 	
 	
 	\section{Tapped Delay Line Models}
-	
 	\begin{frame}{The Problem of Limited Bandwidth}
 		\centering
 		\resizebox{1\textwidth}{!}{
@@ -199,10 +201,13 @@
 		\begin{block}{Consequence}
 			All multipath components arrive within the same time resolution interval, $\Delta\tau$. They are therefore indistinguishable and combine into a single tap.
 		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Condition for Narrowband}
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.8\linewidth]{"placeholder-narrowband-condition.png"}
-			\caption{Placeholder: Diagram showing a large $\Delta\tau$ encompassing all MPCs.}
+			\caption{Diagram showing a large $\Delta\tau$ encompassing all MPCs.}
 		\end{figure}
 	\end{frame}
 	
@@ -236,10 +241,13 @@
 		\begin{block}{Consequence}
 			The system's time resolution is fine enough to resolve groups of multipath components. This leads to a model with multiple taps, causing frequency-selective fading.
 		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Condition for Wideband}
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.8\linewidth]{"placeholder-wideband-condition.png"}
-			\caption{Placeholder: Diagram showing a small $\Delta\tau$ resolving different MPCs.}
+			\caption{Diagram showing a small $\Delta\tau$ resolving different MPCs.}
 		\end{figure}
 	\end{frame}
 	
@@ -277,10 +285,13 @@
 		\begin{block}{Consequence}
 			Each tap represents the interference of all MPCs arriving around the delay $l\Delta\tau$. The physical, continuous impulse response is sampled into a discrete TDL model.
 		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Visualizing the Taps}
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.9\linewidth]{"placeholder-tdl-grouping.png"}
-			\caption{Placeholder: Grouping of physical MPCs into discrete taps.}
+			\caption{Grouping of physical MPCs into discrete taps.}
 		\end{figure}
 	\end{frame}
 	
@@ -319,10 +330,13 @@
 			
 			\item The parameter $\sigma_l^2$ is half the average power of the tap: $\mathbb{E}[|h_l|^2] = 2\sigma_l^2$.
 		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{The Rayleigh Distribution}
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.7\linewidth]{"placeholder-rayleigh-pdf.png"}
-			\caption{Placeholder: Plot of the Rayleigh PDF.}
+			\caption{Plot of the Rayleigh PDF.}
 		\end{figure}
 	\end{frame}
 	
@@ -345,31 +359,37 @@
 			\item It is characterized by the \textbf{Rician K-factor}, the ratio of dominant to scattered power:
 			\[ K_l = \frac{A_l^2}{2\sigma_l^2} \]
 		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{The Rician Distribution}
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.7\linewidth]{"placeholder-rician-pdf.png"}
-			\caption{Placeholder: Plot of Rician PDFs for different K-factors.}
+			\caption{Plot of Rician PDFs for different K-factors.}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{The Power Delay Profile (PDP)}
+	\begin{frame}{The Power Delay Profile}
 		\begin{itemize}
 			\item To parameterize these statistical models, we need the average power distribution over the delays.
 			
-			\item This is the \textbf{Power Delay Profile (PDP)}, $P(\tau_l)$, which gives the average power $\mathbb{E}[|h_l|^2]$ for each tap delay $\tau_l = l\Delta\tau$.
+			\item This is the \textbf{Power Delay Profile}, $P(\tau_l)$, which gives the average power $\mathbb{E}[|h_l|^2]$ for each tap delay $\tau_l = l\Delta\tau$.
 			\[ P(\tau_l) = \mathbb{E}[|h_l|^2] \]
 		\end{itemize}
 	\end{frame}
 	
-	\begin{frame}{The Power Delay Profile (continued)}
+	\begin{frame}{The Power Delay Profile}
 		\begin{itemize}
-			\item The PDP is a fundamental characteristic of a wireless environment (for example., urban, rural). 
+			\item The PDP is a fundamental characteristic of a wireless environment (for example., urban, rural). 
 			\item Standardized models (for example., from ITU) provide typical PDPs for different scenarios.
 		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{The Power Delay Profile}
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.8\linewidth]{"placeholder-pdp-example.png"}
-			\caption{Placeholder: Example of a Power Delay Profile.}
+			\caption{Example of a Power Delay Profile.}
 		\end{figure}
 	\end{frame}
 	
