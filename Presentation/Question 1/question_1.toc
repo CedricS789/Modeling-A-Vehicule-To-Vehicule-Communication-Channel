@@ -1,6 +1,0 @@
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Tapped Delay Line Models}{9}{0}{2}
-\beamer@sectionintoc {3}{Narrowband TDL Model}{11}{0}{3}
-\beamer@sectionintoc {4}{Wideband TDL Model}{16}{0}{4}
-\beamer@sectionintoc {5}{Wideband Scenario - Statistical Model}{24}{0}{5}
-\beamer@sectionintoc {6}{Conclusion}{37}{0}{6}

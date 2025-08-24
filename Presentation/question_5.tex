@@ -1,0 +1,293 @@
+\documentclass{beamer}
+
+\usetheme{Boadilla}
+% \usecolortheme{beaver} % --- We are replacing this with our own theme below ---
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric, arrows.meta}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[bottom]{footmisc}
+
+% --- CUSTOM COLOR THEME SETUP ---
+
+% 1. Define your new colors using Hex codes
+\definecolor{ULBBlue}{HTML}{0D47A1}
+\definecolor{ULBTeal}{HTML}{4DB6AC}
+\definecolor{VUBOrange}{HTML}{E87722}
+\definecolor{AlertColor}{HTML}{D32F2F}
+\definecolor{LightGray}{HTML}{F5F5F5}
+
+
+% 2. Apply these colors to Beamer's elements
+\setbeamercolor{palette primary}{bg=ULBBlue, fg=white}
+\setbeamercolor{palette secondary}{bg=VUBOrange, fg=white}
+\setbeamercolor{palette tertiary}{bg=ULBBlue, fg=white}
+\setbeamercolor{palette quaternary}{bg=VUBOrange, fg=white}
+
+\setbeamercolor{structure}{fg=ULBBlue} % This is a key color for many elements
+\setbeamercolor{titlelike}{bg=ULBBlue, fg=white}
+\setbeamercolor{frametitle}{bg=ULBBlue, fg=white}
+\setbeamercolor{title}{use=structure,fg=white,bg=structure.fg}
+
+\setbeamercolor{normal text}{fg=black, bg=white}
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor{block body}{bg=LightGray}
+\setbeamercolor{alerted text}{fg=AlertColor}
+
+% --- END OF CUSTOM COLOR THEME ---
+
+% --- Command to automatically create a title slide for each section ---
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}\insertsectionhead\par%
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}
+% --- END of command ---
+
+
+\title[Long-Range Communications]{Question 5: Long-Range Communications}
+\subtitle{Earth Curvature, LEO Satellite Links, and Tropospheric Refraction}
+\author{Cédric Sipakam}
+\institute{ULB | VUB \\
+	\vspace{1.5em}
+	ELEC-H415: Communication Channels}
+\date{2025}
+
+
+\setbeamertemplate{footline}
+{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+			\hspace*{2ex}\usebeamerfont{title in head/foot}\insertshorttitle%
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{title in head/foot}%
+			\usebeamerfont{page number in head/foot}\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
+		\end{beamercolorbox}%
+	}%
+	\vskip0pt%
+}
+
+
+
+\begin{document}
+	\begin{frame}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\linewidth]{pictures/logos}
+		\end{figure}
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}{Outline}
+		\tableofcontents
+	\end{frame}
+	
+	\section{Maximal Communication Range due to Earth Curvature}
+	
+	\begin{frame}{Earth Curvature Effects}
+		\begin{itemize}
+			\item For long-range terrestrial or Earth-to-satellite links, the curvature of the Earth becomes a limiting factor for Line-of-Sight (LOS) propagation.
+			\item The maximum communication range is achieved when the direct path between the transmitter (TX) and receiver (RX) is exactly tangent to the Earth's surface.
+			\item We can model this geometrically to find the maximum possible distance, $d$, between two antennas of heights $h_A$ and $h_B$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Earth Curvature Effects}
+		\begin{figure}
+			\centering
+			% Placeholder for the image from Chapter 5, slide 10
+			\includegraphics[width=0.8\linewidth]{"pictures/earth_curvature_range.png"}
+			\caption{Geometric model for calculating maximum LOS distance.}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{Demonstration: Maximum LOS Distance (1/2)}
+		\begin{itemize}
+			\item We consider the right-angled triangle formed by the Earth's center, the location of antenna A, and the point of tangency on the Earth's surface.
+			\item The hypotenuse has length $(R_e + h_A)$, where $R_e$ is the Earth's radius (\SI{6375}{km}). The other two sides are $R_e$ and the distance to the horizon, $d_A$.
+			\item By the Pythagorean theorem:
+			\[ (R_e + h_A)^2 = R_e^2 + d_A^2 \]
+			\item Expanding the left side gives:
+			\[ R_e^2 + 2R_e h_A + h_A^2 = R_e^2 + d_A^2 \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Demonstration: Maximum LOS Distance (2/2)}
+		\begin{itemize}
+			\item For typical antenna heights, $h_A \ll R_e$, so the $h_A^2$ term is negligible compared to the other terms. We can make the approximation:
+			\[ 2R_e h_A \approx d_A^2 \]
+			\item Solving for the distance to the horizon from antenna A:
+			\[ d_A \approx \sqrt{2 R_e h_A} \]
+			\item Similarly, for antenna B, the distance to the horizon is $d_B \approx \sqrt{2 R_e h_B}$.
+			\item The total maximum LOS communication range is the sum of these two distances:
+			\vspace{-1em}
+			\[ d = d_A + d_B \approx \sqrt{2 R_e} (\sqrt{h_A} + \sqrt{h_B}) \]
+		\end{itemize}
+	\end{frame}
+	
+	\section{Application to LEO Satellite Link}
+	
+	\begin{frame}{LEO Satellite at Horizon: Communication Range}
+		\begin{itemize}
+			\item We apply this model to a communication link between a ground station and a Low Earth Orbit (LEO) satellite.
+			\item \textbf{Hypotheses}:
+			\begin{itemize}
+				\item The ground station antenna is at sea level, so $h_A = 0$ km.
+				\item The LEO satellite is at an altitude $h_B = 450$ km.
+				\item The satellite is at the horizon, meaning the communication path is tangent to the Earth's surface.
+			\end{itemize}
+			\item Since $h_A = 0$, the formula for the maximum range simplifies to:
+			\[ d \approx \sqrt{2 R_e h_B} \]
+			\item Substituting the values $R_e = 6375$ km and $h_B = 450$ km:
+			\vspace{-1em}
+			\[ d \approx \sqrt{2 \cdot 6375 \cdot 450} = \sqrt{5737500} \approx \SI{2395.3}{km} \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{LEO Satellite at Horizon: Free-Space Loss (1/3)}
+		\begin{itemize}
+			\item The free-space path loss (FSPL) for this link can be calculated using the Friis formula, expressed in decibels:
+			\[ L_{FS}[\text{dB}] = 20 \log_{10}\left(\frac{4\pi d}{\lambda}\right) = 20 \log_{10}\left(\frac{4\pi d f}{c}\right) \]
+			\item We can separate the terms that depend on distance and frequency:
+			\[ L_{FS}[\text{dB}] = 20 \log_{10}(d) + 20 \log_{10}(f) + 20 \log_{10}\left(\frac{4\pi}{c}\right) \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{LEO Satellite at Horizon: Free-Space Loss (2/3)}
+		\begin{itemize}
+			\item Using the calculated distance $d = \SI{2.3953e6}{m}$ and the speed of light $c = \SI{3e8}{m/s}$, we evaluate the constant terms:
+			\[ 20 \log_{10}(d) = 20 \log_{10}(2.3953 \times 10^6) \approx \SI{127.6}{dB} \]
+			\[ 20 \log_{10}\left(\frac{4\pi}{c}\right) \approx 20 \log_{10}(4.1888 \times 10^{-8}) \approx \SI{-147.6}{dB} \]
+			\item Combining these constant terms with the frequency-dependent term:
+			\[ L_{FS}[\text{dB}] \approx 127.6 + 20 \log_{10}(f) - 147.6 \]
+			\[ L_{FS}[\text{dB}] \approx 20 \log_{10}(f) - 20 \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{LEO Satellite at Horizon: Free-Space Loss (3/3)}
+		\begin{itemize}
+			\item To make the formula practical, let's express the frequency $f$ in GHz. Let $f_{GHz} = f / 10^9$. Then $f = f_{GHz} \cdot 10^9$.
+			\[ L_{FS}[\text{dB}] = 20 \log_{10}(f_{GHz} \cdot 10^9) - 20 \]
+			\[ L_{FS}[\text{dB}] = 20 \log_{10}(f_{GHz}) + 20 \log_{10}(10^9) - 20 \]
+			\[ L_{FS}[\text{dB}] = 20 \log_{10}(f_{GHz}) + 180 - 20 \]
+		\end{itemize}
+		\vspace{-1em}
+		\begin{alertblock}{Final Result}
+			The free-space loss for the LEO satellite at the horizon, as a function of frequency in GHz, is:
+			\[ L_{FS}[\text{dB}] = 20 \log_{10}(f_{GHz}) + 160 \]
+		\end{alertblock}
+	\end{frame}
+	
+	\section{Tropospheric Refraction and Its Impact}
+	
+	\begin{frame}{The Concept of Tropospheric Refraction}
+		\begin{itemize}
+			\item The previous calculation assumed that radio waves travel in straight lines (rectilinear propagation).
+			\item However, for microwave links, propagation occurs in the troposphere, the lowest layer of the atmosphere.
+			\item The refractive index of the troposphere, $n$, is not constant. It decreases slowly with altitude $h$.
+			\[ n(h) = 1 + 10^{-6} N_t \quad \text{where} \quad N_t \approx 315 \exp(-h/H) \]
+			\item As a wave passes through layers of air with different refractive indices, it is bent or \textbf{refracted}.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{The Concept of Tropospheric Refraction}
+		\begin{figure}
+			\centering
+			% Placeholder for the image from Chapter 5, slide 15
+			\includegraphics[width=0.7\linewidth]{"pictures/snells_law_atmosphere.png"}
+			\caption{Ray bending due to decreasing refractive index with altitude.}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{Demonstration: Ray Bending (1/2)}
+		\begin{itemize}
+			\item According to Snell's Law, as a ray passes from a denser medium ($n_1$) to a less dense medium ($n_2 < n_1$), it bends away from the normal.
+			\[ n_1 \sin\theta_1 = n_2 \sin\theta_2 \]
+			\item In the atmosphere, this means the ray is continuously bent towards the Earth, which has a higher refractive index.
+			\item The propagation path is no longer a straight line but a curve. We can find the local radius of curvature of this path, $R_r$.
+			\item From the differential form of Snell's law ($n \cos\varphi = \text{constant}$, where $\varphi$ is the angle with the horizontal), we can derive:
+			\[ \frac{1}{R_r} = -\frac{\cos\varphi}{n} \frac{dn}{dh} \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Demonstration: Ray Bending (2/2)}
+		\begin{itemize}
+			\item For most terrestrial links, the propagation is near-horizontal, so the elevation angle $\varphi \approx 0$ and $\cos\varphi \approx 1$. Also, $n \approx 1$.
+			\item The radius of curvature of the ray path simplifies to:
+			\[ R_r \approx -\frac{1}{dn/dh} \]
+			\item Since the refractive index $n$ decreases approximately linearly with height for the first few kilometers, $dn/dh$ is a negative constant.
+			\item This means $R_r$ is a positive constant. The radio wave follows a circular arc, bending towards the Earth.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{The Effective Earth Radius Concept (1/2)}
+		\begin{itemize}
+			\item Dealing with curved ray paths is mathematically complex.
+			\item A clever engineering trick is to model the curved ray path over the real Earth as an equivalent straight-line path over a fictitious Earth with a larger radius. This is the \textbf{effective Earth radius}, $R_{eff}$.
+			\item The height of a ray with elevation angle $E$ at a distance $x$ is the difference between the ray's vertical position $y_r$ and the Earth's surface position $y_e$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{The Effective Earth Radius Concept (1/2)}
+		\begin{itemize}
+			\item For a curved ray over a curved Earth, the height is:
+			\[ h_r(x) = y_r - y_e = \left(Ex - \frac{x^2}{2R_r}\right) - \left(-\frac{x^2}{2R_e}\right) \]
+			\[ h_r(x) = Ex + \frac{x^2}{2} \left( \frac{1}{R_e} - \frac{1}{R_r} \right) \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{The Effective Earth Radius Concept (2/2)}
+		\begin{itemize}
+			\item This equation has the same form as the height of a straight ray ($R_r \to \infty$) above a modified Earth with radius $R_{eff}$:
+			\[ h_r(x) = Ex + \frac{x^2}{2R_{eff}} \]
+			\item By comparing the two expressions, we define the effective Earth radius:
+			\[ \frac{1}{R_{eff}} = \frac{1}{R_e} - \frac{1}{R_r} = \frac{1}{R_e} + \frac{dn}{dh} \]
+			\item We introduce the effective Earth radius factor, $k_e$:
+			\[ R_{eff} = \frac{R_e}{1 + R_e \frac{dn}{dh}} = k_e R_e \]
+			\vspace{-2.5em}
+			\item Under standard atmospheric conditions, $k_e \approx 4/3 \approx 1.33$.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Impact on Maximal Communication Range}
+		\begin{block}{Conclusion}
+			Tropospheric refraction effectively "flattens" the Earth from the perspective of the radio wave, allowing it to travel beyond the geometric horizon.
+		\end{block}
+		\begin{itemize}
+			\item To calculate the new, extended maximum communication range, we simply replace the real Earth radius $R_e$ with the effective Earth radius $R_{eff}$ in our original formula.
+		
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Impact on Maximal Communication Range}
+		
+		\begin{itemize}
+			
+			\item The maximum range becomes:
+			\[ d_{refracted} \approx \sqrt{2 R_{eff}} (\sqrt{h_A} + \sqrt{h_B}) \]
+			\[ d_{refracted} \approx \sqrt{2 k_e R_e} (\sqrt{h_A} + \sqrt{h_B}) \]
+			\item This is an increase of a factor of $\sqrt{k_e} \approx \sqrt{4/3} \approx 1.15$, or about a 15\% increase in range compared to the purely geometric calculation.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\centering
+		\Huge Thank You
+	\end{frame}
+	
+\end{document}

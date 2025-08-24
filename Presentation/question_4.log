@@ -1,7 +1,7 @@
-This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  19 AUG 2025 11:35
+This is LuaHBTeX, Version 1.18.1 (MiKTeX 24.4) (format=lualatex 2025.6.30)  24 AUG 2025 21:37
  restricted system commands enabled.
-**question_1.tex
-(./question_1.tex
+**question_4.tex
+(./question_4.tex
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
 Lua module: luaotfload 2024-02-14 v3.28 Lua based OpenType font support
@@ -1064,8 +1064,8 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 765
 Package translations Info: No language package found. I am going to use `englis
 h' as default language. on input line 87.
 
-(./question_1.aux)
-\openout1 = question_1.aux
+(./question_4.aux)
+\openout1 = question_4.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
 LaTeX Font Info:    ... okay on input line 87.
@@ -1157,10 +1157,10 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring OFF on input line 87.
- (./question_1.out) (./question_1.out)
+ (./question_4.out) (./question_4.out)
 \@outlinefile=\write5
 
-\openout5 = question_1.out
+\openout5 = question_4.out
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 87.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
@@ -1251,12 +1251,18 @@ nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `english'. on input line 87.
- (./question_1.nav)
+ (./question_4.nav)
+<pictures/logos.jpg, id=42, 816.04875pt x 118.19156pt>
+File: pictures/logos.jpg Graphic file (type jpg)
+<use pictures/logos.jpg>
+Package luatex.def Info: pictures/logos.jpg  used on input line 94.
+(luatex.def)             Requested size: 239.6057pt x 34.70209pt.
+
 
 [1
 
-{C:/Users/sipak/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(./question_1.toc)
+{C:/Users/sipak/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}<./pictures/log
+os.jpg>] (./question_4.toc)
 
 [2
 
@@ -1266,100 +1272,94 @@ or `english'. on input line 87.
 
 ]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-113.
+112.
  (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-13.
+12.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-113.
+112.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-113.
+112.
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 113.
+(Font)              <6> on input line 112.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 113.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 113
+(Font)              <5> on input line 112.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 112
 .
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 113
+LaTeX Font Info:    Trying to load font information for U+msb on input line 112
 .
 
 (C:/Users/sipak/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 113.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 112.
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 113.
-<pictures/wireless-comm-channel.png, id=169, 1124.70187pt x 286.82156pt>
-File: pictures/wireless-comm-channel.png Graphic file (type png)
-<use pictures/wireless-comm-channel.png>
-Package luatex.def Info: pictures/wireless-comm-channel.png  used on input line
- 113.
-(luatex.def)             Requested size: 273.83733pt x 69.83205pt.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 112.
 
 
 [4
 
-<./pictures/wireless-comm-channel.png>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 124.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 124.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 124.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 124.
+]
+<pictures/power-components.png, id=204, 1237.62375pt x 769.37437pt>
+File: pictures/power-components.png Graphic file (type png)
+<use pictures/power-components.png>
+Package luatex.def Info: pictures/power-components.png  used on input line 120.
+
+(luatex.def)             Requested size: 273.83733pt x 170.22554pt.
 
 
 [5
 
-]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 138.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 138.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 138.
-LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 138.
-
+<./pictures/power-components.png>]
 
 [6
 
 ]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 131.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 131.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10.95> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 131.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 131.
+
 
 [7
 
 ]
-<pictures/ray-tracing-3-reflections.png, id=293, 1032.9792pt x 571.4148pt>
-File: pictures/ray-tracing-3-reflections.png Graphic file (type png)
-<use pictures/ray-tracing-3-reflections.png>
-Package luatex.def Info: pictures/ray-tracing-3-reflections.png  used on input 
-line 159.
-(luatex.def)             Requested size: 308.06374pt x 170.40562pt.
-
 
 [8
 
-<./pictures/ray-tracing-3-reflections.png>]
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 150.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 150.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 150.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 150.
+
 
 [9
 
@@ -1376,28 +1376,6 @@ line 159.
 [12
 
 ]
-
-LaTeX Warning: File `"placeholder-narrowband-condition.png"' not found on input
- line 212.
-
-
-! Package luatex.def Error: File `placeholder-narrowband-condition.png' not fou
-nd: using draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.212 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (91.75623pt too high) detected at line 212
- []
-
-
 
 [13
 
@@ -1419,28 +1397,6 @@ Overfull \vbox (91.75623pt too high) detected at line 212
 
 ]
 
-LaTeX Warning: File `"placeholder-wideband-condition.png"' not found on input l
-ine 252.
-
-
-! Package luatex.def Error: File `placeholder-wideband-condition.png' not found
-: using draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.252 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (91.75623pt too high) detected at line 252
- []
-
-
-
 [18
 
 ]
@@ -1461,28 +1417,6 @@ Overfull \vbox (91.75623pt too high) detected at line 252
 
 ]
 
-LaTeX Warning: File `"placeholder-tdl-grouping.png"' not found on input line 29
-6.
-
-
-! Package luatex.def Error: File `placeholder-tdl-grouping.png' not found: usin
-g draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.296 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (125.99228pt too high) detected at line 296
- []
-
-
-
 [23
 
 ]
@@ -1494,6 +1428,12 @@ Overfull \vbox (125.99228pt too high) detected at line 296
 [25
 
 ]
+File: pictures/power-components.png Graphic file (type png)
+<use pictures/power-components.png>
+Package luatex.def Info: pictures/power-components.png  used on input line 287.
+
+(luatex.def)             Requested size: 239.6057pt x 148.95322pt.
+
 
 [26
 
@@ -1503,35 +1443,57 @@ Overfull \vbox (125.99228pt too high) detected at line 296
 
 ]
 
-[28
-
-]
-
-LaTeX Warning: File `"placeholder-rayleigh-pdf.png"' not found on input line 34
-1.
+LaTeX Warning: File `"pictures/synthesis-step2.png"' not found on input line 30
+6.
 
 
-! Package luatex.def Error: File `placeholder-rayleigh-pdf.png' not found: usin
+! Package luatex.def Error: File `pictures/synthesis-step2.png' not found: usin
 g draft setting.
 
 See the luatex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.341 	\end{frame}
+l.306 	\end{frame}
                 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \vbox (57.46283pt too high) detected at line 341
+Overfull \vbox (57.46283pt too high) detected at line 306
  []
 
 
 
+[28
+
+]
+
 [29
 
 ]
+
+LaTeX Warning: File `"pictures/synthesis-step3.png"' not found on input line 32
+6.
+
+
+! Package luatex.def Error: File `pictures/synthesis-step3.png' not found: usin
+g draft setting.
+
+See the luatex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.326 	\end{frame}
+                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \vbox (68.51283pt too high) detected at line 326
+ []
+
+
 
 [30
 
@@ -1541,31 +1503,31 @@ Overfull \vbox (57.46283pt too high) detected at line 341
 
 ]
 
-LaTeX Warning: File `"placeholder-rician-pdf.png"' not found on input line 370.
-
-
-
-! Package luatex.def Error: File `placeholder-rician-pdf.png' not found: using 
-draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.370 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (57.46283pt too high) detected at line 370
- []
-
-
-
 [32
 
 ]
+! Missing number, treated as zero.
+<to be read again> 
+]
+l.345 	\end{frame}
+                
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+]
+l.345 	\end{frame}
+                
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
 
 [33
 
@@ -1574,81 +1536,39 @@ Overfull \vbox (57.46283pt too high) detected at line 370
 [34
 
 ]
-
-LaTeX Warning: File `"placeholder-pdp-example.png"' not found on input line 394
-.
-
-
-! Package luatex.def Error: File `placeholder-pdp-example.png' not found: using
- draft setting.
-
-See the luatex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.394 	\end{frame}
-                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \vbox (91.75623pt too high) detected at line 394
- []
-
-
-
-[35
-
-]
-
-[36
-
-]
-
-[37
-
-]
-
-[38
-
-]
-
-[39
-
-]
 \tf@nav=\write6
 
-\openout6 = question_1.nav
+\openout6 = question_4.nav
 \tf@toc=\write7
 
-\openout7 = question_1.toc
+\openout7 = question_4.toc
 \tf@snm=\write8
 
-\openout8 = question_1.snm
- (./question_1.aux)
+\openout8 = question_4.snm
+ (./question_4.aux)
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
  ***********
-Package rerunfilecheck Info: File `question_1.out' has not changed.
-(rerunfilecheck)             Checksum: FE97633D494D9521CF66C8B4E9CF0A3B;896.
+Package rerunfilecheck Info: File `question_4.out' has not changed.
+(rerunfilecheck)             Checksum: 37DEB0652F13C78F987A38320118A6C3;1465.
 )
 
 Here is how much of LuaTeX's memory you used:
- 32189 strings out of 475664
+ 31982 strings out of 475664
  100000,1144653 words of node,token memory allocated
- 9029 words of node memory still in use:
-   138 hlist, 12 vlist, 21 rule, 50 disc, 4 local_par, 206 glue, 32 kern, 13 pen
-alty, 396 glyph, 365 attribute, 65 glue_spec, 365 attribute_list, 4 write, 176 p
-df_literal, 28 pdf_colorstack nodes
-   avail lists: 2:894,3:586,4:274,5:247,6:59,7:1466,8:42,9:611,10:15,11:130
- 54045 multiletter control sequences out of 65536+600000
+ 3506 words of node memory still in use:
+   84 hlist, 9 vlist, 12 rule, 1 local_par, 96 glue, 5 kern, 8 penalty, 9 glyph,
+ 238 attribute, 65 glue_spec, 238 attribute_list, 4 write, 114 pdf_literal, 1 pd
+f_start_link, 1 pdf_end_link, 1 pdf_action, 14 pdf_colorstack nodes
+   avail lists: 2:940,3:565,4:289,5:255,6:65,7:2254,8:48,9:685,10:15,11:180
+ 53850 multiletter control sequences out of 65536+600000
  66 fonts using 5402415 bytes
- 128i,15n,116p,384b,847s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,15n,116p,395b,962s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/users/sipak/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-
 regular.otf>{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-
-mathsy.enc}{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-m
-athit.enc}{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm
+rm.enc}{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathi
+t.enc}{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy
 .enc}{C:/Users/sipak/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.
 enc}<c:/users/sipak/appdata/local/programs/miktex/fonts/opentype/public/lm/lmsan
 s8-oblique.otf><c:/users/sipak/appdata/local/programs/miktex/fonts/opentype/publ
@@ -1667,9 +1587,9 @@ ppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/sipak/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam7.pfb><C:/Use
 rs/sipak/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on question_1.pdf (39 pages, 514055 bytes).
+Output written on question_4.pdf (34 pages, 877696 bytes).
 
-PDF statistics: 1414 PDF objects out of 1440 (max. 8388607)
- 85 named destinations out of 1000 (max. 131072)
- 924 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1249 PDF objects out of 1440 (max. 8388607)
+ 76 named destinations out of 1000 (max. 131072)
+ 772 words of extra memory for PDF output out of 10000 (max. 100000000)
 

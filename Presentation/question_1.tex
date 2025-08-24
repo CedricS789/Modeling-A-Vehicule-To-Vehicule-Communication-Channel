@@ -86,6 +86,10 @@
 
 \begin{document}
 	\begin{frame}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\linewidth]{pictures/logos}
+		\end{figure}
 		\titlepage
 	\end{frame}
 	
@@ -195,7 +199,12 @@
 	\section{Narrowband TDL Model}
 	
 	\begin{frame}{Condition for Narrowband}
-		A channel is \textbf{narrowband} when the system's time resolution is much larger than the channel's delay spread, $\sigma_\tau$.
+		\begin{itemize}
+			\item Define the delay spread: $\sigma_\tau = \max_{i,j} |\tau_i - \tau_j|$
+			\item And the coherence bandwidth: $\Delta f_c \approx \frac{1}{\sigma_\tau}$
+		\end{itemize}
+		\vspace{1em}
+		A channel is \textbf{narrowband} if the signal bandwidth $B \ll \Delta f_c$, which implies:
 		\[ \Delta\tau \gg \sigma_\tau \]
 		
 		\begin{block}{Consequence}
@@ -206,7 +215,7 @@
 	\begin{frame}{Condition for Narrowband}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.8\linewidth]{"placeholder-narrowband-condition.png"}
+			\includegraphics[width=0.6\linewidth]{pictures/narrowband-condition}
 			\caption{Diagram showing a large $\Delta\tau$ encompassing all MPCs.}
 		\end{figure}
 	\end{frame}
@@ -235,7 +244,7 @@
 	\section{Wideband TDL Model}
 	
 	\begin{frame}{Condition for Wideband}
-		A channel is \textbf{wideband} when the time resolution $\Delta\tau$ is smaller than the delay spread $\sigma_\tau$.
+		A channel is \textbf{wideband} when the signal bandwidth $B$ is comparable to or larger than the coherence bandwidth $\Delta f_c$, which implies the time resolution $\Delta\tau$ is smaller than the delay spread $\sigma_\tau$.
 		\[ \Delta\tau < \sigma_\tau \]
 		
 		\begin{block}{Consequence}
@@ -246,9 +255,9 @@
 	\begin{frame}{Condition for Wideband}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.8\linewidth]{"placeholder-wideband-condition.png"}
+			\includegraphics[width=0.6\linewidth]{pictures/wideband-condition"}
 			\caption{Diagram showing a small $\Delta\tau$ resolving different MPCs.}
-		\end{figure}
+		\end{figure}	
 	\end{frame}
 	
 	\begin{frame}{Derivation of the Wideband Model (1/2)}
@@ -276,7 +285,10 @@
 			\item The resulting impulse response is the Tapped Delay Line (TDL) model:
 			\[ h_{TDL}(\tau, t) = \sum_{l=0}^{L} h_l(t) \delta(\tau - l\Delta\tau) \]
 			
-			\item The tap coefficient $h_l(t)$ can be approximated as the sum of all physical MPCs, $\alpha_n(t)$, whose delays $\tau_n$ fall within the $l$-th time bin:
+			\item Substituting the physical model for $h(\tau,t)$, the exact tap gain is:
+			\[ h_l(t) = \sum_{n=1}^{N} \alpha_n(t) \text{sinc}(B(\tau_n - l\Delta\tau)) \]
+			
+			\item This can be approximated as the sum of all MPCs whose delays $\tau_n$ fall within the $l$-th time bin:
 			\[ h_l(t) \approx \sum_{\tau_n \, \in \, \text{tap l}} \alpha_n(t) \]
 		\end{itemize}
 	\end{frame}
@@ -290,7 +302,7 @@
 	\begin{frame}{Visualizing the Taps}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.9\linewidth]{"placeholder-tdl-grouping.png"}
+			\includegraphics[width=0.9\linewidth]{pictures/tdl-grouping.png}
 			\caption{Grouping of physical MPCs into discrete taps.}
 		\end{figure}
 	\end{frame}
@@ -300,7 +312,7 @@
 	\begin{frame}{Motivation for a Statistical Approach}
 		\begin{itemize}
 			\item A deterministic model (like ray-tracing) is often impractical. The exact properties of each MPC are highly sensitive to small changes in the environment.
-			\item A statistical model aims to generate a channel with the same statistical properties (for example, average power, fading distribution) as a real channel.
+			\item A statistical model aims to generate a channel with the same statistical properties (e.g., average power, fading distribution) as a real channel.
 		\end{itemize}
 	\end{frame}
 	
@@ -325,17 +337,21 @@
 	
 	\begin{frame}{The Rayleigh Distribution}
 		\begin{itemize}
-			\item The Probability Density Function (PDF) is:
+			\item Probability Density Function (PDF):
 			\[ p(|h_l|) = \frac{|h_l|}{\sigma_l^2} \exp\left(-\frac{|h_l|^2}{2\sigma_l^2}\right) \]
 			
-			\item The parameter $\sigma_l^2$ is half the average power of the tap: $\mathbb{E}[|h_l|^2] = 2\sigma_l^2$.
+			\item Cumulative Distribution Function (CDF):
+			\[ F(|h_l|) = \int_0^{|h_l|} p(x) dx = 1 - \exp\left(-\frac{|h_l|^2}{2\sigma_l^2}\right) \]
+			
+			\item Expected values:
+			\[ \mathbb{E}[|h_l|] = \sigma_l \sqrt{\frac{\pi}{2}}, \quad \mathbb{E}[|h_l|^2] = 2\sigma_l^2 \]
 		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}{The Rayleigh Distribution}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.7\linewidth]{"placeholder-rayleigh-pdf.png"}
+			\includegraphics[width=0.7\linewidth]{"pictures/rayleigh-pdf.png"}
 			\caption{Plot of the Rayleigh PDF.}
 		\end{figure}
 	\end{frame}
@@ -364,34 +380,12 @@
 	\begin{frame}{The Rician Distribution}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.7\linewidth]{"placeholder-rician-pdf.png"}
+			\includegraphics[width=\linewidth]{pictures/rician-pdf.png}
 			\caption{Plot of Rician PDFs for different K-factors.}
 		\end{figure}
 	\end{frame}
 	
-	\begin{frame}{The Power Delay Profile}
-		\begin{itemize}
-			\item To parameterize these statistical models, we need the average power distribution over the delays.
-			
-			\item This is the \textbf{Power Delay Profile}, $P(\tau_l)$, which gives the average power $\mathbb{E}[|h_l|^2]$ for each tap delay $\tau_l = l\Delta\tau$.
-			\[ P(\tau_l) = \mathbb{E}[|h_l|^2] \]
-		\end{itemize}
-	\end{frame}
 	
-	\begin{frame}{The Power Delay Profile}
-		\begin{itemize}
-			\item The PDP is a fundamental characteristic of a wireless environment (for example., urban, rural). 
-			\item Standardized models (for example., from ITU) provide typical PDPs for different scenarios.
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{The Power Delay Profile}
-		\begin{figure}
-			\centering
-			\includegraphics[width=0.8\linewidth]{"placeholder-pdp-example.png"}
-			\caption{Example of a Power Delay Profile.}
-		\end{figure}
-	\end{frame}
 	
 	\begin{frame}{Example: Standardized PDP}
 		\begin{block}{ITU Vehicular A model}

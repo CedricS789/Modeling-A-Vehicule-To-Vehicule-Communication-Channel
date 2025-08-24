@@ -1,0 +1,333 @@
+\documentclass{beamer}
+
+\usetheme{Boadilla}
+% \usecolortheme{beaver} % --- We are replacing this with our own theme below ---
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric, arrows.meta}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[bottom]{footmisc}
+
+% --- CUSTOM COLOR THEME SETUP ---
+
+% 1. Define your new colors using Hex codes
+\definecolor{ULBBlue}{HTML}{0D47A1}
+\definecolor{ULBTeal}{HTML}{4DB6AC}
+\definecolor{VUBOrange}{HTML}{E87722}
+\definecolor{AlertColor}{HTML}{D32F2F}
+\definecolor{LightGray}{HTML}{F5F5F5}
+
+
+% 2. Apply these colors to Beamer's elements
+\setbeamercolor{palette primary}{bg=ULBBlue, fg=white}
+\setbeamercolor{palette secondary}{bg=VUBOrange, fg=white}
+\setbeamercolor{palette tertiary}{bg=ULBBlue, fg=white}
+\setbeamercolor{palette quaternary}{bg=VUBOrange, fg=white}
+
+\setbeamercolor{structure}{fg=ULBBlue} % This is a key color for many elements
+\setbeamercolor{titlelike}{bg=ULBBlue, fg=white}
+\setbeamercolor{frametitle}{bg=ULBBlue, fg=white}
+\setbeamercolor{title}{use=structure,fg=white,bg=structure.fg}
+
+\setbeamercolor{normal text}{fg=black, bg=white}
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor{block body}{bg=LightGray}
+\setbeamercolor{alerted text}{fg=AlertColor}
+
+% --- END OF CUSTOM COLOR THEME ---
+
+% --- Command to automatically create a title slide for each section ---
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}\insertsectionhead\par%
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}
+% --- END of command ---
+
+
+\title[Friis' Formula \& High-Frequency Challenges]{Question 6: Friis' Formula and High-Frequency Communication Challenges}
+\subtitle{Demonstration, Implications, and Practical Examples}
+\author{Cédric Sipakam}
+\institute{ULB | VUB \\
+	\vspace{1.5em}
+	ELEC-H415: Communication Channels}
+\date{2025}
+
+
+\setbeamertemplate{footline}
+{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+			\hspace*{2ex}\usebeamerfont{title in head/foot}\insertshorttitle%
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{title in head/foot}%
+			\usebeamerfont{page number in head/foot}\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}%
+		\end{beamercolorbox}%
+	}%
+	\vskip0pt%
+}
+
+
+
+\begin{document}
+	\begin{frame}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\linewidth]{pictures/logos}
+		\end{figure}
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}{Outline}
+		\tableofcontents
+	\end{frame}
+	
+	\section{Demonstration of Friis' Formula}
+	
+	\begin{frame}{Introduction and Hypotheses}
+		\begin{itemize}
+			\item The \textbf{Friis transmission formula} is a fundamental equation used to calculate the power received by one antenna from another in idealized conditions.
+			\item It serves as the baseline for path loss calculations in Line-of-Sight (LOS) scenarios.
+		\end{itemize}
+		\begin{block}{Hypotheses}
+			\begin{itemize}
+				\item The antennas are in \textbf{free space}, with no obstructions or reflections.
+				\item The antennas are in each other's \textbf{far-field}.
+				\item The antennas are perfectly \textbf{aligned} and \textbf{polarization-matched}.
+				\item The channel is \textbf{reciprocal}.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Setup and Geometry}
+		\begin{figure}
+			\centering
+			% Placeholder for Figure from Chapter 2, slide 62
+			\includegraphics[width=0.8\linewidth]{"pictures/friis-setup.png"}
+			\caption{A transmitter (TX) and receiver (RX) separated by a distance $d$.}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{Derivation Step 1: Power Density at the Receiver}
+		\begin{itemize}
+			\item A transmitter radiates a total power $P_{TX}$. An isotropic antenna would radiate this power uniformly in all directions.
+			\item The gain of the transmit antenna, $G_{TX}(\theta_{TX}, \phi_{TX})$, concentrates this power in a specific direction.
+			\item The power density, $S$, at a distance $d$ from the transmitter is the power per unit area:
+			\[ S = \frac{\text{Power radiated in direction of RX}}{\text{Surface area of sphere at distance } d} \]
+			\[ S = \frac{P_{TX} G_{TX}}{4\pi d^2} \]
+			\item The term $P_{TX} G_{TX}$ is known as the Effective Isotropic Radiated Power (EIRP).
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Derivation Step 2: Power Captured by the Receiver}
+		\begin{itemize}
+			\item The receiving antenna captures a portion of this incident power density.
+			\item The amount of power it captures is determined by its \textbf{effective area} (or effective aperture), $A_{eRX}$.
+			\[ P_{RX} = S \cdot A_{eRX}(\theta_{RX}, \phi_{RX}) \]
+			\item Substituting the expression for $S$:
+			\[ P_{RX} = \left( \frac{P_{TX} G_{TX}}{4\pi d^2} \right) A_{eRX} \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Derivation Step 3: Relating Effective Area and Gain}
+		\begin{itemize}
+			\item A fundamental property of any antenna, derived from reciprocity, relates its gain $G$ to its effective area $A_e$:
+			\[ A_e = \frac{\lambda^2}{4\pi} G \]
+			where $\lambda$ is the wavelength of the signal.
+			\item For our receiving antenna, this means:
+			\[ A_{eRX} = \frac{\lambda^2}{4\pi} G_{RX} \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Derivation Step 4: The Final Friis Formula}
+		\begin{itemize}
+			\item We now substitute the expression for $A_{eRX}$ into our equation for $P_{RX}$:
+			\[ P_{RX} = \left( \frac{P_{TX} G_{TX}}{4\pi d^2} \right) \left( \frac{\lambda^2}{4\pi} G_{RX} \right) \]
+			\item Rearranging the terms yields the final Friis formula:
+			\[ \boxed{P_{RX}(d) = P_{TX} G_{TX} G_{RX} \left( \frac{\lambda}{4\pi d} \right)^2} \]
+		\end{itemize}
+		\begin{block}{Interpretation}
+			The received power is proportional to the transmitted power and the gains of both antennas, and it decreases with the square of the distance and the square of the frequency.
+		\end{block}
+	\end{frame}
+	
+	\section{Challenges of High-Frequency Communication}
+	
+	\begin{frame}{Introduction to the Challenges}
+		\begin{itemize}
+			\item The Friis formula itself reveals the first challenge of using higher frequencies.
+			\item Beyond this, other physical phenomena, not accounted for in the ideal Friis model, become increasingly problematic as frequency increases.
+			\item We will explore these challenges in both LOS and NLOS (Non-Line-of-Sight) scenarios.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Challenge 1: Increased Free-Space Path Loss (LOS)}
+		\begin{itemize}
+			\item The path loss is the ratio of transmitted to received power, $L = P_{TX}/P_{RX}$. From Friis' formula:
+			\[ L_{FS} = \frac{1}{G_{TX}G_{RX}} \left( \frac{4\pi d}{\lambda} \right)^2 \]
+			\item Since wavelength $\lambda = c/f$, where $f$ is the frequency, we can rewrite the path loss as:
+			\[ L_{FS} = \frac{1}{G_{TX}G_{RX}} \left( \frac{4\pi d f}{c} \right)^2 \]
+			\item \textbf{Conclusion}: For fixed antenna gains, the free-space path loss is proportional to the square of the frequency ($L_{FS} \propto f^2$).
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Challenge 1: Physical Interpretation}
+		\begin{itemize}
+			\item Why does path loss increase with frequency for the \textit{same antenna gain}?
+			\item The relationship $A_e = \frac{\lambda^2}{4\pi} G$ is key.
+			\item To maintain a constant gain $G$ at a higher frequency (smaller $\lambda$), the physical size of the antenna must shrink.
+			\item However, the effective area $A_e$ shrinks proportionally to $\lambda^2$.
+			\item The receiving antenna presents a smaller "target" to the incoming wave, thus capturing less power.
+		\end{itemize}
+		\begin{alertblock}{Example}
+			Doubling the frequency from 3 GHz to 6 GHz increases the free-space path loss by a factor of 4, which is a 6 dB penalty.
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Challenge 2: Atmospheric Absorption (LOS \& NLOS)}
+		\begin{itemize}
+			\item The Friis formula assumes a lossless medium. Earth's atmosphere is not lossless, especially at high frequencies.
+			\item Molecules of water vapor ($H_2O$) and oxygen ($O_2$) absorb radio frequency energy at specific resonant frequencies.
+			\item This absorption adds significant attenuation on top of the free-space path loss.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Challenge 2: Atmospheric Absorption (LOS \& NLOS)}
+		\begin{figure}
+			\centering
+			% Placeholder for standard atmospheric attenuation graph
+			\includegraphics[width=0.9\linewidth]{"pictures/atmospheric-attenuation.png"}
+			\caption{Atmospheric gas attenuation vs. frequency. Note the severe peaks around 22 GHz ($H_2O$), 60 GHz ($O_2$), and 120 GHz ($O_2$).}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}{Challenge 3: Penetration and Diffraction (NLOS)}
+		\begin{itemize}
+			\item High-frequency signals have shorter wavelengths. This severely impacts their ability to propagate in cluttered NLOS environments.
+			\item \textbf{Penetration Loss}: Shorter wavelengths are less effective at passing through obstacles like walls, foliage, and even human bodies. The attenuation from building materials increases significantly with frequency.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Challenge 3: Penetration and Diffraction (NLOS)}
+		\begin{itemize}
+			\item \textbf{Diffraction Loss}: The ability of waves to "bend" around sharp corners is reduced for shorter wavelengths. This makes it harder for signals to fill in shadow regions behind obstacles.
+		\end{itemize}
+		\begin{block}{Consequence}
+			High-frequency systems are much more susceptible to blockage, making reliable NLOS communication very difficult. Links often require a clear or near-clear Line-of-Sight.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Challenge 4: Impact of Weather (Rain Fade)}
+		\begin{itemize}
+			\item The impact of hydrometeors (rain, snow, fog) on radio waves is highly frequency-dependent.
+			\item At frequencies below 10 GHz, rain attenuation is generally negligible.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Challenge 4: Impact of Weather (Rain Fade)}
+		\begin{itemize}
+			\item Above 10 GHz, the wavelength becomes comparable to the size of raindrops, causing significant absorption and scattering of the signal.
+			\item This phenomenon, known as \textbf{rain fade}, is a major design constraint for satellite and terrestrial microwave links in the Ku-band (12-18 GHz), Ka-band (26-40 GHz), and higher.
+		\end{itemize}
+	\end{frame}
+	
+	\section{Illustrative Example: 5G Link Comparison}
+	
+	\begin{frame}{Scenario: Urban Microcell Link}
+		\begin{itemize}
+			\item Let's compare two 5G links over a distance of $d = 200$ meters.
+			\item We assume the same transmit power and antenna gains for both systems to isolate the effect of frequency.
+			\begin{itemize}
+				\item \textbf{System A (Mid-Band)}: $f_A = 3.5$ GHz
+				\item \textbf{System B (mmWave)}: $f_B = 28$ GHz
+			\end{itemize}
+		\end{itemize}
+		\begin{block}{Path Loss Calculation}
+			The antenna-independent path loss in dB is:
+			\[ L_0[\text{dB}] = 20\log_{10}(d) + 20\log_{10}(f) - 147.56 \]
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Results: LOS vs. NLOS}
+		\begin{itemize}
+			\item \textbf{System A (3.5 GHz)}:
+			\[ L_{0,A} = 20\log_{10}(200) + 20\log_{10}(3.5 \times 10^9) - 147.56 = \textbf{89.34 dB} \]
+			\item \textbf{System B (28 GHz)}:
+			\[ L_{0,B} = 20\log_{10}(200) + 20\log_{10}(28 \times 10^9) - 147.56  = \textbf{107.4 dB} \]
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Results: LOS vs. NLOS}
+		\begin{alertblock}{LOS Analysis}
+			In a clear LOS path, the mmWave system already suffers an additional \textbf{18 dB} of path loss compared to the mid-band system. This is a factor of $\approx 63$ in power.
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Results: LOS vs. NLOS}
+		\begin{itemize}
+			\item Now, let's place a single concrete wall in the path (\textbf{NLOS}).
+			\item \textbf{Penetration Loss (Typical Values)}:
+			\begin{itemize}
+				\item At 3.5 GHz: $\approx 10$ dB
+				\item At 28 GHz: $\approx 25$ dB
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Results: LOS vs. NLOS}
+		\begin{itemize}
+			\item \textbf{Total NLOS Path Loss}:
+			\begin{itemize}
+				\item System A: $89.34 + 10 = \textbf{99.34 dB}$
+				\item System B: $107.4 + 25 = \textbf{132.4 dB}$
+			\end{itemize}
+		\end{itemize}
+		\vspace{1em}
+		\begin{alertblock}{NLOS Analysis}
+			The total path loss difference is now \textbf{33 dB}. The mmWave signal is over 2000 times weaker than the mid-band signal after passing through just one wall. This illustrates the extreme sensitivity of high-frequency systems to blockage.
+		\end{alertblock}
+	\end{frame}
+	
+	\section{Conclusion}
+	
+	\begin{frame}{Summary and Conclusion}
+		\begin{block}{Friis' Formula}
+			\begin{itemize}
+				\item Provides the fundamental relationship for received power in an ideal free-space LOS channel.
+				\item It demonstrates that path loss inherently increases with the square of the frequency ($L \propto f^2$) due to the reduced effective area of antennas with constant gain.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Summary and Conclusion}
+		\begin{alertblock}{High-Frequency Challenges}
+			As frequency increases, wireless communication becomes more challenging due to a combination of phenomena:
+			\begin{itemize}
+				\item \textbf{Higher Free-Space Path Loss}: An unavoidable consequence of physics.
+				\item \textbf{Atmospheric and Rain Attenuation}: Gaseous absorption and rain fade become dominant loss factors at mmWave frequencies and above.
+				\item \textbf{Poor Penetration and Diffraction}: Signals are easily blocked by obstacles and struggle to propagate in NLOS environments.
+			\end{itemize}
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}
+		\centering
+		\Huge Thank You
+	\end{frame}
+	
+\end{document}
